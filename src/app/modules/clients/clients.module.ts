@@ -10,14 +10,13 @@ import { LeadsFilterTimesModule } from '../shared/leads-filter-times/leads-filte
 import { CampaignFormComponent } from './components/campaign/campaign-form/campaign-form.component';
 import { CampaignWrapperComponent } from './components/campaign/campaign-wrapper/campaign-wrapper.component';
 import { CampaignFormEditComponent } from './components/campaign/campaign-form-edit/campaign-form-edit.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardModule } from './components/dashboard/dashboard.module';
 
 @NgModule({
     declarations: [
         CampaignFormComponent,
         CampaignWrapperComponent,
         CampaignFormEditComponent,
-        DashboardComponent
     ],
     imports: [
         CommonModule,
@@ -25,6 +24,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
         FormsModule,
         LoadingModule,
         ChartsModule,
+        DashboardModule,
         ReactiveFormsModule,
         LeadsFilterTimesModule,
         RouterModule.forChild(ClientsRoutes),

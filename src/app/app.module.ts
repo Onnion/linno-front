@@ -2,21 +2,21 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, LocationStrategy, APP_BASE_HREF, HashLocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { MaterialModule } from './mat.module';
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { NotifierModule } from 'angular-notifier';
-import { notifierDefaultOptions } from './helpers/consts/consts.helpers';
-import { TokenInterceptor } from './helpers/interceptor/interceptor.helper';
 import { RouterModule } from '@angular/router';
-import { FormBuilderValidators } from './validators';
 import { AclService } from 'ng2-acl';
-import { HandlerErrorHelpers } from './helpers/handler-error/handler-error.helper';
 import { AclRedirection, AclResolver } from './app.resolve';
 import { SharedModule } from './modules/shared/shared.module';
 import { LayoutsModule } from './modules/layouts/layouts.module';
+import { notifierDefaultOptions } from './helpers/consts/consts.helpers';
+import { HandlerErrorHelpers } from './helpers/handler-error/handler-error.helper';
+import { TokenInterceptor } from './helpers/interceptor/interceptor.helper';
+import { FormBuilderValidators } from './validators';
 
 @NgModule({
   imports: [
@@ -43,8 +43,10 @@ import { LayoutsModule } from './modules/layouts/layouts.module';
       useClass: TokenInterceptor,
       multi: true
     },
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-br' }
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-br' },
+    { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

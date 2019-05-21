@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
-  AUTH_URL: 'http://104.131.99.239:6363/',
+  AUTH_URL: 'https://api.jogga.com.br',
   GRANT_TYPE: 'password',
-  CLIENT_SECRET: 'HLvRrPE6etuLpB395NXoDJ0Irm8r4MpCTKoOL7Tm',
+  CLIENT_SECRET: 'FFEjh1rEewi27Zy2D7drXtD03Pw0i0TVOPPxf51U',
   CLIENT_ID: 2,
   API_CEP: ''
 };

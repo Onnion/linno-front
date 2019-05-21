@@ -36,7 +36,7 @@ export class AuthService {
           this.getUserAuthenticated().subscribe(
             ($user: any) => {
               if ($user) {
-                const user = JSON.stringify($user.data[0]);
+                const user = JSON.stringify($user.data);
                 this.createUserData(user);
   
                 this.router.navigate([`/${ROLES_ACL[this.getDataUser().type].path}`]);
