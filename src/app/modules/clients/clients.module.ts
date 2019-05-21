@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../../mat.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
-import { LeadsFilterModule } from '../shared/leads-filter/leads-filter.module';
 import { LoadingModule } from '../shared/loading/loading.module';
 import { LeadsFilterTimesModule } from '../shared/leads-filter-times/leads-filter-times.module';
 import { CampaignFormComponent } from './components/campaign/campaign-form/campaign-form.component';
@@ -27,7 +26,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
         LoadingModule,
         ChartsModule,
         ReactiveFormsModule,
-        LeadsFilterModule,
         LeadsFilterTimesModule,
         RouterModule.forChild(ClientsRoutes),
     ]

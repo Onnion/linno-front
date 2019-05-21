@@ -5,7 +5,6 @@ import {AuthLayoutComponent} from './auth/auth-layout.component';
 import {ClientLayoutComponent} from './client/client-layout.component';
 import {NavbarModule} from '../shared/navbar/navbar.module';
 import {SidebarModule} from '../shared/sidebar/sidebar.module';
-import {FooterModule} from '../shared/footer/footer.module';
 import {RouterModule} from '@angular/router';
 
 @NgModule({
@@ -18,8 +17,7 @@ import {RouterModule} from '@angular/router';
         CommonModule,
         RouterModule,
         NavbarModule,
-        SidebarModule,
-        FooterModule
+        SidebarModule
     ]
 })
 export class LayoutsModule {

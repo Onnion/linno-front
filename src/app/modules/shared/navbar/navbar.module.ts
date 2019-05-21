@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar.component';
 import { MatButtonModule } from '@angular/material';
-import { LeadsFilterModule } from '../leads-filter/leads-filter.module';
 import { LeadsFilterTimesModule } from '../leads-filter-times/leads-filter-times.module';
 @NgModule({
-    imports: [ RouterModule, CommonModule, MatButtonModule, LeadsFilterModule, LeadsFilterTimesModule ],
+    imports: [ RouterModule, CommonModule, MatButtonModule, LeadsFilterTimesModule ],
     declarations: [ NavbarComponent ],
     exports: [ NavbarComponent ]
 })
