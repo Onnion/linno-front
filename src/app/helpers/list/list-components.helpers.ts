@@ -1,0 +1,131 @@
+import { MatPaginator, PageEvent } from '@angular/material';
+import { ViewChild, EventEmitter } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { DataSource } from '@angular/cdk/table';
+import { FilterService } from 'src/app/services/filter/filter.service';
+import { scroll } from 'src/app/utils/scroll';
+
+export class ComponentDataSource extends DataSource<any> {
+    private data: any[];
+
+    constructor(dataList: any[]) {
+        super();
+        this.data = dataList;
+    }
+
+    connect(): Observable<any[]> {
+        const rows = [];
+        this.data.forEach(element => rows.push(element, { detailRow: true, element }));
+        return of(rows);
+    }
+
+    disconnect() { }
+}
+export class ListComponent {
+
+    @ViewChild(MatPaginator) pagination: MatPaginator;
+
+    public service;
+    public notify;
+    public options;
+    public methodLoad = 'getData';
+    public safe_pagination;
+    public status_form = { loading: false };
+    public doneLoad: EventEmitter<any> = new EventEmitter<any>();
+    public dataSource: ComponentDataSource;
+    public filterService: FilterService;
+    public expandedElement: any;
+
+    // Data
+    public componentData: any;
+    public filtredComponentData: any;
+
+    // Pagination
+    public status: string;
+    public length: number;
+    public pageSize = 5;
+    public page = 1;
+    public pageSizeOptions: number[] = [5, 12, 25, 50, 100, 1000, 10000];
+    public searchableFields: string[];
+    public pageEvent: PageEvent;
+    public doneAnimation = false;
+    public idTable: string = 'table';
+
+    private changePagination = false;
+
+    constructor() { }
+
+    protected subscribeFilters() {
+        this.filterService.filter.subscribe(filters => {
+            this.loadData();
+        });
+    }
+
+    public getSearchableFields(): string {
+        return `Pesquisa pode ser realizada pelos campos ${this.searchableFields.map(( field ) => field ).join(', ')}`;
+    }
+
+    public showPagination(): void {
+        this.doneAnimation = true;
+    }
+
+    public setSort($event): void {
+        console.log($event);
+    }
+
+    public isExpansionDetailRow(i: number, row: Object): boolean {
+        return row.hasOwnProperty('detailRow');
+    }
+
+    public loadData(): void {
+        this.status_form.loading = true;
+        let options = {...this.options};
+
+        if (!this.safe_pagination) {
+            options = {
+                ...this.options,
+                'page': this.page,
+                'pageSize': this.pageSize,
+            };
+        }
+
+        this.service[this.methodLoad](options).subscribe(
+            (data) => {
+                if (!this.safe_pagination) {
+                    const pagination = data.meta.pagination;
+                    this.setPagination(pagination['total'], pagination['current_page'], pagination['per_page']);
+                }
+                this.componentData = data.data;
+                this.filtredComponentData = data.data;
+                this.dataSource = new ComponentDataSource(data.data);
+                this.status_form.loading = false;
+                this.doneLoad.emit(true);
+                scroll(this.idTable);
+
+                if (this.changePagination) { this.showPagination(); } 
+            },
+            (err) => {
+                this.status_form.loading = false;
+            }
+        );
+    }
+
+    public setPagination(length: number, startIndex: number, pageSize: number): void {
+        this.length = length;
+        this.page = startIndex;
+        this.pageSize = pageSize;
+    }
+
+    public onPaginateChange(event): void {
+
+        if (this.pageSize !== event.pageSize) {
+            this.doneAnimation = false;
+        }
+
+        this.page = event.pageIndex + 1;
+        this.pageSize = event.pageSize;
+
+       
+        this.loadData();
+    }
+}

@@ -1,0 +1,15 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="white" data-background-color="green">
+        <app-sidebar-cmp></app-sidebar-cmp>
+        <div class="sidebar-background"></div>
+    </div>
+    <div class="main-panel">
+        <app-navbar-cmp></app-navbar-cmp>
+        <div class="main-content">
+            <router-outlet></router-outlet>
+        </div>
+        <div *ngIf="!isMap()">
+            <app-footer-cmp></app-footer-cmp>
+        </div>
+    </div>
+</div>

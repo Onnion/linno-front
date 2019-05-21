@@ -1,0 +1,6 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~angular-notifier/styles.css";
+
+.mat-autocomplete-panel.mat-autocomplete-visible {
+  max-height: 200px;
+}
