@@ -32,8 +32,7 @@
     margin-left: 2px;
     vertical-align: middle;
     border-top: 4px dashed;
-    border-top: 4px solid \9
-  ;
+    border-top: 4px solid \9;
     border-right: 4px solid transparent;
     border-left: 4px solid transparent;
   }
@@ -90,7 +89,6 @@
           opacity: 1;
           white-space: nowrap;
           display: block;
-
         }
 
         .sidebar-mini {
@@ -179,7 +177,7 @@
           position: absolute;
           height: 1px;
           left: 15px;
-          background-color: rgba(180, 180, 180, .3);
+          background-color: rgba(180, 180, 180, 0.3);
         }
 
         & + li {
@@ -238,8 +236,8 @@
       height: 100%;
       content: "";
       display: block;
-      background: #FFFFFF;
-      opacity: .93;
+      background: #ffffff;
+      opacity: 0.93;
     }
   }
 
@@ -271,14 +269,13 @@
     }
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       right: 15px;
       height: 1px;
       width: calc(100% - 30px);
-      background-color: rgba(180, 180, 180, .3);
-
+      background-color: rgba(180, 180, 180, 0.3);
     }
 
     p {
@@ -322,13 +319,13 @@
     position: relative;
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       right: 15px;
       height: 1px;
       width: calc(100% - 30px);
-      background-color: rgba(180, 180, 180, .3);
+      background-color: rgba(180, 180, 180, 0.3);
     }
 
     .photo {
@@ -428,7 +425,7 @@
     .logo,
     .nav li.separator {
       &:after {
-        background-color: rgba(255, 255, 255, .3);
+        background-color: rgba(255, 255, 255, 0.3);
       }
     }
 
@@ -442,7 +439,7 @@
 
   &[data-image]:after,
   &.has-image:after {
-    opacity: .77;
+    opacity: 0.77;
   }
 }
 
@@ -461,17 +458,20 @@
   }
 }
 
-
 .main-panel {
   position: relative;
   float: right;
   width: $sidebar-width;
-  @include transition (0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1));
+  @include transition(0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1));
 
   .main-content {
     margin-top: 70px;
     padding: 30px 15px;
     min-height: calc(100vh - 123px);
+
+    @media (max-width: 768px) {
+      margin-top: 10px;
+    }
   }
 
   .footer {
@@ -500,14 +500,13 @@
   }
 }
 
-
 .sidebar,
 .main-panel,
 .sidebar-wrapper {
   -webkit-transition-property: top, bottom, width;
   transition-property: top, bottom, width;
-  -webkit-transition-duration: .2s, .2s, .35s;
-  transition-duration: .2s, .2s, .35s;
+  -webkit-transition-duration: 0.2s, 0.2s, 0.35s;
+  transition-duration: 0.2s, 0.2s, 0.35s;
   -webkit-transition-timing-function: linear, linear, ease;
   transition-timing-function: linear, linear, ease;
   -webkit-overflow-scrolling: touch;
@@ -554,7 +553,14 @@
 
       .sidebar-wrapper {
         > .nav [data-toggle="collapse"] ~ div > ul > li > a .sidebar-normal,
-        .user .user-info [data-toggle="collapse"] ~ div > ul > li > a .sidebar-normal,
+        .user
+          .user-info
+          [data-toggle="collapse"]
+          ~ div
+          > ul
+          > li
+          > a
+          .sidebar-normal,
         .user .user-info > a > span,
         > .nav li > a p {
           @include transform-translate-x(-25px);
@@ -578,7 +584,14 @@
 
         > .nav li > a p,
         > .nav [data-toggle="collapse"] ~ div > ul > li > a .sidebar-normal,
-        .user .user-info [data-toggle="collapse"] ~ div > ul > li > a .sidebar-normal,
+        .user
+          .user-info
+          [data-toggle="collapse"]
+          ~ div
+          > ul
+          > li
+          > a
+          .sidebar-normal,
         .user .user-info > a > span {
           @include transform-translate-x(0px);
           opacity: 1;
@@ -600,7 +613,6 @@
   }
 
   &.sidebar-mini {
-
     .sidebar {
       @extend .animation-transition-general;
 

@@ -17,7 +17,6 @@ import { notifierDefaultOptions } from './helpers/consts/consts.helpers';
 import { HandlerErrorHelpers } from './helpers/handler-error/handler-error.helper';
 import { TokenInterceptor } from './helpers/interceptor/interceptor.helper';
 import { FormBuilderValidators } from './validators';
-
 @NgModule({
   imports: [
     CommonModule,

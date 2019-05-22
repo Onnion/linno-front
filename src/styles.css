@@ -4,3 +4,8 @@
 .mat-autocomplete-panel.mat-autocomplete-visible {
   max-height: 200px;
 }
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #2f5584!important;
+}
+

@@ -1,5 +1,5 @@
 <div class="" style="padding: 15px">
-    <img class="img-fluid" src="assets/img/logo.jpg" />
+    <img class="img-fluid" src="assets/img/logo.png" />
 </div>
 
 <div class="sidebar-wrapper">
@@ -23,20 +23,6 @@
                 </ul>
             </div>
         </div>
-    </div>
-
-    <div *ngIf="isMobileMenu()">
-        <form class="navbar-form">
-            <span class="bmd-form-group">
-                <div class="input-group no-border">
-                  <input type="text" value="" class="form-control" placeholder="Search...">
-                  <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
-                    <i class="material-icons">search</i>
-                    <div class="ripple-container"></div>
-                  </button>
-                </div>
-            </span>
-        </form>
     </div>
 
     <ul class="nav">
@@ -67,22 +53,22 @@
         <li class="nav-item">
             <a download target="_blank" *ngIf="hasPermission('root_content')" href="https://s3-sa-east-1.amazonaws.com/jogga-bucket/uploads/moura-pdfs/Jogga+-+Gloss%C3%A1rio+e+FAQ.pdf" class="nav-link">
                 <i class="material-icons">live_help</i>
-                <p>FAQ</p>
+                <p>Dúvidas</p>
             </a>
             <a download target="_blank" *ngIf="hasPermission('client_content')" href="https://s3-sa-east-1.amazonaws.com/jogga-bucket/uploads/moura-pdfs/Jogga+-+Gloss%C3%A1rio+e+FAQ.pdf" class="nav-link">
                 <i class="material-icons">live_help</i>
-                <p>FAQ</p>
+                <p>Dúvidas</p>
             </a>
         </li>
 
         <li class="nav-item">
             <a download target="_blank" *ngIf="hasPermission('root_content')" href="https://s3-sa-east-1.amazonaws.com/jogga-bucket/uploads/moura-pdfs/Termo+de+Participa%C3%A7%C3%A3o+DISTRIBUIDOR.pdf" class="nav-link">
                 <i class="material-icons">description</i>
-                <p>Termos</p>
+                <p>Informações e normas</p>
             </a>
             <a download target="_blank" *ngIf="hasPermission('client_content')" href="https://s3-sa-east-1.amazonaws.com/jogga-bucket/uploads/moura-pdfs/Termo+de+Participa%C3%A7%C3%A3o+DISTRIBUIDOR.pdf" class="nav-link">
                 <i class="material-icons">description</i>
-                <p>Termos</p>
+                <p>Informações e normas</p>
             </a>
         </li>
     </ul>

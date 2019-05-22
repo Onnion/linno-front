@@ -1,13 +1,48 @@
 <div class="row">
   <div class="col">
-    <h2 style="font-weight: 900; color: #f6bc00; background: #2f5584; padding: 5px 15px; margin: 0px 0px 20px;">
+    <h2 id="title-edit"
+      style="font-weight: 900; color: #f6bc00; background: #2f5584; padding: 5px 15px; margin: 0px 0px 20px;">
       Preencha apenas os campos que você deseja atualizar</h2>
   </div>
 </div>
 
 <div class="row">
   <div class="col">
-    <iframe style="width: 100%; min-height: 70vh;" src="http://joggadigital.com.br/clientes/revenda/briefing/?edit=true"
-      frameborder="0"></iframe>
+
+    <div class="card-body" style="background: #FFFFFF">
+      <form [formGroup]="form" (submit)="submit()" (keyup.enter)="submit()">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Distribuidor</mat-label>
+          <mat-select placeholder="Selecione um distribuidor" formControlName="distributor">
+            <mat-option *ngFor="let distributor of distributors" [value]="distributor">
+              {{distributor}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Código AX</mat-label>
+          <input mask="CODE_AX" type="text" matInput placeholder="Ex: 1234567" formControlName="code_ax">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nome Fantasia</mat-label>
+          <input type="email" matInput placeholder="Ex: Moura" formControlName="trading_name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>O que você pretende alterar no cadastro?</mat-label>
+          <textarea type="email" matInput placeholder="Ex: Nome fornecedor = Moura" formControlName="observation"></textarea>
+        </mat-form-field>
+
+        <div style="text-align: right">
+          <button type="submit" mat-raised-button style="background: #279b37; color: #FFFFFF"> Enviar
+          </button>
+        </div>
+
+      </form>
+    </div>
+
   </div>
 </div>

@@ -6,20 +6,24 @@ import { InterRoutes } from './intern.routing';
 import { MaterialModule } from '../../mat.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CampaignWrapperComponent } from './components/campaign/campaign-wrapper/campaign-wrapper.component';
-import { LoadingModule } from '../shared/loading/loading.module';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { CampaignFormEditComponent } from './components/campaign/campaign-form-edit/campaign-form-edit.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CampaignsListComponent } from './components/campaign/campaigns-list/campaigns-list.component';
+import { MaskDirective } from 'src/app/helpers/directives/mask/mask.directive';
 @NgModule({
   declarations: [
     CampaignFormComponent,
     CampaignWrapperComponent,
-    CampaignFormEditComponent
+    CampaignFormEditComponent,
+    DashboardComponent,
+    CampaignsListComponent,
+    MaskDirective
   ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
-    LoadingModule,
     ReactiveFormsModule,
     RouterModule.forChild(InterRoutes),
     SweetAlert2Module.forRoot()
