@@ -10,7 +10,7 @@ export const InterRoutes: Routes = [
         component: CampaignWrapperComponent,
         children: [
             {
-                path: '',
+                path: 'jogga/mock',
                 component: DashboardComponent,
             },
             {

@@ -22,6 +22,7 @@ export const ROUTES: RouteInfo[] = [
         path: '/dashboard',
         title: 'Painel de resultados',
         type: 'link',
+        disabled: true,
         icontype: 'assessment',
         permission: ROLES.root[0]
     },
