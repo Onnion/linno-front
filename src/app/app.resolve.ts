@@ -25,26 +25,19 @@ export class AclRedirection {
 @Injectable()
 export class AclResolver implements Resolve<any> {
 
-
-    constructor(
-        private aclService: AclService,
-        private aclRedirection: AclRedirection,
-    ) {
+    constructor(private aclService: AclService, private aclRedirection: AclRedirection) {
     }
-
 
     private match(state, path: any): boolean {
         let match = false;
         if (typeof path === 'object') {
             match = path.test(state.url);
-
         } else {
             match = state.url === path;
         }
 
         return match;
     }
-
 
     private matchUrl(state): any {
         let testRoute;
@@ -70,13 +63,11 @@ export class AclResolver implements Resolve<any> {
         return testRoute;
     }
 
-
     public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
         if (this.matchUrl(state)) {
             return of(true);
         } else {
             this.aclRedirection.redirectTo('Unauthorized');
         }
-
     }
 }
