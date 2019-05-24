@@ -9,9 +9,8 @@ export const InterRoutes: Routes = [
         path: '',
         component: CampaignWrapperComponent,
         children: [
-            { path: '', redirectTo: 'cadastro' },
             {
-                path: 'jogga/mock',
+                path: 'jogga',
                 component: DashboardComponent,
             },
             {
@@ -23,7 +22,9 @@ export const InterRoutes: Routes = [
                 path: 'ajuste​',
                 component: CampaignFormEditComponent,
                 data: { type: 'edit' }
-            }
+            },
+            { path: '', redirectTo: 'ajuste​' },
+
         ]
     },
 ];

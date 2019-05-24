@@ -10,11 +10,11 @@ export class AuthGuardService implements CanActivate {
     constructor(private authService: AuthService) { }
 
     canActivate() {
-        const url = window.location.href.split('/');
-        console.log(url[url.length - 1]);
         if (this.authService.isLoggedIn()) {
             return true;
         } else {
+            const url = window.location.href.split('/');
+            this.authService.redirectStrategy(url[url.length - 1]);
             this.authService.logout();
             return false;
         }

@@ -9,7 +9,7 @@ import {AclResolver} from './app.resolve';
 
 const routes: Routes = [
     {
-        path: 'login/:redirect',
+        path: 'login',
         component: AuthLayoutComponent,
         children: [
             {
@@ -54,9 +54,7 @@ const routes: Routes = [
     imports: [
         CommonModule,
         BrowserModule,
-        RouterModule.forRoot(routes, {
-            useHash: true
-        })
+        RouterModule.forRoot(routes)
     ],
     exports: [],
 })

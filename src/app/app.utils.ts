@@ -4,12 +4,15 @@ export function eraseCookie(...name): any {
     });
 }
 
-
 export function getObjectCookie(cname): any {
     const cookie = getCookie(cname);
-    return cookie ? JSON.parse(cookie) : undefined;
-}
 
+    try {
+        return cookie ? JSON.parse(cookie) : undefined;
+    } catch (error) {
+        return cookie ? cookie : undefined;
+    }
+}
 
 export function getCookie(cname): string {
     const name = cname + '=';
@@ -25,7 +28,6 @@ export function getCookie(cname): string {
     }
     return '';
 }
-
 
 export const isValidCpf = cpf_cnpj => {
 
@@ -53,7 +55,6 @@ export const isValidCpf = cpf_cnpj => {
     }
 
 };
-
 
 function validaCPF(s) {
     const c = s.substr(0, 9);
@@ -87,7 +88,6 @@ function validaCPF(s) {
     }
     return true;
 }
-
 
 function validaCNPJ(CNPJ) {
     const a = [];
@@ -125,22 +125,18 @@ function validaCNPJ(CNPJ) {
     return true;
 }
 
-
 export const cleanUp = (value: string) => {
     return value.replace(/\D/g, '');
 };
 
-
 export const getDataUser = (): any => {
-    return getObjectCookie('jogga_hub_auth_user_data');
+    return getObjectCookie('moura_auth_user_data');
 };
-
 
 export const setRedirect = (role: any): void => {
     localStorage.removeItem('redirect');
     localStorage.setItem('redirect', role.path);
 };
-
 
 export const getRedirect = (): string => {
     return localStorage.getItem('redirect');
