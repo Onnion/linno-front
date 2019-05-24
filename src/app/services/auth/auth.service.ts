@@ -42,6 +42,7 @@ export class AuthService {
                
                 this.createUserData(user);
                 this.router.navigate([redirect ? `/${redirect}` : root]);
+                this.eraseCookie('moura_redirect');
                 
                 observer.next(this.getDataUser());
               } else {
