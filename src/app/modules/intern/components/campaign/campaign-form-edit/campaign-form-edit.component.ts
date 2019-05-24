@@ -113,15 +113,17 @@ export class CampaignFormEditComponent implements OnInit {
 
       this.mouraService.store(this.form.value).subscribe(
         (res) => { 
-          this.loading = false;
-
           setTimeout(() => {
+            this.loading = false;
+
             this.successSwal.show();
           }, 1000);
          },
         (error) => { 
-          this.loading = false;
+          console.log(error)
           setTimeout(() => {
+            this.loading = false;
+
             this.errorSwal.show();
           }, 1000);
         }

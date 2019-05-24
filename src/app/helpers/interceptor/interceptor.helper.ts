@@ -32,7 +32,7 @@ export class TokenInterceptor implements HttpInterceptor {
         // retry(1)
         return next.handle(request).pipe(tap((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {
-                    if (event.body.error) {
+                    if (event.body && event.body.error) {
                         this.handlerErrorHelper.handle(event);
                     }
                 }
