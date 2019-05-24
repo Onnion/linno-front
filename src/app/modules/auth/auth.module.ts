@@ -10,7 +10,7 @@ import { LoadingModule } from '../shared/loading/loading.module';
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forRoot(AuthRoutes),
+        RouterModule.forChild(AuthRoutes),
         FormsModule,
         MaterialModule,
         ReactiveFormsModule,
