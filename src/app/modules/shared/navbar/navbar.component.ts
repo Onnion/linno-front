@@ -1,8 +1,8 @@
-import {Component, OnInit, Renderer, ViewChild, ElementRef, Directive} from '@angular/core';
-import {Router, ActivatedRoute, NavigationEnd, NavigationStart} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import {ROUTES} from '../sidebar/sidebar.config';
+import { Component, OnInit, Renderer, ViewChild, ElementRef } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import { Location } from '@angular/common';
+import { ROUTES } from '../sidebar/sidebar.config';
 
 const misc: any = {
     navbar_menu_visible: 0,
@@ -28,10 +28,14 @@ export class NavbarComponent implements OnInit {
 
     @ViewChild('app-navbar-cmp') button: any;
 
-    constructor(location: Location, private renderer: Renderer, private element: ElementRef, private router: Router,) {
+    constructor(location: Location, private renderer: Renderer, private element: ElementRef, private router: Router, ) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
+    }
+
+    public shoudShowFilter(): boolean {
+        return false;
     }
 
     minimizeSidebar() {
