@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         if (this.authService.isLoggedIn()) {
+            console.log('ngOnInit login')
             this.router.navigate([`/${ROLES_ACL[this.authService.getDataUser().type].path}`]);
         }
         this.initFormControls();

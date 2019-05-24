@@ -19,7 +19,7 @@ export interface ChildrenItems {
 
 export const ROUTES: RouteInfo[] = [
     {
-        path: '/',
+        path: '/jogga',
         title: 'Painel de resultados',
         type: 'link',
         disabled: true,

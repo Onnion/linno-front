@@ -43,8 +43,7 @@ import { FormBuilderValidators } from './validators';
       multi: true
     },
     { provide: MAT_DATE_LOCALE, useValue: 'pt-br' },
-    { provide: APP_BASE_HREF, useValue: '/' },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: APP_BASE_HREF, useValue: '/' }
   ],
   bootstrap: [AppComponent]
 })

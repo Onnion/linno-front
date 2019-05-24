@@ -12,7 +12,8 @@ export class AclRedirection {
     }
 
     public redirectTo(type: string) {
-        const redirect = getRedirect() ? getRedirect() : 'login/cadastro';
+        console.log('AclRedirection');
+        const redirect = getRedirect() ? getRedirect() : 'login';
 
         if (type === 'Unauthorized') {
             this.router.navigate([redirect]);
@@ -31,9 +32,9 @@ export class AclResolver implements Resolve<any> {
     private match(state, path: any): boolean {
         let match = false;
         if (typeof path === 'object') {
-            match = path.test(state.url);
+            match = path.test(decodeURI(state.url));
         } else {
-            match = state.url === path;
+            match = decodeURI(state.url) === path;
         }
 
         return match;
@@ -41,21 +42,21 @@ export class AclResolver implements Resolve<any> {
 
     private matchUrl(state): any {
         let testRoute;
-        
-        if (this.match(state, /^\/?[\D]+$/)) {
+
+         if (this.match(state, /^\/cadastro?[\D]+$/)) {
             if (this.aclService.can(ROLES.root[0])) {
                 testRoute = of(true);
             }
-        } else if (this.match(state, /^\/cadastro?[\D]+$/)) {
-            if (this.aclService.can(ROLES.root[0])) {
-                testRoute = of(true);
-            }
-        } else if (this.match(state, /^\/ajuste​?[\D]+$/)) {
+        } else if (this.match(state, /^\/ajuste?[\D]+$/)) {
             if (this.aclService.can(ROLES.root[0])) {
                 testRoute = of(true);
             }
         } else if (this.match(state, /^\/cliente?[\D]+$/)) {
             if (this.aclService.can(ROLES.client[0])) {
+                testRoute = of(true);
+            }
+        } else if (this.match(state, /^\/jogga?[\D]+$/)) {
+            if (this.aclService.can(ROLES.root[0])) {
                 testRoute = of(true);
             }
         }

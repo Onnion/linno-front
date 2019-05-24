@@ -38,10 +38,11 @@ export class AuthService {
               if ($user) {
                 const user = JSON.stringify($user.data);
                 const root = ROLES_ACL[$user.data.type].path;
-                const redirect = `/${root ? `${root}/` : ''}${$redirect}`;
+                const redirect = this.getRedirectStrategy();
+               
                 this.createUserData(user);
-                console.log(redirect, redirect.length);
-                this.router.navigate([redirect]);
+                this.router.navigate([redirect ? `/${redirect}` : root]);
+                
                 observer.next(this.getDataUser());
               } else {
                 this.logout();
@@ -63,8 +64,8 @@ export class AuthService {
   }
 
   private createUserData(user: string): void {
-    this.eraseCookie('jogga_hub_auth_user_data');
-    document.cookie = `jogga_hub_auth_user_data=${user};Max-Age=21600`;
+    this.eraseCookie('moura_auth_user_data');
+    document.cookie = `moura_auth_user_data=${user};Max-Age=21600`;
     const user_request: User = JSON.parse(user);
     const userRole = ROLES_ACL[user_request.type].role;
 
@@ -73,26 +74,25 @@ export class AuthService {
   }
 
   private createTokenData(token: string): void {
-    this.eraseCookie('jogga_hub_auth_token');
+    this.eraseCookie('moura_auth_token');
 
     const objToken: any = JSON.parse(token);
     const expires: number = (_.isObject(objToken)) ? objToken.token.expires_in : 21600;
 
-    document.cookie = `jogga_hub_auth_token=${token};Max-Age=${expires}`;
+    document.cookie = `moura_auth_token=${token};Max-Age=${expires}`;
   }
 
-  getToken(): any {
-    const jsonData: any = getObjectCookie('jogga_hub_auth_token');
+  public getToken(): void | string {
+    const jsonData: any = getObjectCookie('moura_auth_token');
 
     if (_.isEmpty(jsonData) && !_.isObject(jsonData)) {
-      this.eraseCookie('jogga_hub_auth_token');
-      this.router.navigate(['/login/cadastro']);
+      this.logout();
     } else {
       return jsonData.token.access_token;
     }
   }
 
-  getDataUser(): User {
+  public getDataUser(): User {
     const user = getDataUser();
 
     if (_.isEmpty(user) && !_.isObject(user)) {
@@ -106,8 +106,8 @@ export class AuthService {
 
     moment.locale('pt-br');
 
-    const tokenString: string = getCookie('jogga_hub_auth_token') || '{}';
-    const userString: string = getCookie('jogga_hub_auth_user_data') || '{}';
+    const tokenString: string = getCookie('moura_auth_token') || '{}';
+    const userString: string = getCookie('moura_auth_user_data') || '{}';
     const token: any = JSON.parse(tokenString);
     const user: any = JSON.parse(userString);
     let result: boolean;
@@ -127,11 +127,23 @@ export class AuthService {
     return result;
   }
 
-  logout(): void {
-    this.eraseCookie('jogga_hub_auth_token');
-    this.eraseCookie('jogga_hub_auth_user_data');
-    this.router.navigate(['/login/cadastro']);
+  public logout(): void {
+    this.eraseCookie('moura_auth_token');
+    this.eraseCookie('moura_auth_user_data');
+    this.router.navigate(['/login']);
     this.aclService.flushRoles();
+  }
+
+  public redirectStrategy(redirect: string): void {
+    this.eraseCookie('moura_redirect');
+
+    if (redirect.toLowerCase() === 'cadastro' || 'ajuste') {
+      document.cookie = `moura_redirect=${redirect.toLowerCase()}`;
+    }
+  }
+
+  public getRedirectStrategy(): string {
+    return getObjectCookie('moura_redirect');
   }
 
   private eraseCookie(...name): void {
