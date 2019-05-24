@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { LeadMouraService } from "../../../services/lead-moura/lead-moura.service";
+import { SwalComponent } from "@toverux/ngx-sweetalert2";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-campaign-form-edit",
@@ -9,6 +11,10 @@ import { LeadMouraService } from "../../../services/lead-moura/lead-moura.servic
   providers: [LeadMouraService]
 })
 export class CampaignFormEditComponent implements OnInit {
+  @ViewChild("successSwal") private successSwal: SwalComponent;
+  @ViewChild("errorSwal") private errorSwal: SwalComponent;
+
+  public loading = false;
   public form: FormGroup;
   public distributors = [
     'Alagoana Matriz',
@@ -88,7 +94,7 @@ export class CampaignFormEditComponent implements OnInit {
     'Volta Redonda'
   ];
 
-  constructor(private fb: FormBuilder, private mouraService: LeadMouraService) { }
+  constructor(private route: Router, private fb: FormBuilder, private mouraService: LeadMouraService) { }
 
   private initFormControls(): void {
     this.form = this.fb.group(
@@ -103,12 +109,28 @@ export class CampaignFormEditComponent implements OnInit {
 
   public submit() {
     if (this.form.valid) {
-      console.log(this.form.value)
+      this.loading = true;
+
       this.mouraService.store(this.form.value).subscribe(
-        (res) => { console.log(res); },
-        (error) => { console.log(error) }
+        (res) => { 
+          this.loading = false;
+
+          setTimeout(() => {
+            this.successSwal.show();
+          }, 1000);
+         },
+        (error) => { 
+          this.loading = false;
+          setTimeout(() => {
+            this.errorSwal.show();
+          }, 1000);
+        }
       );
     }
+  }
+
+  public goToRegister() {
+    this.route.navigate(['/cadastro']);
   }
 
   ngOnInit() {

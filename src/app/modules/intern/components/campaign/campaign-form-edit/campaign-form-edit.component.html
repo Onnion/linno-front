@@ -9,7 +9,9 @@
 <div class="row">
   <div class="col">
 
-    <div class="card-body" style="background: #FFFFFF">
+    <div class="card-body" style="position: relative; background: #FFFFFF">
+      <app-loading [loading]="loading"></app-loading>
+
       <form [formGroup]="form" (submit)="submit()" (keyup.enter)="submit()">
 
         <mat-form-field appearance="outline">
@@ -46,3 +48,18 @@
 
   </div>
 </div>
+
+<swal
+  #successSwal
+  title="Ajustes enviados com sucesso"
+  type="success"
+  text="Você receberá um email em breve"
+  (confirm)="goToRegister()">
+</swal>
+
+<swal
+  #errorSwal
+  title="Ocorreu um erro"
+  type="error"
+  text="Por favor, tente novamente mais tarde">
+</swal>
