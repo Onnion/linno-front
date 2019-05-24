@@ -8,19 +8,16 @@ import {ROLES, ROLES_ACL} from './app.roles';
 @Injectable()
 export class AclRedirection {
 
-
     constructor(private router: Router) {
     }
 
-
     public redirectTo(type: string) {
-        const redirect = getRedirect() ? getRedirect() : 'login';
+        const redirect = getRedirect() ? getRedirect() : 'login/cadastro';
 
         if (type === 'Unauthorized') {
             this.router.navigate([redirect]);
         }
     }
-
 
 }
 
@@ -51,8 +48,16 @@ export class AclResolver implements Resolve<any> {
 
     private matchUrl(state): any {
         let testRoute;
-
-        if (this.match(state, /^\/dashboard?[\D]+$/)) {
+        
+        if (this.match(state, /^\/?[\D]+$/)) {
+            if (this.aclService.can(ROLES.root[0])) {
+                testRoute = of(true);
+            }
+        } else if (this.match(state, /^\/cadastro?[\D]+$/)) {
+            if (this.aclService.can(ROLES.root[0])) {
+                testRoute = of(true);
+            }
+        } else if (this.match(state, /^\/ajuste​?[\D]+$/)) {
             if (this.aclService.can(ROLES.root[0])) {
                 testRoute = of(true);
             }

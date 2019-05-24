@@ -19,7 +19,7 @@ export interface ChildrenItems {
 
 export const ROUTES: RouteInfo[] = [
     {
-        path: '/dashboard',
+        path: '/',
         title: 'Painel de resultados',
         type: 'link',
         disabled: true,
@@ -34,14 +34,14 @@ export const ROUTES: RouteInfo[] = [
         permission: ROLES.client[0]
     },
     {
-        path: '/dashboard/revenda/adicionar',
+        path: '/cadastro',
         title: 'Cadastrar revenda',
         type: 'link',
         icontype: 'assignment',
         permission: ROLES.root[0]
     },
     {
-        path: '/dashboard/revenda/editar',
+        path: '/ajuste​',
         title: 'Atualização do cadastro',
         type: 'link',
         icontype: 'assignment_late',

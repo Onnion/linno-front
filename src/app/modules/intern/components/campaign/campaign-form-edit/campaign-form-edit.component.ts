@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MaskDirective } from "src/app/helpers/directives/mask/mask.directive";
+import { LeadMouraService } from "../../../services/lead-moura/lead-moura.service";
 
 @Component({
   selector: "app-campaign-form-edit",
   templateUrl: "./campaign-form-edit.component.html",
-  styleUrls: ["./campaign-form-edit.component.css"]
+  styleUrls: ["./campaign-form-edit.component.css"],
+  providers: [LeadMouraService]
 })
 export class CampaignFormEditComponent implements OnInit {
   public form: FormGroup;
@@ -87,7 +88,7 @@ export class CampaignFormEditComponent implements OnInit {
     'Volta Redonda'
   ];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private mouraService: LeadMouraService) { }
 
   private initFormControls(): void {
     this.form = this.fb.group(
@@ -103,6 +104,10 @@ export class CampaignFormEditComponent implements OnInit {
   public submit() {
     if (this.form.valid) {
       console.log(this.form.value)
+      this.mouraService.store(this.form.value).subscribe(
+        (res) => { console.log(res); },
+        (error) => { console.log(error) }
+      );
     }
   }
 

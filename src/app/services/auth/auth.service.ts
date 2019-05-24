@@ -21,7 +21,7 @@ export class AuthService {
       private aclService: AclService,
   ) { }
 
-  public loginUser(username: string, password: string): any {
+  public loginUser(username: string, password: string, $redirect: string): any {
     const grant_type: string = environment.GRANT_TYPE;
     const client_id: number = environment.CLIENT_ID;
     const client_secret: string = environment.CLIENT_SECRET;
@@ -37,9 +37,11 @@ export class AuthService {
             ($user: any) => {
               if ($user) {
                 const user = JSON.stringify($user.data);
+                const root = ROLES_ACL[$user.data.type].path;
+                const redirect = `/${root ? `${root}/` : ''}${$redirect}`;
                 this.createUserData(user);
-  
-                this.router.navigate([`/${ROLES_ACL[this.getDataUser().type].path}`]);
+                console.log(redirect, redirect.length);
+                this.router.navigate([redirect]);
                 observer.next(this.getDataUser());
               } else {
                 this.logout();
@@ -84,7 +86,7 @@ export class AuthService {
 
     if (_.isEmpty(jsonData) && !_.isObject(jsonData)) {
       this.eraseCookie('jogga_hub_auth_token');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login/cadastro']);
     } else {
       return jsonData.token.access_token;
     }
@@ -128,7 +130,7 @@ export class AuthService {
   logout(): void {
     this.eraseCookie('jogga_hub_auth_token');
     this.eraseCookie('jogga_hub_auth_user_data');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login/cadastro']);
     this.aclService.flushRoles();
   }
 

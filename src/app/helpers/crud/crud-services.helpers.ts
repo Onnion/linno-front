@@ -21,7 +21,6 @@ export class CrudServices {
 
     public store(data): Observable<any> {
         return this.http.post(`${environment.AUTH_URL}/api/${this.entity}`, data);
-
     }
 
     public get(id: any = false): Observable<any> {

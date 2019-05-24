@@ -4,6 +4,6 @@ export const ROLES = {
 };
 
 export const ROLES_ACL = {
-    'distributor': { role: 'root', path: 'dashboard/revenda/adicionar' },
+    'distributor': { role: 'root', path: '' },
     'resale': { role: 'client', path: 'cliente' }
 };

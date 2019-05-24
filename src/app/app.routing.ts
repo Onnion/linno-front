@@ -9,7 +9,7 @@ import {AclResolver} from './app.resolve';
 
 const routes: Routes = [
     {
-        path: 'login',
+        path: 'login/:redirect',
         component: AuthLayoutComponent,
         children: [
             {
@@ -20,7 +20,7 @@ const routes: Routes = [
     },
 
     {
-        path: 'dashboard',
+        path: '',
         component: AdminLayoutComponent,
         canActivate: [AuthGuardService],
         resolve: { route: AclResolver, state: AclResolver },
@@ -45,9 +45,7 @@ const routes: Routes = [
         ]
     },
 
-    {path: '**', redirectTo: 'dashboard'},
-
-    {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+    {path: '**', redirectTo: ''},
 
 ];
 

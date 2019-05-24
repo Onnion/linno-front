@@ -11,6 +11,7 @@ import { CampaignFormEditComponent } from './components/campaign/campaign-form-e
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CampaignsListComponent } from './components/campaign/campaigns-list/campaigns-list.component';
 import { MaskDirective } from 'src/app/helpers/directives/mask/mask.directive';
+import { LeadMouraService } from './services/lead-moura/lead-moura.service';
 @NgModule({
   declarations: [
     CampaignFormComponent,
@@ -27,7 +28,9 @@ import { MaskDirective } from 'src/app/helpers/directives/mask/mask.directive';
     ReactiveFormsModule,
     RouterModule.forChild(InterRoutes),
     SweetAlert2Module.forRoot()
-
+  ],
+  providers: [
+    LeadMouraService
   ]
 })
 export class InternModule { }

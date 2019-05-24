@@ -9,17 +9,18 @@ export const InterRoutes: Routes = [
         path: '',
         component: CampaignWrapperComponent,
         children: [
+            { path: '', redirectTo: 'cadastro' },
             {
                 path: 'jogga/mock',
                 component: DashboardComponent,
             },
             {
-                path: 'revenda/adicionar',
+                path: 'cadastro',
                 component: CampaignFormComponent,
                 data: { type: 'register' }
             },
             {
-                path: 'revenda/editar',
+                path: 'ajuste​',
                 component: CampaignFormEditComponent,
                 data: { type: 'edit' }
             }
