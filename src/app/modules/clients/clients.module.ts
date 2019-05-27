@@ -7,24 +7,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { LoadingModule } from '../shared/loading/loading.module';
 import { LeadsFilterTimesModule } from '../shared/leads-filter-times/leads-filter-times.module';
-import { CampaignFormComponent } from './components/campaign/campaign-form/campaign-form.component';
-import { CampaignWrapperComponent } from './components/campaign/campaign-wrapper/campaign-wrapper.component';
-import { CampaignFormEditComponent } from './components/campaign/campaign-form-edit/campaign-form-edit.component';
-import { DashboardModule } from './components/dashboard/dashboard.module';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
-    declarations: [
-        CampaignFormComponent,
-        CampaignWrapperComponent,
-        CampaignFormEditComponent,
-    ],
+    declarations: [ DashboardComponent ],
     imports: [
         CommonModule,
-        MaterialModule,
+        MaterialModule, 
         FormsModule,
         LoadingModule,
         ChartsModule,
-        DashboardModule,
         ReactiveFormsModule,
         LeadsFilterTimesModule,
         RouterModule.forChild(ClientsRoutes),
