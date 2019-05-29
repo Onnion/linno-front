@@ -100,7 +100,7 @@ export class CampaignFormEditComponent implements OnInit {
     this.form = this.fb.group(
       {
         distributor: ['', [Validators.required]],
-        code_ax: ['', [Validators.required, Validators.minLength(7)]],
+        code_ax: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
         trading_name: ['', [Validators.required]],
         observation: ['', [Validators.required]]
       }
