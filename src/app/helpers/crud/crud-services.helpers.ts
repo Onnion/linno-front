@@ -24,7 +24,16 @@ export class CrudServices {
     }
 
     public get(id: any = false): Observable<any> {
-        return this.http.get(`${environment.AUTH_URL}/api/${this.entity}${id ? `/${id}` : ''}`);
+        return new Observable((observer => {
+            this.http.get(`${environment.AUTH_URL}/api/${this.entity}${id ? `/${id}` : ''}`).subscribe(
+                (data: any) => {
+                    observer.next(data.data);
+                },
+                (error: any) => {
+                    observer.error(error);
+                }
+            );
+        }));
     }
 
     public delete(id: number): Observable<any> {

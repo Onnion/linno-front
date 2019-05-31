@@ -57,7 +57,7 @@ export class ListComponent {
     public searchableFields: string[];
     public pageEvent: PageEvent;
     public doneAnimation = false;
-    public idTable: string = 'table';
+    public idTable: string;
 
     private changePagination = false;
 
@@ -103,7 +103,7 @@ export class ListComponent {
         return row.hasOwnProperty('detailRow');
     }
 
-    public loadData(list?: any[]): void {
+    public loadData(list?: any[], mobile?: boolean): void {
         this.status_form.loading = true;
         let options = { ...this.options };
 
@@ -118,7 +118,6 @@ export class ListComponent {
         if (list) {
             this.componentData = list;
             this.filtredComponentData = list;
-            // this.dataSource = new ComponentDataSource(data.data, false);
             this.setIsMobile();
             this.status_form.loading = false;
             this.doneLoad.emit(true);
@@ -136,7 +135,7 @@ export class ListComponent {
                     }
                     this.componentData = data.data;
                     this.filtredComponentData = data.data;
-                    // this.dataSource = new ComponentDataSource(data.data, false);
+                    this.dataSource = new ComponentDataSource(data.data, mobile);
                     this.setIsMobile();
                     this.status_form.loading = false;
                     this.doneLoad.emit(true);
@@ -160,15 +159,11 @@ export class ListComponent {
     }
 
     public onPaginateChange(event): void {
-
         if (this.pageSize !== event.pageSize) {
             this.doneAnimation = false;
         }
-
         this.page = event.pageIndex + 1;
         this.pageSize = event.pageSize;
-
-
         this.loadData();
     }
 }

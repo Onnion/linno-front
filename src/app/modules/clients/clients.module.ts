@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../../mat.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
-import { LoadingModule } from '../shared/loading/loading.module';
-import { LeadsFilterTimesModule } from '../shared/leads-filter-times/leads-filter-times.module';
+import { LoadingModule } from '../common/loading/loading.module';
+import { LeadsFilterTimesModule } from '../common/leads-filter-times/leads-filter-times.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({

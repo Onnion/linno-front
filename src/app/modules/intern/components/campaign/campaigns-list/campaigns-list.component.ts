@@ -1,50 +1,49 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { ListComponent, ComponentDataSource } from 'src/app/helpers/list/list-components.helpers';
+import { ListComponent } from 'src/app/helpers/list/list-components.helpers';
 import { listObjShowup, detailExpand } from 'src/app/helpers/animations/animations.helper';
-// import { CampaignService } from 'src/app/services/entities/campaigns/campaign.service';
-import { Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account/account.service';
+import { FilterService } from 'src/app/services/filter/filter.service';
 
 @Component({
   selector: 'app-campaigns-list',
   templateUrl: './campaigns-list.component.html',
   styleUrls: ['./campaigns-list.component.css'],
-  // providers: [CampaignService],
+  providers: [AccountService],
   animations: [listObjShowup, detailExpand]
 })
-export class CampaignsListComponent extends ListComponent implements OnInit {  
+export class CampaignsListComponent extends ListComponent implements OnInit {
   public displayedColumns = ['data', 'status', 'media', 'number'];
 
-
   constructor(
-    // private campaignService: CampaignService,
-    private router: Router) {
+    private accountService: AccountService,
+    private $filterService: FilterService) {
     super();
   }
 
   private initListComponentConfigs(): void {
-    // this.service = this.campaignService;
+    this.service = this.accountService;
+    this.filterService = this.$filterService
     this.expandedElement = true;
+    this.methodLoad = 'getCalls';
+  }
+
+  private subscribeFiltersUi(): void {
+    this.filterService.filter.subscribe(filter => {
+
+      if (filter.account) {
+        this.options = { account_id: filter.account.id };
+        this.loadData(null, window.innerWidth <= 991);
+      }
+    })
   }
 
   @HostListener('window:resize', ['$event'])
   onresize($event) {
     this.setIsMobile($event);
   }
-  
+
   ngOnInit() {
     this.initListComponentConfigs();
-    const list = [
-      {'data': new Date().toString(), 'status': 'Atendida', 'media': 'http://dcweb.directdial.com.br/extrato/gravacao/id/MTQ0MWY1MWUtOWFlOS00NDU4LTljYTMtZGViYWQyZmRjMzY4', 'number': '(83) 99962 - 5041'},
-      {'data': new Date().toString(), 'status': 'Atendida', 'media': 'http://dcweb.directdial.com.br/extrato/gravacao/id/MTQ0MWY1MWUtOWFlOS00NDU4LTljYTMtZGViYWQyZmRjMzY4', 'number': '(83) 99962 - 5041'},
-      {'data': new Date().toString(), 'status': 'Atendida', 'media': 'http://dcweb.directdial.com.br/extrato/gravacao/id/MTQ0MWY1MWUtOWFlOS00NDU4LTljYTMtZGViYWQyZmRjMzY4', 'number': '(83) 99962 - 5041'},
-      {'data': new Date().toString(), 'status': 'Atendida', 'media': 'http://dcweb.directdial.com.br/extrato/gravacao/id/MTQ0MWY1MWUtOWFlOS00NDU4LTljYTMtZGViYWQyZmRjMzY4', 'number': '(83) 99962 - 5041'},
-      {'data': new Date().toString(), 'status': 'Atendida', 'media': 'http://dcweb.directdial.com.br/extrato/gravacao/id/MTQ0MWY1MWUtOWFlOS00NDU4LTljYTMtZGViYWQyZmRjMzY4', 'number': '(83) 99962 - 5041'}
-    ]
-
-    this.loadData(list);
-
-    
+    this.subscribeFiltersUi();
   }
 }
-
-

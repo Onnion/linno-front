@@ -12,7 +12,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CampaignsListComponent } from './components/campaign/campaigns-list/campaigns-list.component';
 import { MaskDirective } from 'src/app/helpers/directives/mask/mask.directive';
 import { LeadMouraService } from './services/lead-moura/lead-moura.service';
-import { LoadingModule } from '../shared/loading/loading.module';
+import { LoadingModule } from '../common/loading/loading.module';
+import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
+import { Ng2OdometerModule } from 'ng2-odometer';
+import { PhonePipe } from 'src/app/helpers/pipes/phone.pipe';
+
 @NgModule({
   declarations: [
     CampaignFormComponent,
@@ -20,7 +24,9 @@ import { LoadingModule } from '../shared/loading/loading.module';
     CampaignFormEditComponent,
     DashboardComponent,
     CampaignsListComponent,
-    MaskDirective
+    MaskDirective,
+    PhonePipe,
+    DashboardCardComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +34,7 @@ import { LoadingModule } from '../shared/loading/loading.module';
     FormsModule,
     LoadingModule,
     ReactiveFormsModule,
+    Ng2OdometerModule,
     RouterModule.forChild(InterRoutes),
     SweetAlert2Module.forRoot()
   ],

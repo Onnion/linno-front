@@ -107,7 +107,7 @@ export class CampaignFormEditComponent implements OnInit {
     );
   }
 
-  public submit() {
+  public submit(): void {
     if (this.form.valid) {
       this.loading = true;
 
@@ -131,7 +131,7 @@ export class CampaignFormEditComponent implements OnInit {
     }
   }
 
-  public goToRegister() {
+  public goToRegister(): void {
     this.route.navigate(['/cadastro']);
   }
 

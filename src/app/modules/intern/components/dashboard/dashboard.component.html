@@ -1,104 +1,29 @@
 <div class="row">
-
-    <div class="d-flex col-md-3 col-sm-6 col-12">
-        <div class="card" style="border-radius: unset!important">
-
-            <div class="card-header card-header-success card-header-icon">
-                <h6 class="card-title">Quantidade de vezes que o anúncio apareceu</h6>
-            </div>
-            <div class="card-body" style="background: #FFFFFF">
-                <div class="row">
-                    <div class="col">
-
-                        <h2 style="color:#3145a9; font-size: 2rem; font-weight: 900;">
-                            {{a}}
-                        </h2>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="d-flex col-md-3 col-sm-6 col-12">
-        <div class="card" style="border-radius: unset!important">
-
-            <div class="card-header card-header-success card-header-icon">
-                <h6 class="card-title">Cliques no anúncio</h6>
-            </div>
-            <div class="card-body" style="background: #FFFFFF">
-                <div class="row">
-                    <div class="col">
-
-                        <h2 style="color:#3145a9; font-size: 2rem; font-weight: 900;">
-                            {{b}}
-                        </h2>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="d-flex col-md-3 col-sm-6 col-6">
-        <div class="card" style="border-radius: unset!important">
-
-            <div class="card-header card-header-success card-header-icon">
-                <h6 class="card-title">Ligações Atendidas</h6>
-            </div>
-            <div class="card-body" style="background: #FFFFFF">
-                <div class="row">
-                    <div class="col">
-
-                        <h2 style="color:#3145a9; font-size: 2rem; font-weight: 900;">
-                            {{c}}
-                        </h2>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="d-flex col-md-3 col-sm-6 col-6">
-        <div class="card" style="border-radius: unset!important">
-
-            <div class="card-header card-header-success card-header-icon">
-                <h6 class="card-title">Ligações não Atendidas</h6>
-            </div>
-            <div class="card-body" style="background: #FFFFFF">
-                <div class="row">
-                    <div class="col">
-
-                        <h2 style="color:#3145a9; font-size: 2rem; font-weight: 900;">
-                            {{d}}
-                        </h2>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-dashboard-card 
+        *ngFor="let card of cards"
+        [title]="card.title" 
+        class="d-flex col-md-3 col-sm-6 col-6"
+        [method]="card.method"
+        [service]="card.service"
+        [id]="idAccount"></app-dashboard-card>
 </div>
 
-<div class="row">
+<div [@detailExpand]="shouldShowBudget ? 'expanded' : 'collapsed'" class="row">
     <div class="col">
-        <div class="card" style="border-radius: unset!important">
-
+        <div class="card" style="border-radius: unset!important; margin-bottom: 0!important;">
             <div class="card-header card-header-success card-header-icon">
-                <h6 class="card-title">Orçamento do mês de {{getMonth()}}</h6>
+                <h6 class="card-title">
+                    Orçamento do mês de {{getMonth()}}
+                </h6>
             </div>
             <div class="card-body" style="background: #FFFFFF">
                 <div class="row">
                     <div class="col">
-
-                        <!-- <h2 style="color:#3145a9; font-size: 2rem; font-weight: 900;">
-                            0
-                        </h2> -->
                         <div class="d-flex align-items-center justify-content-space-between">
                             <span style="margin: 0 10px">0%</span>
                             <mat-progress-bar mode="determinate" [value]="'79'"></mat-progress-bar>
                             <span style="margin: 0 10px">100%</span>
-
                         </div>
-
                     </div>
                 </div>
             </div>
