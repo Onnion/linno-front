@@ -37,7 +37,7 @@ export class FilterService {
       { id: 'THIS_MONTH', shouldClose: true, label: 'Este Mês' },
       // { id: 'custom', shouldClose: false, label: 'Personalizado' },
     ];
-    this.times = this.timesMenu[6];
+    this.times = this.timesMenu[2];
     this.accountMenu = [];
   }
 
