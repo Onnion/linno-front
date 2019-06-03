@@ -3,7 +3,7 @@
     <div class="card-header card-header-success card-header-icon">
         <h6 class="card-title">Ligações</h6>
     </div>
-    <div *ngIf="!isMobile && componentData && componentData.length > 0" id="table" class="table-responsive">
+    <div *ngIf="!isMobile && componentData && (componentData.length > 0)" id="table" class="table-responsive">
         <mat-table style="background: transparent; overflow-x: hidden; min-width: 800px;" matSort
             (matSortChange)="setSort($event)" [dataSource]="dataSource">
 
@@ -59,7 +59,7 @@
 
     </div>
 
-    <div *ngIf="isMobile && componentData && componentData.length > 0" id="table" class="table-responsive">
+    <div *ngIf="isMobile && componentData && (componentData.length > 0)" id="table" class="table-responsive">
         <mat-table style="background: transparent; overflow-x: hidden" matSort (matSortChange)="setSort($event)" #table
             [dataSource]="dataSource" (@listObjShowup.done)="showPagination()" [@listObjShowup]="componentData.length">
             <!-- Weight Column -->
@@ -133,7 +133,7 @@
 
     </div>
 
-    <div *ngIf="(!componentData || !componentData.length > 0) && !status_form.loading" id="table"
+    <div *ngIf="(!componentData || !(componentData.length > 0)) && !status_form.loading" id="table"
         class="table-responsive">
         <h6 class="text-center" style="background: #FFF; padding: 15px;">Nenhuma ligação registrada</h6>
 
