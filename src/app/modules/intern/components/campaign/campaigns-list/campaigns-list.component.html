@@ -27,8 +27,8 @@
                 <mat-header-cell class="justify-content-center" style="background: #FFFFFF" *matHeaderCellDef>
                     Atendimento </mat-header-cell>
                 <mat-cell class="justify-content-center" *matCellDef="let element">
-                    <audio *ngIf="element.status === 'Atendida'" controls="" style="width: 350px;">
-                        <source controlsList="nodownload"
+                    <audio *ngIf="element.status === 'Atendida'" controls controlsList="nodownload"style="width: 350px;">
+                        <source
                             [src]="element.url"
                             type="audio/mpeg">Your browser does not
                         support the audio element.
@@ -101,8 +101,8 @@
                 <mat-header-cell class="justify-content-center" style="background: #FFFFFF" *matHeaderCellDef>
                     Atendimento </mat-header-cell>
                 <mat-cell class="justify-content-center" *matCellDef="let element">
-                    <audio controls="" style="width: 100%;">
-                        <source controlsList="nodownload"
+                    <audio controls controlsList="nodownload" style="width: 100%;">
+                        <source
                             src="http://dcweb.directdial.com.br/extrato/gravacao/id/OWQxNjcwYTctNzc0MS00NTFmLTkwNGYtZTQ4MWNmOGM4NjJi"
                             type="audio/mpeg">Your browser does not
                         support the audio element.

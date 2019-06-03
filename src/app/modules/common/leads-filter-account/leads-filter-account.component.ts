@@ -46,9 +46,14 @@ export class LeadsFilterAccountComponent implements OnInit {
     });
   }
 
+  private sortNames(current, prevent) {
+    return current.name < prevent.name ? -1 : current.name > prevent.name ? 1 : 0;
+
+  }
+
   private _filterAccounts(value: string): LeadsFilterAccountType[] {
     const filterValue = (value && (typeof value !== 'object')) && value.toLowerCase();
-    return this.accountsMenu.filter(account => account.name.toLowerCase().includes(filterValue));
+    return this.accountsMenu.filter(account => account.name.toLowerCase().includes(filterValue)).sort((current, prevent) => this.sortNames(current, prevent));
   }
 
   private watchFilter(): void {
@@ -64,7 +69,7 @@ export class LeadsFilterAccountComponent implements OnInit {
   ngOnInit() {
     this.initFormControls();
     this.accountService.getAccounts().subscribe((accounts: LeadsFilterAccountType[]) => {
-      this.filterService.initFilterAccounts(accounts);
+      this.filterService.initFilterAccounts(accounts.sort((current, prevent) => this.sortNames(current, prevent)));
     });
     this.subscribeFiltersUi();
   }
