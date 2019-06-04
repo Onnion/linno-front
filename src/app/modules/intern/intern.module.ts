@@ -15,7 +15,7 @@ import { LeadMouraService } from './services/lead-moura/lead-moura.service';
 import { LoadingModule } from '../common/loading/loading.module';
 import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
 import { Ng2OdometerModule } from 'ng2-odometer';
-import { PhonePipe } from 'src/app/helpers/pipes/phone.pipe';
+import { PhonePipeModule } from 'src/app/helpers/pipes/phone/phone.pipe.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,6 @@ import { PhonePipe } from 'src/app/helpers/pipes/phone.pipe';
     DashboardComponent,
     CampaignsListComponent,
     MaskDirective,
-    PhonePipe,
     DashboardCardComponent
   ],
   imports: [
@@ -33,6 +32,7 @@ import { PhonePipe } from 'src/app/helpers/pipes/phone.pipe';
     MaterialModule,
     FormsModule,
     LoadingModule,
+    PhonePipeModule,
     ReactiveFormsModule,
     Ng2OdometerModule,
     RouterModule.forChild(InterRoutes),

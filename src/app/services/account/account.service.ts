@@ -18,13 +18,12 @@ export class AccountService extends CrudServices {
         this.entity = 'accounts'
     }
 
-    private generateParams(options, status = ''): any {
+    private generateParams(status = ''): any {
         let params = {};
 
         params = {
-            ...options,
             range: this.filterService.getTime().id,
-            id_account: this.filterService.getAccount().id
+            account_id: this.filterService.getAccount().id
         };
 
         if (status) {
@@ -45,27 +44,27 @@ export class AccountService extends CrudServices {
         });
     }
 
-    public getCalls(options): Observable<any>{
+    public getCalls(): Observable<any>{
         return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls`, this.generateParams(options)).subscribe(
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls`, this.generateParams()).subscribe(
                 (data: any) => observer.next(data),
                 (error: any) => observer.error(error)
             );
         });
     }
 
-    public getCallsMissed(options): Observable<any>{
+    public getCallsMissed(): Observable<any>{
         return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls`, this.generateParams(options, 'NÃO ATENDIDA')).subscribe(
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls`, this.generateParams('NÃO ATENDIDA')).subscribe(
                 (data: any) => observer.next(data),
                 (error: any) => observer.error(error)
             );
         });
     }
 
-    public getCallsAnswereds(options): Observable<any>{
+    public getCallsAnswereds(): Observable<any>{
         return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls`, this.generateParams(options, 'ATENDIDA')).subscribe(
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls`, this.generateParams('ATENDIDA')).subscribe(
                 (data: any) => observer.next(data),
                 (error: any) => observer.error(error)
             );

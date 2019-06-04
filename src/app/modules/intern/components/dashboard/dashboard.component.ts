@@ -3,6 +3,7 @@ import * as moment from 'moment';
 import { FilterService } from 'src/app/services/filter/filter.service';
 import { detailExpand } from 'src/app/helpers/animations/animations.helper';
 import { AccountService } from 'src/app/services/account/account.service';
+import { GoogleService } from 'src/app/services/google/google.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,15 +12,25 @@ import { AccountService } from 'src/app/services/account/account.service';
 })
 export class DashboardComponent implements OnInit {
   public idAccount;
+  public googleReposts;
   public cards = [
-    { id: '', method: '', service: '', name: "times", title: "Quantidade de vezes que o anúncio apareceu" },
-    { id: '', method: '', service: '', name: "clicks", title: "Cliques no anúncio" },
-    { id: this.idAccount , method: 'getCallsAnswereds', service: this.accountService, name: "calls", title: "Ligações Atendidas" },
-    { id: this.idAccount , method: 'getCallsMissed', service: this.accountService, name: "calls", title: "Ligações Não Atendidas" }
+    { observable: true, name: "impressions", title: "Quantidade de vezes que o anúncio apareceu" },
+    { observable: true, name: "clicks", title: "Cliques no anúncio" },
+    { method: 'getCallsAnswereds', service: this.accountService, name: "calls", title: "Ligações Atendidas" },
+    { method: 'getCallsMissed', service: this.accountService, name: "calls", title: "Ligações Não Atendidas" }
   ];
   public shouldShowBudget = false;
 
-  constructor(private filterService: FilterService, public accountService: AccountService) {
+  constructor(private googleService: GoogleService, private filterService: FilterService, public accountService: AccountService) {
+  }
+
+  public getReports(): void {
+    this.googleService.getReports().subscribe(
+      (data: any) => {
+        this.googleReposts = data.attributes ? data.attributes: data;
+      },
+      (error: any) => console.log(error)
+    );
   }
 
   private subscribeFiltersUi() {
@@ -28,6 +39,7 @@ export class DashboardComponent implements OnInit {
       
       if (filters.account && filters.account.id) {
         this.idAccount = filters.account.id
+        this.getReports();
       }
     });
   }

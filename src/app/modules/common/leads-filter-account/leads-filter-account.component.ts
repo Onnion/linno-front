@@ -42,7 +42,7 @@ export class LeadsFilterAccountComponent implements OnInit {
 
   private initFormControls(): void {
     this.form = this.fb.group({
-      account: ["", Validators.required]
+      account: ["", []]
     });
   }
 

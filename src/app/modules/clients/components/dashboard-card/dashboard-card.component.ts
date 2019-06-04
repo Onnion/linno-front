@@ -7,7 +7,7 @@ import { FilterService } from 'src/app/services/filter/filter.service';
   styleUrls: ['./dashboard-card.component.css']
 })
 export class DashboardCardComponent implements OnInit, OnChanges {
-
+  
   @Input('title') title: string;
   @Input('name') name: string;
   @Input('method') method: string;
