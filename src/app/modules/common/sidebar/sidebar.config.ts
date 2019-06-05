@@ -19,14 +19,14 @@ export interface ChildrenItems {
 
 export const ROUTES: RouteInfo[] = [
     {
-        path: '/jogga',
+        path: '/painel',
         title: 'Painel de resultados',
         type: 'link',
         icontype: 'assessment',
         permission: ROLES.root[0]
     },
     {
-        path: '/cliente',
+        path: '/revenda',
         title: 'Painel de resultados',
         type: 'link',
         icontype: 'assessment',

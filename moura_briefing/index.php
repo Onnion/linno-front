@@ -1418,7 +1418,7 @@
     <script src="js/functions_with_upload.js"></script>
 
     <!-- Google map -->
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <!-- <script src="http://maps.googleapis.com/maps/api/js"></script> -->
     <script src="js/mapmarker.jquery.js"></script>
     <script src="js/mapmarker_func.jquery.js"></script>
 

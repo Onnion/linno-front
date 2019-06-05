@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
 import { FilterService } from 'src/app/services/filter/filter.service';
 import { detailExpand } from 'src/app/helpers/animations/animations.helper';
 import { AccountService } from 'src/app/services/account/account.service';
@@ -19,33 +18,24 @@ export class DashboardComponent implements OnInit {
     { method: 'getCallsAnswereds', service: this.accountService, name: "calls", title: "Ligações Atendidas" },
     { method: 'getCallsMissed', service: this.accountService, name: "calls", title: "Ligações Não Atendidas" }
   ];
-  public shouldShowBudget = false;
 
   constructor(private googleService: GoogleService, private filterService: FilterService, public accountService: AccountService) {
   }
 
   public getReports(): void {
     this.googleService.getReports().subscribe(
-      (data: any) => {
-        this.googleReposts = data.attributes ? data.attributes: data;
-      },
+      (data: any) => this.googleReposts = data.attributes ? data.attributes : data,
       (error: any) => console.log(error)
     );
   }
 
   private subscribeFiltersUi() {
     this.filterService.filter.subscribe((filters) => {
-      this.shouldShowBudget = filters.times.id === 'THIS_MONTH';
-      
       if (filters.account && filters.account.id) {
         this.idAccount = filters.account.id
         this.getReports();
       }
     });
-  }
-
-  public getMonth(): string {
-    return moment().format('MMMM');
   }
 
   public ngOnInit() {

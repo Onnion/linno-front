@@ -53,6 +53,15 @@ export class AccountService extends CrudServices {
         });
     }
 
+    public getBudget(): Observable<any>{
+        return new Observable((observer) => {
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/budget`, this.generateParams()).subscribe(
+                (data: any) => observer.next(data.data.attributes),
+                (error: any) => observer.error(error)
+            );
+        });
+    }
+
     public getCallsMissed(): Observable<any>{
         return new Observable((observer) => {
             this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls`, this.generateParams('NÃO ATENDIDA')).subscribe(

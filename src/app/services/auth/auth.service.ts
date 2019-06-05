@@ -9,6 +9,7 @@ import { ROLES_ACL } from 'src/app/app.roles';
 import { User } from '../../models/user.model';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import { FilterService } from '../filter/filter.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthService {
       private router: Router,
       private http: HttpClient,
       private aclService: AclService,
+      private filterService: FilterService
   ) { }
 
   public loginUser(username: string, password: string, $redirect: string): any {
@@ -129,10 +131,13 @@ export class AuthService {
   }
 
   public logout(): void {
+    this.filterService.clear();
     this.eraseCookie('moura_auth_token');
     this.eraseCookie('moura_auth_user_data');
     this.router.navigate(['/login']);
     this.aclService.flushRoles();
+    window.stop();
+    // location.reload();
   }
 
   public redirectStrategy(redirect: string): void {

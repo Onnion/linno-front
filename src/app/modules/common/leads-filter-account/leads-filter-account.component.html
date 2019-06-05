@@ -28,8 +28,8 @@
             <mat-label>Conta</mat-label>
             <input matInput autofocus placeholder="Ex: Jogga Digital" formControlName="account" aria-label="Conta"
             [matAutocomplete]="auto" />
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectTimesMenu()">
-              <mat-option *ngFor="let account of (filteredAccountsMenu | async)" [value]="account.name">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option (click)="selectTimesMenu(account)" *ngFor="let account of (filteredAccountsMenu | async)" [value]="account.name">
                 <img *ngIf="account.picture" class="example-option-img" aria-hidden [src]="account.picture" height="25"
                 style="margin-right: 5px; max-width: 35%;" />
                 <span>{{ account.name }}</span>

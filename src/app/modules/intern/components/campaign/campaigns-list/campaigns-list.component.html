@@ -19,7 +19,7 @@
                 <mat-header-cell style="background: #FFFFFF" [style.flex]="'0 0 100px'" mat-sort-header="status"
                     *matHeaderCellDef> Status </mat-header-cell>
                 <mat-cell [style.flex]="'0 0 100px'" *matCellDef="let element">
-                    {{element.status}}
+                    {{element.status | titlecase}}
                 </mat-cell>
             </ng-container>
 
@@ -83,7 +83,7 @@
                 <mat-header-cell style="background: #FFFFFF" mat-sort-header="status" *matHeaderCellDef> Status
                 </mat-header-cell>
                 <mat-cell [style.font-size]="'11px'" *matCellDef="let element">
-                    {{element.status}}
+                    {{element.status | titlecase}}
                 </mat-cell>
             </ng-container>
 

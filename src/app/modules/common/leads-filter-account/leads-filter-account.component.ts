@@ -24,9 +24,8 @@ export class LeadsFilterAccountComponent implements OnInit {
 
   constructor(public filterService: FilterService, private accountService: AccountService, private fb: FormBuilder) { }
 
-  public selectTimesMenu(): void {
-    const { account } = this.form.value;
-    this.selectedAccountMenu = this.accountsMenu.filter($account => $account.name === account)[0];
+  public selectTimesMenu(account: LeadsFilterAccountType): void {
+    this.selectedAccountMenu = account;
     this.filterService.setAccount(this.selectedAccountMenu);
     // this.matMenuTrigger.closeMenu();
   }
@@ -36,7 +35,9 @@ export class LeadsFilterAccountComponent implements OnInit {
       this.accountsMenu = this.filterService.getAccountMenu();
       this.watchFilter();
       this.selectedAccountMenu = filters.account;
-      // this.form.controls.account.setValue(this.selectTimesMenu.name);
+      if (filters.account) {
+        this.form.controls['account'].setValue(this.selectedAccountMenu.name);
+      }
     });
   }
 

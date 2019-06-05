@@ -16,6 +16,7 @@ import { LoadingModule } from '../common/loading/loading.module';
 import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
 import { Ng2OdometerModule } from 'ng2-odometer';
 import { PhonePipeModule } from 'src/app/helpers/pipes/phone/phone.pipe.module';
+import { BudgetModule } from '../common/budget/budget.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PhonePipeModule } from 'src/app/helpers/pipes/phone/phone.pipe.module';
     LoadingModule,
     PhonePipeModule,
     ReactiveFormsModule,
+    BudgetModule,
     Ng2OdometerModule,
     RouterModule.forChild(InterRoutes),
     SweetAlert2Module.forRoot()

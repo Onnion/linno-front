@@ -75,4 +75,11 @@ export class FilterService {
   public getTime(): LeadsFilterTimesType {
     return this.times;
   }
+
+  public clear(): void {
+    this.accountMenu = undefined;
+    this.account = undefined;
+    this.times = this.timesMenu[2];
+    this.next();
+  }
 }

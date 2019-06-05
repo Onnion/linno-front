@@ -28,7 +28,7 @@ export class NavbarComponent extends MobileAdapter implements OnInit {
     }
 
     private setShouldShowFilters(url: string): void {
-        this.shouldShowFilters = url.includes('jogga') || url.includes('cliente');
+        this.shouldShowFilters = url.includes('painel') || url.includes('revenda');
     }
 
     private sidebarOpen() {

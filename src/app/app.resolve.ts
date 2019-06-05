@@ -12,7 +12,6 @@ export class AclRedirection {
     }
 
     public redirectTo(type: string) {
-        console.log('AclRedirection');
         const redirect = getRedirect() ? getRedirect() : 'login';
 
         if (type === 'Unauthorized') {
@@ -51,11 +50,11 @@ export class AclResolver implements Resolve<any> {
             if (this.aclService.can(ROLES.root[0])) {
                 testRoute = of(true);
             }
-        } else if (this.match(state, /^\/cliente?[\D]+$/)) {
+        } else if (this.match(state, /^\/revenda?[\D]+$/)) {
             if (this.aclService.can(ROLES.client[0])) {
                 testRoute = of(true);
             }
-        } else if (this.match(state, /^\/jogga?[\D]+$/)) {
+        } else if (this.match(state, /^\/painel?[\D]+$/)) {
             if (this.aclService.can(ROLES.root[0])) {
                 testRoute = of(true);
             }

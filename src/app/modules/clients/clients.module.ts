@@ -12,6 +12,7 @@ import { DashboardCardComponent } from './components/dashboard-card/dashboard-ca
 import { CampaignsListComponent } from './components/campaign/campaigns-list/campaigns-list.component';
 import { Ng2OdometerModule } from 'ng2-odometer';
 import { PhonePipeModule } from 'src/app/helpers/pipes/phone/phone.pipe.module';
+import { BudgetModule } from '../common/budget/budget.module';
 
 @NgModule({
     declarations: [ 
@@ -29,6 +30,7 @@ import { PhonePipeModule } from 'src/app/helpers/pipes/phone/phone.pipe.module';
         Ng2OdometerModule,
         ReactiveFormsModule,
         LeadsFilterTimesModule,
+        BudgetModule,
         RouterModule.forChild(ClientsRoutes),
     ]
 })
