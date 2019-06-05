@@ -43,7 +43,7 @@
     <div class="texto-intro col-sm-5" style="background-color:#fff">
         <img src="img/logo-revenda-negativo.png" alt="">
         <br><br>
-        <button id="openMenu">Cadastrar revenda</button>
+        <button style="display: none" id="openMenu">Cadastrar revenda</button>
     </div>
     <div class="layer"></div>
     <div id="main_container">
