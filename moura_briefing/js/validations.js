@@ -24,11 +24,9 @@ $(document).ready(function () {
     });
 });
 
-const search = window.location.search;
-
 const nameValidations = {
     validations: {
-        required: !!!search,
+        required: true,
         minlength: 5
     },
     message: {
@@ -87,20 +85,6 @@ function generateMessages() {
         fileType: 'Arquivo no formato inválido'
     };
 
-    if (search) {
-        messages['distributor'] = {required: nameValidations.message.required}
-        messages['registration_responsible'] = {required: nameValidations.message.required}
-        messages['email_responsible'] = {required: nameValidations.message.required}
-        messages['phone_responsible'] = {required: nameValidations.message.required}
-        messages['code_ax'] = {required: nameValidations.message.required}
-        messages['client_cnpj'] = {required: nameValidations.message.required}
-        messages['company_name'] = {required: nameValidations.message.required}
-        messages['trading_name'] = {required: nameValidations.message.required}
-        messages['client_name'] = {required: nameValidations.message.required}
-        messages['client_email'] = {required: nameValidations.message.required}
-        messages['client_whatsapp'] = {required: nameValidations.message.required}
-    }
-
     return messages;
 }
 
@@ -135,20 +119,6 @@ function generateValidations() {
             "size": "2"
         }
     };
-
-    if (search) {
-        validations['distributor'] = {required: true}
-        validations['registration_responsible'] = {required: true}
-        validations['email_responsible'] = {required: true}
-        validations['phone_responsible'] = {required: true}
-        validations['code_ax'] = {required: true}
-        validations['client_cnpj'] = {required: true}
-        validations['company_name'] = {required: true}
-        validations['trading_name'] = {required: true}
-        validations['client_name'] = {required: true}
-        validations['client_email'] = {required: true}
-        validations['client_whatsapp'] = {required: true}
-    }
 
     return validations;
 }
@@ -218,16 +188,7 @@ function generateDataEdit() {
 }
 
 function submit(form) {
-    let formData = null;
-
-    if (!search) {
-        formData = new FormData($("form#wrapped")[0]);
-    } else {
-        formData = new FormData();
-        generateDataEdit().forEach(function (field) {
-            formData.append(field, $(field).val() ? $(field).val() : 'não definido');
-        });
-    }
+    const formData = new FormData($("form#wrapped")[0]);
 
     $.ajax({
         // url: 'http://127.0.0.1:8000/api/lead/revenda-moura',
