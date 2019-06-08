@@ -27,7 +27,7 @@
                 <mat-header-cell class="justify-content-center" style="background: #FFFFFF" *matHeaderCellDef>
                     Atendimento </mat-header-cell>
                 <mat-cell class="justify-content-center" *matCellDef="let element">
-                    <audio *ngIf="element.status === 'Atendida'" controls controlsList="nodownload"style="width: 350px;">
+                    <audio *ngIf="element.status.toUpperCase() === 'ATENDIDA'" controls controlsList="nodownload"style="width: 350px;">
                         <source
                             [src]="element.url"
                             type="audio/mpeg">Your browser does not
@@ -53,7 +53,7 @@
 
         </mat-table>
 
-        <mat-paginator *ngIf="componentData && !safe_pagination && doneAnimation" #pagination [length]="length"
+        <mat-paginator *ngIf="componentData && !safe_pagination" #pagination [length]="length"
             [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPaginateChange($event)">
         </mat-paginator>
 
@@ -127,7 +127,7 @@
 
         </mat-table>
 
-        <mat-paginator *ngIf="componentData && !safe_pagination && doneAnimation" #pagination [length]="length"
+        <mat-paginator *ngIf="componentData && !safe_pagination" #pagination [length]="length"
             [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPaginateChange($event)">
         </mat-paginator>
 

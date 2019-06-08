@@ -44,9 +44,11 @@ export class AccountService extends CrudServices {
         });
     }
 
-    public getCalls(): Observable<any>{
+    public getCalls(options): Observable<any>{
+        const optionsUrl = this.createOptionsUrl(options);
+
         return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls`, this.generateParams()).subscribe(
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${optionsUrl}`, this.generateParams()).subscribe(
                 (data: any) => observer.next(data),
                 (error: any) => observer.error(error)
             );
