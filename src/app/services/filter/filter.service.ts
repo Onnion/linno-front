@@ -37,7 +37,7 @@ export class FilterService {
       { id: 'THIS_MONTH', shouldClose: true, label: 'Este Mês' },
       // { id: 'custom', shouldClose: false, label: 'Personalizado' },
     ];
-    this.times = this.timesMenu[2];
+    this.times = this.timesMenu[6];
     this.accountMenu = [];
   }
 
@@ -79,7 +79,7 @@ export class FilterService {
   public clear(): void {
     this.accountMenu = undefined;
     this.account = undefined;
-    this.times = this.timesMenu[2];
+    this.times = this.timesMenu[6];
     this.next();
   }
 }
