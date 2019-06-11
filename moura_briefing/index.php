@@ -931,6 +931,7 @@
                                                             <input name="payment_credit" type="checkbox" value="Sim" class="icheck">Crédito
                                                         </label>
                                                     </div>
+                                                                                                        
 
                                                     <div class="styled-select col-sm-4">
                                                         <select name="payment_installment">
@@ -950,6 +951,11 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div class="form-group checkbox_questions col-sm-2" style="padding-top: 10px">
+                                                    <label>
+                                                            <input name="payment_interest" type="checkbox" value="Sim" class="icheck required">Com juros?
+                                                        </label>
+                                                    </div>
 
                                                 <!-- Tipo de Bateria -->
                                                 <hr>
