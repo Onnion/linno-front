@@ -936,26 +936,33 @@
                                                     <div class="styled-select col-sm-4">
                                                         <select name="payment_installment">
                                                             <option disabled selected>Parcelamento</option>
-                                                            <option value="1x">1x</option>
-                                                            <option value="2x">2x</option>
-                                                            <option value="3x">3x</option>
-                                                            <option value="4x">4x</option>
-                                                            <option value="5x">5x</option>
-                                                            <option value="6x">6x</option>
-                                                            <option value="7x">7x</option>
-                                                            <option value="8x">8x</option>
-                                                            <option value="9x">9x</option>
-                                                            <option value="10x">10x</option>
-                                                            <option value="11x">11x</option>
-                                                            <option value="12x">12x</option>
+                                                            <option value="1x">1x Sem Juros</option>
+                                                            <option value="1x">1x Com Juros</option>
+                                                            <option value="2x">2x Sem Juros</option>
+                                                            <option value="2x">2x Com Juros</option>
+                                                            <option value="3x">3x Sem Juros</option>
+                                                            <option value="3x">3x Com Juros</option>
+                                                            <option value="4x">4x Sem Juros</option>
+                                                            <option value="4x">4x Com Juros</option>
+                                                            <option value="5x">5x Sem Juros</option>
+                                                            <option value="5x">5x Com Juros</option>
+                                                            <option value="6x">6x Sem Juros</option>
+                                                            <option value="6x">6x Com Juros</option>
+                                                            <option value="7x">7x Sem Juros</option>
+                                                            <option value="7x">7x Com Juros</option>
+                                                            <option value="8x">8x Sem Juros</option>
+                                                            <option value="8x">8x Com Juros</option>
+                                                            <option value="9x">9x Sem Juros</option>
+                                                            <option value="9x">9x Com Juros</option>
+                                                            <option value="10x">10x Sem Juros</option>
+                                                            <option value="10x">10x Com Juros </option>
+                                                            <option value="11x">11x Sem Juros</option>
+                                                            <option value="11x">11x Com Juros</option>
+                                                            <option value="12x">12x Sem Juros</option>
+                                                            <option value="12x">12x Com Juros</option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group checkbox_questions col-sm-2" style="padding-top: 10px">
-                                                    <label>
-                                                            <input name="payment_interest" type="checkbox" value="Sim" class="icheck required">Com juros?
-                                                        </label>
-                                                    </div>
 
                                                 <!-- Tipo de Bateria -->
                                                 <hr>
