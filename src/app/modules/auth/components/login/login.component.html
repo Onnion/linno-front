@@ -7,7 +7,7 @@
 
           <app-loading [loading]="status.loading"></app-loading>
 
-          <div class="row">
+          <div class="row" style="width: 100%">
             <div class="col" style="padding: 15px">
               <img class="logo" src="assets/img/logo.png" alt="Revenda">
             </div>
@@ -15,7 +15,7 @@
           <!--<p class="tip">Or Be Classical</p>-->
           <form [formGroup]="form" (submit)="submit()" (keyup.enter)="submit()">
 
-            <mat-form-field  appearance="outline">
+            <mat-form-field appearance="outline">
               <mat-label>Email</mat-label>
               <input type="email" matInput placeholder="Email" formControlName="email">
               <mat-icon matSuffix>email</mat-icon>
@@ -31,7 +31,8 @@
             </mat-form-field>
 
             <div class="card-footer">
-              <button [disabled]="status.loading" style="background: #2f5584" class="btn btn-block" type="submit">{{btn_title}}</button>
+              <button [disabled]="status.loading" style="background: #2f5584" class="btn btn-block"
+                type="submit">{{btn_title}}</button>
             </div>
           </form>
 

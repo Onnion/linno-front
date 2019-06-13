@@ -89,6 +89,7 @@ form { width: 100%; }
     align-items: center;
     vertical-align: middle;
     min-height: 100vh;
+    height: 100vh;
 }
 
 /* FORMS */
