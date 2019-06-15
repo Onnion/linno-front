@@ -107,19 +107,53 @@ export class CampaignFormEditComponent implements OnInit {
     );
   }
 
+
+  private setDistributorEmail() {
+    const distributor = this.form.controls.distributor.value;
+    const distributorEmails = [
+      { distributor: 'COMAL', email: 'hugo@mouraes.com.br' },
+      { distributor: 'UNIÃO', email: 'isabela.celestino@mourasp.com.br' },
+      { distributor: 'DISBATE', email: 'vendas.interior@disbate.com.br' },
+      { distributor: 'DISBAC', email: 'joel.bremm@disbac.com.br' },
+      { distributor: 'DIRPAL', email: 'alana.pimentel@dirpal.com.br' },
+      { distributor: 'AVIC FILIAL JOINVILLE', email: 'e.albino@mourapr.com.br' },
+      { distributor: 'BRASILIENSE', email: 'joefran @mouradf.com.br' },
+      { distributor: 'FLUMINENSE', email: 'Thiago.pereira@mourario.com' },
+      { distributor: 'TRIÂNGULO', email: 'rodrigo.cabral@mouratriangulo.com.br' },
+      { distributor: 'FORTALEZA', email: 'victor@mourafortaleza.com.br' },
+      { distributor: 'PARAÍBA', email: 'ricardo.b@mourapb.com.br' },
+      { distributor: 'PALÁCIO', email: 'leonardo.franca@palaciodasbaterias.com.br' },
+      { distributor: 'RODMASTER', email: 'lucas.oliveira@mourars.com.br' },
+      { distributor: 'CAMPO GRANDE', email: 'jose.neto@grupomourams.com' },
+      { distributor: 'CODIBA', email: 'ricardo.moura@mouranatal.com' },
+      { distributor: 'BANDEIRANTES', email: 'altair@moura15.com' },
+      { distributor: 'AUTOBATE', email: 'p.carmo@moura-ba.com' },
+      { distributor: 'CATARINENSE', email: 'rhuan.carvalho@mourasc.com.br' }
+    ];
+
+    return distributorEmails.filter($distributor => distributor.toUpperCase().includes($distributor.distributor.toUpperCase()))[0]
+  }
+
+
   public submit(): void {
     if (this.form.valid) {
       this.loading = true;
+      const distributor = this.setDistributorEmail();
 
-      this.mouraService.store(this.form.value).subscribe(
-        (res) => { 
+      const form = {
+        ...this.form.value,
+        distributor_email: distributor ? distributor.email : '' 
+      }
+
+      this.mouraService.store(form).subscribe(
+        (res) => {
           setTimeout(() => {
             this.loading = false;
 
             this.successSwal.show();
           }, 1000);
-         },
-        (error) => { 
+        },
+        (error) => {
           console.log(error)
           setTimeout(() => {
             this.loading = false;
