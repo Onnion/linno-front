@@ -98,7 +98,7 @@
                                                     <div class="col-sm-12">
                                                         <label>Nome do distribuidor:</label>
                                                         <div class="styled-select">
-                                                            <select class="required" name="distributor">
+                                                            <select class="required" id="distributor" name="distributor">
                                                                 <option disabled selected>Selecione um distribuidor</option>
                                                                 <option value="Alagoana Matriz">Alagoana Matriz</option>
                                                                 <option value="Alagoana Filial Arapiraca">Alagoana Filial Arapiraca</option>
