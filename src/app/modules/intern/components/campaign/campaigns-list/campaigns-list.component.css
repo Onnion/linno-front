@@ -2,6 +2,10 @@
   color: rgb(221, 75, 57);
 }
 
+.hidden {
+  display: none!important;
+}
+
 .facebook {
   color: rgb(59, 89, 152);
 }

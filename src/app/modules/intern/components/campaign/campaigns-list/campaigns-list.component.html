@@ -46,7 +46,7 @@
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
             <mat-row *matRowDef="let row; let element; columns: displayedColumns;" class="element-row"
-                [class.disabled]="element.status.toLowerCase() !== 'atendida'"
+                [class.disabled]="element.status.toUpperCase() !== 'ATENDIDA'"
                 style="padding-top:10px; padding-bottom:10px; height: 80px; min-height: 0px!important; margin: 10px auto; border-radius: 6px; background: #FFFFFF;">
             </mat-row>
 
@@ -66,7 +66,7 @@
                 <mat-header-cell style="background: #FFFFFF" [style.flex]="'0 0 50px'" *matHeaderCellDef>
                 </mat-header-cell>
                 <mat-cell [style.font-size]="'11px'" [style.flex]="'0 0 50px'" *matCellDef="let element">
-                    <mat-icon>keyboard_arrow_down</mat-icon>
+                    <mat-icon *ngIf="element.status.toUpperCase() === 'ATENDIDA'">keyboard_arrow_down</mat-icon>
                 </mat-cell>
             </ng-container>
 
@@ -109,15 +109,17 @@
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-            <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"
+            <mat-row *matRowDef="let row; let element; columns: displayedColumns;" matRipple class="element-row"
                 [class.expanded]="expandedElement == row"
+                [class.disabled]="element.status.toUpperCase() !== 'ATENDIDA'"
                 (click)="expandedElement = expandedElement === row ? null : row"
                 [style.border-bottom-left-radius]="row == expandedElement ? '0px' : '6px'"
                 [style.border-bottom-right-radius]="row == expandedElement ? '0px' : '6px'"
                 style="cursor: pointer; height: 48px; min-height: 0px!important; margin: 10px auto; border-radius: 6px; background: #FFFFFF;">
             </mat-row>
 
-            <mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
+            <mat-row *matRowDef="let row; let element; columns: ['expandedDetail']; when: isExpansionDetailRow"
+                [class.hidden]="element.element.status.toUpperCase() !== 'ATENDIDA'"
                 [@detailExpand]="row.element == expandedElement ? 'expanded' : 'collapsed'"
                 style="overflow: hidden; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; margin: -10px 0px 10px 0px; background: #FFFFFF">
             </mat-row>
