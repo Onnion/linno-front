@@ -27,7 +27,7 @@
                 <mat-header-cell class="justify-content-center" style="background: #FFFFFF" *matHeaderCellDef>
                     Atendimento </mat-header-cell>
                 <mat-cell class="justify-content-center" *matCellDef="let element">
-                    <audio *ngIf="element.status === 'Atendida'" controls controlsList="nodownload"
+                    <audio *ngIf="element.status.toUpperCase() === 'ATENDIDA'" controls controlsList="nodownload"
                         style="width: 350px;">
                         <source [src]="element.url" type="audio/mpeg">Your browser does not
                         support the audio element.

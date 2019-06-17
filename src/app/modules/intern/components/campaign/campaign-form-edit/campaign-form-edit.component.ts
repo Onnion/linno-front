@@ -107,7 +107,6 @@ export class CampaignFormEditComponent implements OnInit {
     );
   }
 
-
   private setDistributorEmail() {
     const distributor = this.form.controls.distributor.value;
     const distributorEmails = [
@@ -133,7 +132,6 @@ export class CampaignFormEditComponent implements OnInit {
 
     return distributorEmails.filter($distributor => distributor.toUpperCase().includes($distributor.distributor.toUpperCase()))[0]
   }
-
 
   public submit(): void {
     if (this.form.valid) {
