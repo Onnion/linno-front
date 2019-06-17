@@ -27,10 +27,9 @@
                 <mat-header-cell class="justify-content-center" style="background: #FFFFFF" *matHeaderCellDef>
                     Atendimento </mat-header-cell>
                 <mat-cell class="justify-content-center" *matCellDef="let element">
-                    <audio *ngIf="element.status === 'Atendida'" controls controlsList="nodownload"style="width: 350px;">
-                        <source
-                            [src]="element.url"
-                            type="audio/mpeg">Your browser does not
+                    <audio *ngIf="element.status === 'Atendida'" controls controlsList="nodownload"
+                        style="width: 350px;">
+                        <source [src]="element.url" type="audio/mpeg">Your browser does not
                         support the audio element.
                     </audio>
                 </mat-cell>
@@ -53,8 +52,8 @@
 
         </mat-table>
 
-        <mat-paginator *ngIf="componentData && !safe_pagination" #pagination [length]="length"
-            [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPaginateChange($event)">
+        <mat-paginator *ngIf="componentData && !safe_pagination" #pagination [length]="length" [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions" (page)="onPaginateChange($event)">
         </mat-paginator>
 
     </div>
@@ -102,9 +101,7 @@
                     Atendimento </mat-header-cell>
                 <mat-cell class="justify-content-center" *matCellDef="let element">
                     <audio controls controlsList="nodownload" style="width: 100%;">
-                        <source
-                            src="http://dcweb.directdial.com.br/extrato/gravacao/id/OWQxNjcwYTctNzc0MS00NTFmLTkwNGYtZTQ4MWNmOGM4NjJi"
-                            type="audio/mpeg">Your browser does not
+                        <source [src]="element.url" type="audio/mpeg">Your browser does not
                         support the audio element.
                     </audio>
                 </mat-cell>
@@ -127,8 +124,8 @@
 
         </mat-table>
 
-        <mat-paginator *ngIf="componentData && !safe_pagination" #pagination [length]="length"
-            [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPaginateChange($event)">
+        <mat-paginator *ngIf="componentData && !safe_pagination" #pagination [length]="length" [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions" (page)="onPaginateChange($event)">
         </mat-paginator>
 
     </div>
