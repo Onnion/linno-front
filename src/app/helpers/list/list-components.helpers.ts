@@ -53,7 +53,7 @@ export class ListComponent {
     public length: number;
     public pageSize = 5;
     public page = 1;
-    public orderBy = 'created_at';
+    public orderBy = 'registered_at';
     public sortedBy = 'desc';
     public pageSizeOptions: number[] = [5, 12, 25, 50, 100, 1000, 10000];
     public searchableFields: string[];
@@ -99,7 +99,7 @@ export class ListComponent {
 
     public setSort($event): void {
         // {active: "data", direction: "asc"}
-        this.orderBy = $event.active === 'data' ? 'created_at' : $event.active;
+        this.orderBy = $event.active === 'data' ? 'registered_at' : $event.active;
         this.sortedBy = $event.direction || 'desc';
         this.loadData();
     }
