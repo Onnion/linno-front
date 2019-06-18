@@ -32,7 +32,7 @@ export class DashboardCardComponent implements OnInit, OnChanges, OnDestroy {
           this.service[this.method]().subscribe(
             (_data) => {
               this.loading = false;
-              this._data = (_data && _data.meta) && _data.meta.pagination.count;
+              this._data = (_data && _data.meta) && _data.meta.pagination.total;
             },
             (error) => {
               this.loading = false;

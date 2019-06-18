@@ -142,12 +142,14 @@ export class ListComponent {
                         const pagination = data.meta.pagination;
                         this.setPagination(pagination['total'], pagination['current_page'], pagination['per_page']);
                     }
+                    
                     this.componentData = data.data;
                     this.filtredComponentData = data.data;
                     this.dataSource = new ComponentDataSource(data.data, mobile);
                     this.setIsMobile();
                     this.status_form.loading = false;
                     this.doneLoad.emit(true);
+                    
                     if (this.idTable) {
                         scroll(this.idTable);
                     }
@@ -171,6 +173,7 @@ export class ListComponent {
         if (this.pageSize !== event.pageSize) {
             this.doneAnimation = false;
         }
+       
         this.page = event.pageIndex + 1;
         this.pageSize = event.pageSize;
         this.loadData();
