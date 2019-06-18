@@ -1,12 +1,14 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, EventEmitter, OnDestroy } from '@angular/core';
 import { FilterService } from 'src/app/services/filter/filter.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard-card',
   templateUrl: './dashboard-card.component.html',
   styleUrls: ['./dashboard-card.component.css']
 })
-export class DashboardCardComponent implements OnInit, OnChanges {
+export class DashboardCardComponent implements OnInit, OnChanges, OnDestroy {
+  private filterEvents: Subscription;
 
   @Input('title') title: string;
   @Input('name') name: string;
@@ -22,7 +24,7 @@ export class DashboardCardComponent implements OnInit, OnChanges {
   constructor(private filterService: FilterService) { }
 
   ngOnInit() {
-    this.filterService.filter.subscribe((filters) => {
+    this.filterEvents = this.filterService.filter.subscribe((filters) => {
       if (filters.account && filters.account.id) {
         if (!(this.observable) && this.method && this.service) {
           this.loading = true;
@@ -49,7 +51,11 @@ export class DashboardCardComponent implements OnInit, OnChanges {
       this._data = changes.data.currentValue.error ? '-' : changes.data.currentValue[this.name];
       this.loading = false;
     }
+  }
 
+  ngOnDestroy() {
+    this.filterEvents.unsubscribe();
+    this.filterService.clear();
   }
 
 }

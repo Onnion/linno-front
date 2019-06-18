@@ -1,8 +1,9 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { ListComponent } from 'src/app/helpers/list/list-components.helpers';
 import { listObjShowup, detailExpand } from 'src/app/helpers/animations/animations.helper';
 import { AccountService } from 'src/app/services/account/account.service';
 import { FilterService } from 'src/app/services/filter/filter.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-campaigns-list',
@@ -11,7 +12,9 @@ import { FilterService } from 'src/app/services/filter/filter.service';
   providers: [AccountService],
   animations: [listObjShowup, detailExpand]
 })
-export class CampaignsListComponent extends ListComponent implements OnInit {
+export class CampaignsListComponent extends ListComponent implements OnInit, OnDestroy {
+  private filterEvents: Subscription;
+  private account_id;
   public displayedColumns = ['data', 'status', 'media', 'number'];
 
   constructor(
@@ -28,9 +31,10 @@ export class CampaignsListComponent extends ListComponent implements OnInit {
   }
 
   private subscribeFiltersUi(): void {
-    this.filterService.filter.subscribe(filter => {
-
+    this.filterEvents = this.filterService.filter.subscribe(filter => {
       if (filter.account) {
+        this.page = 1;
+        this.account_id = filter.account.id;
         this.options = { account_id: filter.account.id };
         this.loadData(null, window.innerWidth <= 991);
       }
@@ -45,5 +49,10 @@ export class CampaignsListComponent extends ListComponent implements OnInit {
   ngOnInit() {
     this.initListComponentConfigs();
     this.subscribeFiltersUi();
+  }
+
+  ngOnDestroy() {
+    this.filterService.clear();
+    this.filterEvents.unsubscribe();
   }
 }

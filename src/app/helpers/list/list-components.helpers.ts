@@ -53,6 +53,8 @@ export class ListComponent {
     public length: number;
     public pageSize = 5;
     public page = 1;
+    public orderBy = 'created_at';
+    public sortedBy = 'desc';
     public pageSizeOptions: number[] = [5, 12, 25, 50, 100, 1000, 10000];
     public searchableFields: string[];
     public pageEvent: PageEvent;
@@ -65,17 +67,17 @@ export class ListComponent {
 
     protected subscribeFilters() {
         this.filterService.filter.subscribe(filters => {
+            this.page = 1;
             this.loadData();
         });
     }
-
 
     public setIsMobile($event?): void {
         const width = $event ? $event.target.innerWidth : window.innerWidth;
         const isMobile = width <= 991;
 
         if ((this.isMobile != isMobile)) {
-            this.dataSource = new ComponentDataSource(this.componentData,  isMobile && this.expandedElement);
+            this.dataSource = new ComponentDataSource(this.componentData, isMobile && this.expandedElement);
         }
 
         if (isMobile) {
@@ -96,7 +98,10 @@ export class ListComponent {
     }
 
     public setSort($event): void {
-        console.log($event);
+        // {active: "data", direction: "asc"}
+        this.orderBy = $event.active === 'data' ? 'created_at' : $event.active;
+        this.sortedBy = $event.direction || 'desc';
+        this.loadData();
     }
 
     public isExpansionDetailRow(i: number, row: Object): boolean {
@@ -110,22 +115,26 @@ export class ListComponent {
         if (!this.safe_pagination) {
             options = {
                 ...this.options,
-                'page': this.page,
-                'pageSize': this.pageSize,
+                orderBy: this.orderBy,
+                sortedBy: this.sortedBy,
+                page: this.page,
+                pageSize: this.pageSize,
             };
         }
-        
+
         if (list) {
             this.componentData = list;
             this.filtredComponentData = list;
             this.setIsMobile();
             this.status_form.loading = false;
             this.doneLoad.emit(true);
+
             if (this.idTable) {
                 scroll(this.idTable);
             }
 
             if (this.changePagination) { this.showPagination(); }
+
         } else {
             this.service[this.methodLoad](options).subscribe(
                 (data) => {
@@ -142,7 +151,7 @@ export class ListComponent {
                     if (this.idTable) {
                         scroll(this.idTable);
                     }
-    
+
                     if (this.changePagination) { this.showPagination(); }
                 },
                 (err) => {

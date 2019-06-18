@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FilterService } from 'src/app/services/filter/filter.service';
 import { detailExpand } from 'src/app/helpers/animations/animations.helper';
 import * as moment  from 'moment';
 import { AccountService } from 'src/app/services/account/account.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-budget',
@@ -10,7 +11,10 @@ import { AccountService } from 'src/app/services/account/account.service';
   styleUrls: ['./budget.component.css'],
   animations: [detailExpand]
 })
-export class BudgetComponent implements OnInit {
+export class BudgetComponent implements OnInit, OnDestroy {
+  private filterEvents: Subscription;
+  private subscribed = false;
+  private account_id;
   public shouldShowBudget = false;
   public data: any;
   public loading = false;
@@ -18,13 +22,12 @@ export class BudgetComponent implements OnInit {
   constructor(private filterService: FilterService, private accountService: AccountService) { }
 
   private subscribeFiltersUi(): void {
-    this.filterService.filter.subscribe((filters) => {
+    this.filterEvents = this.filterService.filter.subscribe((filters) => {
       this.shouldShowBudget = filters.times.id === 'THIS_MONTH';
-
-      if (filters.account && filters.account.id && this.shouldShowBudget) {
+      if (filters.account && filters.account.id && (this.account_id !== filters.account.id) && this.shouldShowBudget) {
+        this.account_id = filters.account.id;
         this.getBudget();
       }
-
     });
   }
 
@@ -50,4 +53,8 @@ export class BudgetComponent implements OnInit {
     this.subscribeFiltersUi();
   }
 
+  ngOnDestroy() {
+    this.account_id = null;
+    this.filterEvents.unsubscribe();
+  }
 }
