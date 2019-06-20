@@ -32,7 +32,7 @@ export class AccountService extends CrudServices {
                 status
             };
         }
-        return  params;
+        return params;
     }
 
     public getAccounts(): Observable<LeadsFilterAccountType[]> {
@@ -44,7 +44,7 @@ export class AccountService extends CrudServices {
         });
     }
 
-    public getCalls(options): Observable<any>{
+    public getCalls(options): Observable<any> {
         const optionsUrl = this.createOptionsUrl(options);
 
         return new Observable((observer) => {
@@ -55,7 +55,7 @@ export class AccountService extends CrudServices {
         });
     }
 
-    public getBudget(): Observable<any>{
+    public getBudget(): Observable<any> {
         return new Observable((observer) => {
             this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/budget`, this.generateParams()).subscribe(
                 (data: any) => observer.next(data.data.attributes),
@@ -64,7 +64,7 @@ export class AccountService extends CrudServices {
         });
     }
 
-    public getCallsMissed(): Observable<any>{
+    public getCallsMissed(): Observable<any> {
         return new Observable((observer) => {
             this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls`, this.generateParams('NÃO ATENDIDA')).subscribe(
                 (data: any) => observer.next(data),
@@ -73,9 +73,18 @@ export class AccountService extends CrudServices {
         });
     }
 
-    public getCallsAnswereds(): Observable<any>{
+    public getCallsAnswereds(): Observable<any> {
         return new Observable((observer) => {
             this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls`, this.generateParams('ATENDIDA')).subscribe(
+                (data: any) => observer.next(data),
+                (error: any) => observer.error(error)
+            );
+        });
+    }
+
+    public setProblemAccountCalls(id: number, data): Observable<any> {
+        return new Observable((observer) => {
+            this.httpService.put(`${environment.AUTH_URL}/api/moura/change-status/${id}`, data).subscribe(
                 (data: any) => observer.next(data),
                 (error: any) => observer.error(error)
             );

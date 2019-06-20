@@ -6,4 +6,5 @@ export interface LeadsFilterAccountType {
     readonly mailings: string[];
     readonly created_at: string;
     readonly updated_at: string;
+    readonly status_call?: boolean;
 }

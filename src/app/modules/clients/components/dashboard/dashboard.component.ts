@@ -14,12 +14,13 @@ import { Subscription } from 'rxjs';
 export class DashboardComponent implements OnInit, OnDestroy {
   private filterEvents: Subscription;
   private subscribed = false;
+  public bullet = false;
   public idAccount;
   public googleReposts;
   public cards = [
     { observable: true, name: "impressions", title: "Quantidade de vezes que o anúncio apareceu" },
     { observable: true, name: "clicks", title: "Cliques no anúncio" },
-    { method: 'getCallsAnswereds', service: this.accountService, name: "calls", title: "Ligações Atendidas" },
+    { method: 'getCallsAnswereds', bullet: true, service: this.accountService, name: "calls", title: "Ligações Atendidas" },
     { method: 'getCallsMissed', service: this.accountService, name: "calls", title: "Ligações Não Atendidas" }
   ];
   public shouldShowBudget = false;
@@ -41,6 +42,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.shouldShowBudget = filters.times.id === 'THIS_MONTH';
 
       if (filters.account && filters.account.id && !this.subscribed) {
+        this.bullet = filters.account.status_call
         this.idAccount = filters.account.id;
         this.subscribed = true;
         this.getReports();

@@ -43,11 +43,11 @@ export class AclResolver implements Resolve<any> {
         let testRoute;
 
          if (this.match(state, /^\/cadastro?[\D]+$/)) {
-            if (this.aclService.can(ROLES.root[0])) {
+            if (this.aclService.can(ROLES.distributor[0])) {
                 testRoute = of(true);
             }
         } else if (this.match(state, /^\/ajuste?[\D]+$/)) {
-            if (this.aclService.can(ROLES.root[0])) {
+            if (this.aclService.can(ROLES.distributor[0])) {
                 testRoute = of(true);
             }
         } else if (this.match(state, /^\/revenda?[\D]+$/)) {
@@ -55,7 +55,7 @@ export class AclResolver implements Resolve<any> {
                 testRoute = of(true);
             }
         } else if (this.match(state, /^\/painel?[\D]+$/)) {
-            if (this.aclService.can(ROLES.root[0])) {
+            if (this.aclService.can(ROLES.distributor[0])) {
                 testRoute = of(true);
             }
         }

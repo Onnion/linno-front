@@ -23,7 +23,7 @@ export const ROUTES: RouteInfo[] = [
         title: 'Painel de resultados',
         type: 'link',
         icontype: 'assessment',
-        permission: ROLES.root[0]
+        permission: ROLES.distributor[0]
     },
     {
         path: '/revenda',
@@ -37,13 +37,13 @@ export const ROUTES: RouteInfo[] = [
         title: 'Cadastrar revenda',
         type: 'link',
         icontype: 'assignment',
-        permission: ROLES.root[0]
+        permission: ROLES.distributor[0]
     },
     {
         path: '/ajuste​',
         title: 'Atualização do cadastro',
         type: 'link',
         icontype: 'assignment_late',
-        permission: ROLES.root[0]
+        permission: ROLES.distributor[0]
     },
 ];

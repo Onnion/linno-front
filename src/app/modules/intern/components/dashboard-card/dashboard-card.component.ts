@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, EventEmitter, OnDestroy } from '@angular/core';
 import { FilterService } from 'src/app/services/filter/filter.service';
 import { Subscription } from 'rxjs';
+import { AclService } from 'ng2-acl';
 
 @Component({
   selector: 'app-dashboard-card',
@@ -11,17 +12,26 @@ export class DashboardCardComponent implements OnInit, OnChanges, OnDestroy {
   private filterEvents: Subscription;
 
   @Input('title') title: string;
+  @Input('bullet') bullet: boolean;
   @Input('name') name: string;
   @Input('method') method: string;
   @Input('service') service: any;
   @Input('data') data: any;
   @Input('observable') observable: any;
   @Input('changeFilter') change: EventEmitter<any> = new EventEmitter<any>();
-
+  
+  public message = false;
   public loading = true;
   public _data: number | string;
 
-  constructor(private filterService: FilterService) { }
+  constructor(private filterService: FilterService, private aclService: AclService) { }
+
+  public showMessage($event): void {
+
+    if (!(this.aclService.can('set-bullet'))) {
+      this.message = $event;
+    }
+  }
 
   ngOnInit() {
     this.filterEvents = this.filterService.filter.subscribe((filters) => {

@@ -14,9 +14,10 @@ import { MaskDirective } from 'src/app/helpers/directives/mask/mask.directive';
 import { LeadMouraService } from './services/lead-moura/lead-moura.service';
 import { LoadingModule } from '../common/loading/loading.module';
 import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
-import { Ng2OdometerModule } from 'ng2-odometer';
+// import { Ng2OdometerModule } from 'ng2-odometer';
 import { PhonePipeModule } from 'src/app/helpers/pipes/phone/phone.pipe.module';
 import { BudgetModule } from '../common/budget/budget.module';
+import { ProblemBulletModule } from '../common/problem-bullet/problem-bullet.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BudgetModule } from '../common/budget/budget.module';
     PhonePipeModule,
     ReactiveFormsModule,
     BudgetModule,
-    Ng2OdometerModule,
+    ProblemBulletModule,
+    // Ng2OdometerModule,
     RouterModule.forChild(InterRoutes),
     SweetAlert2Module.forRoot()
   ],

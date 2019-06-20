@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public cards = [
     { observable: true, name: "impressions", title: "Quantidade de vezes que o anúncio apareceu" },
     { observable: true, name: "clicks", title: "Cliques no anúncio" },
-    { method: 'getCallsAnswereds', service: this.accountService, name: "calls", title: "Ligações Atendidas" },
+    { method: 'getCallsAnswereds', bullet: true, service: this.accountService, name: "calls", title: "Ligações Atendidas" },
     { method: 'getCallsMissed', service: this.accountService, name: "calls", title: "Ligações Não Atendidas" }
   ];
   public shouldShowBudget = false;

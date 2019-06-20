@@ -6,5 +6,4 @@ export const environment = {
   GRANT_TYPE: config.GRANT_TYPE,
   CLIENT_SECRET: config.CLIENT_SECRET,
   CLIENT_ID: config.CLIENT_ID,
-  API_CEP: config.API_CEP
 };

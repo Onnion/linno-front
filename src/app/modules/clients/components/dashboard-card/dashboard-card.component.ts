@@ -11,6 +11,7 @@ export class DashboardCardComponent implements OnInit, OnChanges, OnDestroy {
   private filterEvents: Subscription;
 
   @Input('title') title: string;
+  @Input('bullet') bullet: boolean;
   @Input('name') name: string;
   @Input('method') method: string;
   @Input('service') service: any;
@@ -18,10 +19,15 @@ export class DashboardCardComponent implements OnInit, OnChanges, OnDestroy {
   @Input('observable') observable: any;
   @Input('changeFilter') change: EventEmitter<any> = new EventEmitter<any>();
 
+  public message = false;
   public loading = true;
   public _data: number | string;
 
   constructor(private filterService: FilterService) { }
+
+  public showMessage($event): void {
+    this.message = $event;
+  }
 
   ngOnInit() {
     this.filterEvents = this.filterService.filter.subscribe((filters) => {
