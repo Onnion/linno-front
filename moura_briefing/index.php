@@ -1108,7 +1108,7 @@
                                                         </a>
                                                     </label>
                                                 </div>
-
+                                                <p style="text-align: right; margin-top: 10px;">Antes de salvar, confira se as informações preenchidas estão corretas</p>
                                             </div><!-- /step 3-->
 
                                         </div><!-- /middle-wizard -->

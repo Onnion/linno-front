@@ -41,7 +41,7 @@ export const ROUTES: RouteInfo[] = [
     },
     {
         path: '/ajuste​',
-        title: 'Atualização do cadastro',
+        title: 'Alteração do cadastro',
         type: 'link',
         icontype: 'assignment_late',
         permission: ROLES.distributor[0]
