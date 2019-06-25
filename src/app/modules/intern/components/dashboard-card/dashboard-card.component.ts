@@ -23,6 +23,7 @@ export class DashboardCardComponent implements OnInit, OnChanges, OnDestroy {
   public message = false;
   public loading = true;
   public _data: number | string;
+  public shouldShowBullet = false;
 
   constructor(private filterService: FilterService, private aclService: AclService) { }
 
@@ -33,9 +34,14 @@ export class DashboardCardComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  public showBullet(): boolean {
+    return !this.loading && this.bullet && (this.shouldShowBullet || this.aclService.can('set-bullet'));
+  }
+
   ngOnInit() {
     this.filterEvents = this.filterService.filter.subscribe((filters) => {
       if (filters.account && filters.account.id) {
+        this.shouldShowBullet = filters.account.status_call;
         if (!(this.observable) && this.method && this.service) {
           this.loading = true;
 
