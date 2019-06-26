@@ -46,4 +46,11 @@ export const ROUTES: RouteInfo[] = [
         icontype: 'assignment_late',
         permission: ROLES.distributor[0]
     },
+    {
+        path: '/suporte',
+        title: 'Suporte',
+        type: 'link',
+        icontype: 'help_outline',
+        permission: ROLES.distributor[0]
+    },
 ];

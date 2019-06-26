@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import * as moment from 'moment';
 import { FilterService } from 'src/app/services/filter/filter.service';
 import { detailExpand } from 'src/app/helpers/animations/animations.helper';
 import { AccountService } from 'src/app/services/account/account.service';
 import { GoogleService } from 'src/app/services/google/google.service';
 import { Subscription } from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +13,6 @@ import { Subscription } from 'rxjs';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   private filterEvents: Subscription;
-  private subscribed = false;
-  public bullet = false;
   public idAccount;
   public googleReposts;
   public cards = [
@@ -31,7 +29,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public getReports(): void {
     this.googleService.getReports().subscribe(
       (data: any) => {
-        this.googleReposts = data.attributes ? data.attributes : data
+        this.googleReposts = data.attributes ? data.attributes : data;
       },
       (error: any) => console.log(error)
     );
@@ -41,10 +39,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.filterEvents = this.filterService.filter.subscribe((filters) => {
       this.shouldShowBudget = filters.times.id === 'THIS_MONTH';
 
-      if (filters.account && filters.account.id && !this.subscribed) {
-        this.bullet = filters.account.status_call
-        this.idAccount = filters.account.id;
-        this.subscribed = true;
+      if (filters.account && filters.account.id) {
+        this.idAccount = filters.account.id
         this.getReports();
       }
     });
@@ -60,6 +56,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.filterEvents.unsubscribe();
-    this.subscribed = false;
   }
 }

@@ -1,0 +1,6 @@
+.suport-content {
+    min-height: calc(100vh - 123px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

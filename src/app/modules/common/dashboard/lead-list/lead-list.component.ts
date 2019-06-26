@@ -6,13 +6,13 @@ import { FilterService } from 'src/app/services/filter/filter.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-campaigns-list',
-  templateUrl: './campaigns-list.component.html',
-  styleUrls: ['./campaigns-list.component.css'],
+  selector: 'app-lead-list',
+  templateUrl: './lead-list.component.html',
+  styleUrls: ['./lead-list.component.css'],
   providers: [AccountService],
   animations: [listObjShowup, detailExpand]
 })
-export class CampaignsListComponent extends ListComponent implements OnInit, OnDestroy {
+export class LeadListComponent extends ListComponent implements OnInit, OnDestroy {
   private filterEvents: Subscription;
   private account_id;
   public displayedColumns = ['data', 'status', 'media', 'number'];

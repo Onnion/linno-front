@@ -36,14 +36,10 @@
     <div id="loader_form">
         <div data-loader="circle-side-2"></div>
     </div>
-    <header>
-
-    </header>
-
     <div class="texto-intro col-sm-5" style="background-color:#fff">
         <img src="img/logo-revenda-negativo.png" alt="">
         <br><br>
-        <button id="openMenu">Cadastrar revenda</button>
+        <button style="display: none" id="openMenu">Cadastrar revenda</button>
     </div>
     <div class="layer"></div>
     <div id="main_container">
@@ -931,7 +927,7 @@
                                                             <input name="payment_credit" type="checkbox" value="Sim" class="icheck">Crédito
                                                         </label>
                                                     </div>
-                                                                                                        
+
 
                                                     <div class="styled-select col-sm-4">
                                                         <select name="payment_installment">
@@ -1452,7 +1448,6 @@
         if (window.location.search) {
             $('#openMenu').click();
         }
-
     </script>
 </body>
 

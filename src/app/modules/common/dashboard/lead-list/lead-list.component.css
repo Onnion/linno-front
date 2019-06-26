@@ -1,0 +1,45 @@
+.google {
+    color: rgb(221, 75, 57);
+  }
+  
+  .hidden {
+    display: none!important;
+  }
+  
+  .facebook {
+    color: rgb(59, 89, 152);
+  }
+  
+  .mat-table {
+    overflow: auto;
+  }
+  
+  .element-row {
+    position: relative;
+  }
+  
+  .element-row.disabled {
+    background: rgba(255, 255, 255, 0.3) !important;
+  }
+  
+  .element-row:not(.expanded) {
+    cursor: pointer;
+  }
+  
+  .element-row:not(.expanded):hover {
+    background: #f5f5f5 !important;
+  }
+  
+  .element-row.expanded {
+    border-bottom-color: transparent;
+  }
+  
+  .element-row.expanded .mat-icon.material-icons {
+    transform: rotate(180deg);
+    transition: 0.3s all;
+  }
+  
+  .element-row:not(.expanded) .mat-icon.material-icons {
+    transition: 0.3s all;
+  }
+  
