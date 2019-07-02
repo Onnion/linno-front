@@ -2,16 +2,54 @@
   <div class="row justify-content-center">
     <div class="col-12">
 
-      <div class="card" style="padding: 50px; margin-top: -25%">
+      <div class="card" style="padding: 50px">
         <h6 class="text-center" style="color: #2f5584; font-size: 2.4rem; font-weight: 700; margin: 0px 0px 30px;">
           Precisando de ajuda? </h6>
         <p style="color: #444; font-weight: 400;">
           Entre em contato através do <span style="font-weight: 900;">WHATSAPP</span> com a equipe de Suporte Exclusivo
           do
-          Distribuidor,
-          através do número: <span style="color: #25d366; font-weight: 900;">(81) 9-8269-1554</span>
+          Distribuidor: <a class="btn btn-success" target="_blank"
+            href="https://api.whatsapp.com/send?phone=5581982691554&text=" style="font-weight: 900;">
+            <i class="fa fa-whatsapp"></i> (81) 9-8269-1554
+          </a>
         </p>
+        <br>
+        <p style="text-align: center">ou</p>
+        <br>
+
+        <p style="color: #444; font-weight: 400;">
+          Preencha o formulário de contato.
+        </p>
+        <div>
+          <form [formGroup]="form" (submit)="submit()">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Revenda</mat-label>
+              <input type="text" matInput placeholder="Ex: Revenda Digital Moura" formControlName="resale">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Reporte o problema*</mat-label>
+              <textarea type="text" matInput placeholder="Ex: Problema com ligações"
+                formControlName="observation"></textarea>
+            </mat-form-field>
+
+            <div style="text-align: right">
+              <button type="submit" mat-raised-button style="background: #279b37; color: #FFFFFF"> Enviar
+              </button>
+            </div>
+
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<swal #successSwal title="Contato enviado com sucesso" type="success" text="Você receberá um email em breve"
+  (confirm)="goToPanel()">
+</swal>
+
+<swal #errorSwal title="Ocorreu um erro" type="error" text="Por favor, tente novamente mais tarde">
+</swal>
