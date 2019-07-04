@@ -39,7 +39,7 @@
     <div class="texto-intro col-sm-5" style="background-color:#fff">
         <img src="img/logo-revenda-negativo.png" alt="">
         <br><br>
-        <button style="display: none" id="openMenu">Cadastrar revenda</button>
+        <button id="openMenu">Cadastrar revenda</button>
     </div>
     <div class="layer"></div>
     <div id="main_container">
@@ -1444,10 +1444,14 @@
             $('.fade.tab-pane#tab_1').addClass('show active');
         });
 
-
         if (window.location.search) {
             $('#openMenu').click();
         }
+
+        const today = new Date().getDate();
+        const shouldOpenMenuShow = ((today >= 1) && (today <= 20)) ;
+        $('#openMenu').[shouldOpenMenuShow ? 'show' : 'hide']();
+
     </script>
 </body>
 
