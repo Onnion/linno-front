@@ -4,8 +4,8 @@
   </button>
   <mat-menu #menu="matMenu" xPosition="before">
     <div class="container-fluid leads-filter-times" (click)="$event.stopPropagation()">
-        <div class="row">
-            <div *ngIf="shouldOpenFormDate" class="col-md-8" [ngStyle]="{'max-width': width +'px', 'width': width +'px'}">
+      <div class="row">
+        <!-- <div *ngIf="shouldOpenFormDate" class="col-md-8" [ngStyle]="{'max-width': width +'px', 'width': width +'px'}">
                 <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden">
                   </ngb-datepicker>
                 <ng-template #t let-date let-disabled="disabled" let-focused="focused">
@@ -23,18 +23,14 @@
                   <span></span>
                     <button (click)="selectRange()" mat-raised-button style="background: #279b37; color: #FFFFFF"> Pesquisar </button>
                 </div>
-            </div>
-            <div class="options" [ngClass]="(shouldOpenFormDate && width) ? 'col-4' : 'col-12'">
-                <button
-                class="text-center"
-                *ngFor="let menuType of timesMenu"
-                mat-menu-item
-                (click)="selectTimesMenu(menuType)">
-                    {{menuType.label}}
-                </button>
-            </div>
+            </div> -->
+        <div class="options col-12">
+          <button class="text-center" *ngFor="let menuType of timesMenu" mat-menu-item
+            (click)="selectTimesMenu(menuType)">
+            {{menuType.label}}
+          </button>
         </div>
+      </div>
     </div>
   </mat-menu>
 </div>
-

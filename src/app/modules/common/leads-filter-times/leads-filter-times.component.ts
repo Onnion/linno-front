@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, HostBinding } from '@angular/core';
-import {LeadsFilterTimesType} from '../models/leads-filter-times.model';
+import { LeadsFilterTimesType } from '../models/leads-filter-times.model';
 import { MatMenuTrigger } from '@angular/material';
 import { NgbDate, NgbDatepickerConfig, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { FilterService } from 'src/app/services/filter/filter.service';
@@ -51,11 +51,11 @@ export class LeadsFilterTimesComponent implements OnInit {
         case 'custom':
           if (range.diff('days') > 59) {
             period = 'months';
-          } 
+          }
           break;
         default:
           period = 'days';
-          break
+          break;
       }
     } else {
       const castedRange = $range as NgbDate[];
@@ -67,7 +67,7 @@ export class LeadsFilterTimesComponent implements OnInit {
     if (range) {
       rangeDays = Array.from(range.by(period));
       return rangeDays;
-    };
+    }
   }
 
   public selectRange(): void {
@@ -77,8 +77,8 @@ export class LeadsFilterTimesComponent implements OnInit {
   }
 
   public selectTimesMenu(typeMenu: LeadsFilterTimesType, first: boolean = false): void {
-    let range: LeadsFilterTimesType = typeMenu;
-    
+    const range: LeadsFilterTimesType = typeMenu;
+
     if (!first && typeMenu.shouldClose) {
       this.matMenuTrigger.closeMenu();
     }
@@ -87,11 +87,11 @@ export class LeadsFilterTimesComponent implements OnInit {
       this.shouldOpenFormDate = true;
 
       this.setWidth()
-      .then((width) => {
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((width) => {
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
       this.shouldOpenFormDate = false;
     }
@@ -102,12 +102,12 @@ export class LeadsFilterTimesComponent implements OnInit {
 
   private initCalendarConfig(): void {
     const today: Moment.Moment = this.moment();
-    this.config.maxDate = {year: today.year(), month: today.month(), day: today.date()};
+    this.config.maxDate = { year: today.year(), month: today.month(), day: today.date() };
   }
 
   private subscribeFiltersUi() {
     this.filterService.filter.subscribe((filters) => {
-        this.selectedTimesMenu = filters.times;
+      this.selectedTimesMenu = filters.times;
     });
   }
 
@@ -121,7 +121,7 @@ export class LeadsFilterTimesComponent implements OnInit {
       }, 100);
     });
   }
-    
+
   public onDateSelection(date: NgbDate): void {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;

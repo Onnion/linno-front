@@ -1,11 +1,10 @@
-import { Component, OnInit, HostBinding, ViewChild } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { LeadsFilterAccountType } from '../models/leads-filter-account.model';
-import { MatMenuTrigger } from '@angular/material';
 import { FilterService } from 'src/app/services/filter/filter.service';
 import { AccountService } from 'src/app/services/account/account.service';
 import { Observable } from 'rxjs';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { map, startWith } from "rxjs/operators";
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-leads-filter-account',
@@ -13,7 +12,7 @@ import { map, startWith } from "rxjs/operators";
   styleUrls: ['./leads-filter-account.component.css']
 })
 export class LeadsFilterAccountComponent implements OnInit {
-  public shouldOpenFormDate: boolean;
+  // public shouldOpenFormDate: boolean;
   public selectedAccountMenu: LeadsFilterAccountType;
   public filteredAccountsMenu: Observable<LeadsFilterAccountType[]>;
   public accountsMenu: LeadsFilterAccountType[];
@@ -22,7 +21,7 @@ export class LeadsFilterAccountComponent implements OnInit {
   // @ViewChild(MatMenuTrigger) matMenuTrigger: MatMenuTrigger;
   @HostBinding('style.margin') margin = '0px 15px';
 
-  constructor(public filterService: FilterService, private accountService: AccountService, private fb: FormBuilder) { }
+  constructor(private filterService: FilterService, private accountService: AccountService, private fb: FormBuilder) { }
 
   public selectTimesMenu(account: LeadsFilterAccountType): void {
     this.selectedAccountMenu = account;
@@ -30,7 +29,7 @@ export class LeadsFilterAccountComponent implements OnInit {
     // this.matMenuTrigger.closeMenu();
   }
 
-  private subscribeFiltersUi() {
+  private subscribeFiltersUi(): void {
     this.filterService.filter.subscribe((filters) => {
       this.accountsMenu = this.filterService.getAccountMenu();
       this.watchFilter();
@@ -43,24 +42,25 @@ export class LeadsFilterAccountComponent implements OnInit {
 
   private initFormControls(): void {
     this.form = this.fb.group({
-      account: ["", []]
+      account: ['', []]
     });
   }
 
-  private sortNames(current, prevent) {
+  private sortNames(current: LeadsFilterAccountType, prevent: LeadsFilterAccountType): number {
     return current.name < prevent.name ? -1 : current.name > prevent.name ? 1 : 0;
-
   }
 
   private _filterAccounts(value: string): LeadsFilterAccountType[] {
     const filterValue = (value && (typeof value !== 'object')) && value.toLowerCase();
-    return this.accountsMenu.filter(account => account.name.toLowerCase().includes(filterValue)).sort((current, prevent) => this.sortNames(current, prevent));
+    return this.accountsMenu
+      .filter(account => account.name.toLowerCase().includes(filterValue))
+      .sort((current, prevent) => this.sortNames(current, prevent));
   }
 
   private watchFilter(): void {
     const { account } = this.form.controls;
     this.filteredAccountsMenu = account.valueChanges.pipe(
-      startWith(""),
+      startWith(''),
       map((accountStr: string) =>
         accountStr ? this._filterAccounts(accountStr) : this.accountsMenu.slice()
       )
