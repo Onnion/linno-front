@@ -1,18 +1,18 @@
 import { HostListener } from "@angular/core";
 
 export class MobileAdapter {
-    public isMobile = false;
+  public isMobile = false;
 
-    constructor() { }
+  constructor() { }
 
-    public setIsMobile($event?): void {
-        const width = $event ? $event.target.innerWidth : window.innerWidth;
-        this.isMobile = width <= 991;
-    }
+  public setIsMobile($event?): void {
+    const width = $event ? $event.target.innerWidth : window.innerWidth;
+    this.isMobile = width <= 991;
+  }
 
-    @HostListener('window:resize', ['$event'])
-    onresize($event) {
-      this.setIsMobile($event);
-    }
-    
+  @HostListener('window:resize', ['$event'])
+  onresize($event) {
+    this.setIsMobile($event);
+  }
+
 }

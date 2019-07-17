@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { MobileAdapter } from 'src/app/helpers/mobileAdapter/mobileAdapter';
+import { FilterService } from 'src/app/services/filter/filter.service';
+import { CampaignService } from 'src/app/services/campaign/campagin.service';
 
 const misc: any = {
     navbar_menu_visible: 0,
@@ -14,15 +16,18 @@ const misc: any = {
     templateUrl: 'navbar.component.html'
 })
 
-export class NavbarComponent extends MobileAdapter implements OnInit {
+export class NavbarComponent extends MobileAdapter implements OnInit, OnDestroy {
     private toggleButton: any;
     private sidebarVisible: boolean;
+    private filterEvents: Subscription;
     public shouldShowFilters = false;
+    public campaign_url = '';
+    public account;
     mobile_menu_visible: any = 0;
 
     @ViewChild('app-navbar-cmp') button: any;
 
-    constructor(private element: ElementRef, private router: Router) {
+    constructor(private campaignService: CampaignService, private element: ElementRef, private router: Router, private filterService: FilterService) {
         super();
         this.sidebarVisible = false;
     }
@@ -72,7 +77,18 @@ export class NavbarComponent extends MobileAdapter implements OnInit {
         body.classList.add('nav-open');
         this.mobile_menu_visible = 1;
         this.sidebarVisible = true;
-    };
+    }
+
+    private subscribeFiltersUi() {
+        this.filterEvents = this.filterService.filter.subscribe((filters) => {
+            if (filters.account && filters.account.id) {
+                this.campaignService.getByIdAccount().subscribe(
+                    (campaign) => this.campaign_url = campaign.campaign_url,
+                    (error) => { console.log(error); }
+                );
+            }
+        });
+    }
 
     public minimizeSidebar() {
         const body = document.getElementsByTagName('body')[0];
@@ -97,7 +113,7 @@ export class NavbarComponent extends MobileAdapter implements OnInit {
             clearInterval(simulateWindowResize);
         }, 1000);
     }
- 
+
     public sidebarClose() {
         var $toggle = document.getElementsByClassName('navbar-toggler')[0];
         const body = document.getElementsByTagName('body')[0];
@@ -120,7 +136,7 @@ export class NavbarComponent extends MobileAdapter implements OnInit {
         }, 400);
 
         this.mobile_menu_visible = 0;
-    };
+    }
 
     public sidebarToggle() {
         this[this.sidebarVisible ? 'sidebarClose' : 'sidebarOpen']();
@@ -128,6 +144,7 @@ export class NavbarComponent extends MobileAdapter implements OnInit {
 
     ngOnInit() {
         this.setIsMobile();
+        this.subscribeFiltersUi();
         const navbar: HTMLElement = this.element.nativeElement;
         const body = document.getElementsByTagName('body')[0];
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
@@ -152,5 +169,10 @@ export class NavbarComponent extends MobileAdapter implements OnInit {
                 $layer.remove();
             }
         });
+    }
+
+    ngOnDestroy() {
+        this.filterEvents.unsubscribe();
+        this.filterService.clear();
     }
 }

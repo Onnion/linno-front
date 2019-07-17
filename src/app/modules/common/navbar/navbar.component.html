@@ -1,7 +1,7 @@
 <nav #navbar class="navbar navbar-expand-lg navbar-transparent  navbar-absolute">
   <div class="container-fluid">
     <div class="navbar-wrapper">
-      <div class="navbar-minimize">
+      <div class="navbar-minimize" style="padding: 0!important">
         <button mat-raised-button (click)="minimizeSidebar()" class="btn btn-just-icon btn-white btn-fab btn-round">
           <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
           <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
@@ -9,6 +9,10 @@
         </button>
       </div>
     </div>
+
+    <a [href]="campaign_url" target="_blank">
+      <h6 style="margin: 10px">{{campaign_url}}</h6>
+    </a>
 
      <div *ngIf="shouldShowFilters && !isMobile" class="d-flex order-lg-0 order-sm-first order-first justify-content-end align-items-baseline" id="navigation">
         <app-leads-filter-account></app-leads-filter-account>

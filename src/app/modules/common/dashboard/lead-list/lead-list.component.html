@@ -110,8 +110,7 @@
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
             <mat-row *matRowDef="let row; let element; columns: displayedColumns;" matRipple class="element-row"
-                [class.expanded]="expandedElement == row"
-                [class.disabled]="element.status.toUpperCase() !== 'ATENDIDA'"
+                [class.expanded]="expandedElement == row" [class.disabled]="element.status.toUpperCase() !== 'ATENDIDA'"
                 (click)="expandedElement = expandedElement === row ? null : row"
                 [style.border-bottom-left-radius]="row == expandedElement ? '0px' : '6px'"
                 [style.border-bottom-right-radius]="row == expandedElement ? '0px' : '6px'"

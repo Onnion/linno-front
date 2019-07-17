@@ -15,7 +15,7 @@ export class AccountService extends CrudServices {
         super();
 
         this.http = this.httpService;
-        this.entity = 'accounts'
+        this.entity = 'accounts';
     }
 
     private generateParams(status = ''): any {
@@ -85,7 +85,7 @@ export class AccountService extends CrudServices {
     public setProblemAccountCalls(id: number, data): Observable<any> {
         return new Observable((observer) => {
             this.httpService.put(`${environment.AUTH_URL}/api/moura/change-status/${id}`, data).subscribe(
-                (data: any) => observer.next(data),
+                ($data: any) => observer.next($data),
                 (error: any) => observer.error(error)
             );
         });

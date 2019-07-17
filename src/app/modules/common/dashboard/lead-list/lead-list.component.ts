@@ -25,7 +25,7 @@ export class LeadListComponent extends ListComponent implements OnInit, OnDestro
 
   private initListComponentConfigs(): void {
     this.service = this.accountService;
-    this.filterService = this.$filterService
+    this.filterService = this.$filterService;
     this.expandedElement = true;
     this.methodLoad = 'getCalls';
   }
@@ -38,12 +38,7 @@ export class LeadListComponent extends ListComponent implements OnInit, OnDestro
         this.options = { account_id: filter.account.id };
         this.loadData(null, window.innerWidth <= 991);
       }
-    })
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onresize($event) {
-    this.setIsMobile($event);
+    });
   }
 
   ngOnInit() {
