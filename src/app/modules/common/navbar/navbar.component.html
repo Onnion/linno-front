@@ -5,26 +5,30 @@
         <button mat-raised-button (click)="minimizeSidebar()" class="btn btn-just-icon btn-white btn-fab btn-round">
           <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
           <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
-         
+
         </button>
       </div>
     </div>
 
-    <a [href]="campaign_url" target="_blank">
+    <!-- <a [href]="campaign_url" target="_blank">
       <h6 style="margin: 10px">{{campaign_url}}</h6>
-    </a>
+    </a> -->
 
-     <div *ngIf="shouldShowFilters && !isMobile" class="d-flex order-lg-0 order-sm-first order-first justify-content-end align-items-baseline" id="navigation">
-        <app-leads-filter-account></app-leads-filter-account>
-        <app-leads-filter-times></app-leads-filter-times>
+    <div class="d-flex order-lg-0 order-sm-first order-first justify-content-end align-items-baseline" id="navigation">
+      <a *ngIf="shouldShowFilters" style="background: #2f5584; color: #FFFFFF;" [href]="campaign_url" target="_blank"
+        mat-stroked-button>
+        Campanha
+      </a>
+      <app-leads-filter-account *ngIf="shouldShowFilters && !isMobile"></app-leads-filter-account>
+      <app-leads-filter-times *ngIf="shouldShowFilters && !isMobile"></app-leads-filter-times>
     </div>
-    
+
     <button mat-button class="navbar-toggler btn-no-ripple" type="button" (click)="sidebarToggle()">
       <span class="sr-only">Toggle navigation</span>
       <span class="navbar-toggler-icon icon-bar"></span>
       <span class="navbar-toggler-icon icon-bar"></span>
       <span class="navbar-toggler-icon icon-bar"></span>
     </button>
-   
+
   </div>
 </nav>

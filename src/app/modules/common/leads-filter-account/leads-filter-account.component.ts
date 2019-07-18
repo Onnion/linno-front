@@ -19,7 +19,6 @@ export class LeadsFilterAccountComponent implements OnInit {
   public form: FormGroup;
 
   // @ViewChild(MatMenuTrigger) matMenuTrigger: MatMenuTrigger;
-  @HostBinding('style.margin') margin = '0px 15px';
 
   constructor(private filterService: FilterService, private accountService: AccountService, private fb: FormBuilder) { }
 

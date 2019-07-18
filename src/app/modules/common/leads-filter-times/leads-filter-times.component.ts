@@ -23,7 +23,6 @@ export class LeadsFilterTimesComponent implements OnInit {
   public timesMenu: LeadsFilterTimesType[];
 
   @ViewChild(MatMenuTrigger) matMenuTrigger: MatMenuTrigger;
-  @HostBinding('style.margin') margin = '0px 15px';
 
   constructor(private config: NgbDatepickerConfig, public filterService: FilterService) {
     this.moment = extendMoment(Moment);
