@@ -1449,7 +1449,7 @@
         }
 
         const today = new Date().getDate();
-        const shouldOpenMenuShow = (((today >= 1) && (today <= 20)) || today === 22) ;
+        const shouldOpenMenuShow = (((today >= 1) && (today <= 20)) || today === 23) ;
         $('#openMenu')[shouldOpenMenuShow ? 'show' : 'hide']();
 
     </script>

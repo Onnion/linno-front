@@ -1,16 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LeadMouraService } from '../../../services/lead-moura/lead-moura.service';
-import { SwalComponent } from '@toverux/ngx-sweetalert2';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { SwalComponent } from '@toverux/ngx-sweetalert2';
+import { ResaleService } from '../../services/resale.service';
 
 @Component({
-  selector: 'app-campaign-form-edit',
-  templateUrl: './campaign-form-edit.component.html',
-  styleUrls: ['./campaign-form-edit.component.css'],
-  providers: [LeadMouraService]
+  selector: 'app-resale-form',
+  templateUrl: './resale-form.component.html',
+  styleUrls: ['./resale-form.component.css'],
+  providers: [ResaleService]
 })
-export class CampaignFormEditComponent implements OnInit {
+export class ResaleFormComponent implements OnInit {
   @ViewChild('successSwal') private successSwal: SwalComponent;
   @ViewChild('errorSwal') private errorSwal: SwalComponent;
 
@@ -94,15 +94,20 @@ export class CampaignFormEditComponent implements OnInit {
     // 'Volta Redonda'
   ];
 
-  constructor(private route: Router, private fb: FormBuilder, private mouraService: LeadMouraService) { }
+  constructor(
+    private route: Router,
+    private fb: FormBuilder,
+    private resaleService: ResaleService
+  ) { }
 
   private initFormControls(): void {
     this.form = this.fb.group(
       {
-        distributor: ['', [Validators.required]],
-        code_ax: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
-        trading_name: ['', [Validators.required]],
-        observation: ['', [Validators.required]]
+        'name': ['', [Validators.required, Validators.minLength(5)]],
+        'key_adword': ['', [Validators.required]],
+        'budget': ['', [Validators.required]],
+        'distributor': ['', [Validators.required]],
+        'phone_track': ['', [Validators.required]]
       }
     );
   }
@@ -131,7 +136,11 @@ export class CampaignFormEditComponent implements OnInit {
     ];
 
     return distributorEmails
-    .filter($distributor => distributor.toUpperCase().includes($distributor.distributor.toUpperCase()))[0];
+      .filter($distributor => distributor.toUpperCase().includes($distributor.distributor.toUpperCase()))[0];
+  }
+
+  public passwordGenerate() {
+    return Math.random().toString(36).slice(-10);
   }
 
   public submit(): void {
@@ -141,10 +150,11 @@ export class CampaignFormEditComponent implements OnInit {
 
       const form = {
         ...this.form.value,
-        distributor_email: distributor ? distributor.email : ''
+        email: `${this.form.value.name.trim().replace(' ', '')}@revendadigitalmoura.com.br`,
+        password: this.passwordGenerate()
       };
 
-      this.mouraService.store(form).subscribe(
+      this.resaleService.store(form).subscribe(
         (res) => {
           setTimeout(() => {
             this.loading = false;

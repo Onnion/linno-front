@@ -18,19 +18,33 @@ export interface ChildrenItems {
 }
 
 export const ROUTES: RouteInfo[] = [
-    {
-        path: '/painel',
-        title: 'Painel de resultados',
-        type: 'link',
-        icontype: 'assessment',
-        permission: ROLES.distributor[0]
-    },
+    // CLIENT
     {
         path: '/revenda',
         title: 'Painel de resultados',
         type: 'link',
         icontype: 'assessment',
         permission: ROLES.client[0]
+    },
+
+
+    // ADMIN
+    {
+        path: '/teste',
+        title: 'Cadastro Direto',
+        type: 'link',
+        icontype: 'assignment',
+        permission: ROLES.admin[0]
+    },
+
+
+    // DISTRIBUTOR
+    {
+        path: '/painel',
+        title: 'Painel de resultados',
+        type: 'link',
+        icontype: 'assessment',
+        permission: ROLES.distributor[0]
     },
     {
         path: '/cadastro',

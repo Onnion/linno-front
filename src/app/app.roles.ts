@@ -1,5 +1,5 @@
 export const ROLES = {
-    admin: ['distributor_content', 'set-bullet'],
+    admin: ['admin_content', 'distributor_content', 'set-bullet'],
     distributor: ['distributor_content', 'see-bullet'],
     client: ['client_content', 'see-bullet']
 };

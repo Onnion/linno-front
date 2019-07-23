@@ -1,9 +1,9 @@
-import {Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
-import {Observable, of} from 'rxjs';
-import {AclService} from 'ng2-acl';
-import {Injectable} from '@angular/core';
-import {getRedirect} from './app.utils';
-import {ROLES, ROLES_ACL} from './app.roles';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { AclService } from 'ng2-acl';
+import { Injectable } from '@angular/core';
+import { getRedirect } from './app.utils';
+import { ROLES, ROLES_ACL } from './app.roles';
 
 @Injectable()
 export class AclRedirection {
@@ -42,7 +42,11 @@ export class AclResolver implements Resolve<any> {
     private matchUrl(state): any {
         let testRoute;
 
-         if (this.match(state, /^\/cadastro?[\D]+$/)) {
+        if (this.match(state, /^\/teste?[\D]+$/)) {
+            if (this.aclService.can(ROLES.distributor[0])) {
+                testRoute = of(true);
+            }
+        } else if (this.match(state, /^\/cadastro?[\D]+$/)) {
             if (this.aclService.can(ROLES.distributor[0])) {
                 testRoute = of(true);
             }

@@ -52,6 +52,19 @@ const routes: Routes = [
         ]
     },
 
+    {
+        path: 'teste',
+        component: AdminLayoutComponent,
+        canActivate: [AuthGuardService],
+        resolve: { route: AclResolver, state: AclResolver },
+        children: [
+            {
+                path: '',
+                loadChildren: './modules/admin/admin.module#AdminModule'
+            },
+        ]
+    },
+
     { path: '**', redirectTo: 'login' },
 
 ];

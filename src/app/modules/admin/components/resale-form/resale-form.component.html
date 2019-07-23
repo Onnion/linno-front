@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col">
+
+    <div class="card-body container-fluid" style="position: relative; background: #FFFFFF; padding: 1.25rem .2rem">
+      <app-loading [loading]="loading"></app-loading>
+
+      <form class="row" [formGroup]="form" (submit)="submit()" style="margin: 0">
+
+        <mat-form-field class="col-md-12" appearance="outline">
+          <mat-label>Distribuidor</mat-label>
+          <mat-select placeholder="Selecione um distribuidor" formControlName="distributor">
+            <mat-option *ngFor="let distributor of distributors" [value]="distributor">
+              {{distributor}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-12" appearance="outline">
+          <mat-label>Nome da revenda</mat-label>
+          <input type="text" matInput placeholder="Ex: Baterias Moura" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4" appearance="outline">
+          <mat-label>Ad ADWORDS</mat-label>
+          <input type="text" mask="ADWORDS" matInput placeholder="Ex: 123-123-1234" formControlName="key_adword">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-4" appearance="outline">
+          <mat-label>Orçamento</mat-label>
+          <input type="text" matInput placeholder="Ex: R$ 120,00" formControlName="budget">
+        </mat-form-field>
+        
+        <mat-form-field class="col-md-4" appearance="outline">
+          <mat-label>Phone Track</mat-label>
+          <input type="text" matInput placeholder="Ex: 1234-1234" formControlName="phone_track">
+        </mat-form-field>
+
+        <div class="col-md-12">
+
+          
+          <p style="text-align: right; margin-top: 10px;">Antes de salvar, confira se as informações preenchidas estão corretas</p>
+        </div>
+
+        <div class="col-md-12" style="text-align: right">
+          <button type="submit" mat-raised-button style="background: #279b37; color: #FFFFFF"> Enviar
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<swal
+  #successSwal
+  title="Ajustes enviados com sucesso"
+  type="success"
+  text="Você receberá um email em breve"
+  (confirm)="goToRegister()">
+</swal>
+
+<swal
+  #errorSwal
+  title="Ocorreu um erro"
+  type="error"
+  text="Por favor, tente novamente mais tarde">
+</swal>
