@@ -27,3 +27,9 @@
 .text-muted {
     color: #cdcdcd!important;
 }
+
+@media(max-width: 991px) {
+    .filter-times-btn {
+        width: 100%;
+    }
+}

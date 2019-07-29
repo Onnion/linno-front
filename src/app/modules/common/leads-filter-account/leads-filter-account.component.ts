@@ -19,6 +19,7 @@ export class LeadsFilterAccountComponent implements OnInit {
   public form: FormGroup;
 
   // @ViewChild(MatMenuTrigger) matMenuTrigger: MatMenuTrigger;
+  @HostBinding('style.width') width = '350px';
 
   constructor(private filterService: FilterService, private accountService: AccountService, private fb: FormBuilder) { }
 

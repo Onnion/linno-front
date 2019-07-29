@@ -1,5 +1,5 @@
 <div *ngIf="selectedTimesMenu && timesMenu && timesMenu.length > 0">
-  <button #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" mat-stroked-button>
+  <button #menuTrigger="matMenuTrigger" class="filter-times-btn" [matMenuTriggerFor]="menu" mat-stroked-button>
     <i class="material-icons" style="font-size: 1rem">date_range</i> {{selectedTimesMenu.label}}
   </button>
   <mat-menu #menu="matMenu" xPosition="before">
