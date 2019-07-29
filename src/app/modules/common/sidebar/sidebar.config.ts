@@ -29,13 +29,13 @@ export const ROUTES: RouteInfo[] = [
 
 
     // ADMIN
-    {
-        path: '/teste',
-        title: 'Cadastro Direto',
-        type: 'link',
-        icontype: 'assignment',
-        permission: ROLES.admin[0]
-    },
+    // {
+    //     path: '/teste',
+    //     title: 'Cadastro Direto',
+    //     type: 'link',
+    //     icontype: 'assignment',
+    //     permission: ROLES.admin[0]
+    // },
 
 
     // DISTRIBUTOR
