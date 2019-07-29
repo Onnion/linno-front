@@ -8,6 +8,7 @@ import { ProblemBulletComponent } from './problem-bullet/problem-bullet.componen
 import { LoadingModule } from '../loading/loading.module';
 import { BudgetComponent } from './budget/budget.component';
 import { PhonePipeModule } from 'src/app/helpers/pipes/phone/phone.pipe.module';
+import { CurrencyPipeModule } from 'src/app/helpers/pipes/currency/currency.pipe.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { PhonePipeModule } from 'src/app/helpers/pipes/phone/phone.pipe.module';
     CommonModule,
     MaterialModule,
     LoadingModule,
-    PhonePipeModule
+    PhonePipeModule,
+    CurrencyPipeModule
   ],
   exports: [DashboardComponent]
 })

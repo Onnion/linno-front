@@ -35,7 +35,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.accountService.getBudget().subscribe(
       (data: any) => {
-        this.data = data && data.percentage_consumed || null;
+        this.data = data || null;
         this.loading = false;
       },
       (error: any) => {
@@ -46,7 +46,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
   }
 
   public getMonth(): string {
-    return moment().format('MMMM');
+    return `Valor utilizado do dia ${moment().startOf('month').format('DD/MM')} até o dia ${moment().format('DD/MM')}`;
   }
 
   ngOnInit() {
