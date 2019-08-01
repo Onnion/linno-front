@@ -35,6 +35,10 @@ export class AccountService extends CrudServices {
         return params;
     }
 
+    private isAll(): boolean {
+        return this.filterService.getAccount().id === 'all';
+    }
+
     public getAccounts(): Observable<LeadsFilterAccountType[]> {
         return new Observable((observer) => {
             this.http.get(`${environment.AUTH_URL}/api/${this.entity}/authenticated`).subscribe(
@@ -45,10 +49,10 @@ export class AccountService extends CrudServices {
     }
 
     public getCalls(options): Observable<any> {
-        const optionsUrl = this.createOptionsUrl(options);
+        const optionsUrl = this.createOptionsUrl(options, this.isAll());
 
         return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${this.filterService.getAccount().id === 'all' ? '/all' : ''}${optionsUrl}`,
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${this.isAll() ? '/all' : ''}${optionsUrl}`,
                 this.generateParams()).subscribe(
                     (data: any) => observer.next(data),
                     (error: any) => observer.error(error)
@@ -68,7 +72,7 @@ export class AccountService extends CrudServices {
 
     public getCallsMissed(): Observable<any> {
         return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${this.filterService.getAccount().id === 'all' ? '/all' : ''}`,
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${this.isAll() ? '/all' : ''}`,
                 this.generateParams('NÃO ATENDIDA')).subscribe(
                     (data: any) => observer.next(data),
                     (error: any) => observer.error(error)
@@ -78,7 +82,7 @@ export class AccountService extends CrudServices {
 
     public getCallsAnswereds(): Observable<any> {
         return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${this.filterService.getAccount().id === 'all' ? '/all' : ''}`, this.generateParams('ATENDIDA')).subscribe(
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${this.isAll() ? '/all' : ''}`, this.generateParams('ATENDIDA')).subscribe(
                 (data: any) => observer.next(data),
                 (error: any) => observer.error(error)
             );

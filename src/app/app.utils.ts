@@ -30,29 +30,20 @@ export function getCookie(cname): string {
 }
 
 export const isValidCpf = cpf_cnpj => {
-
     const value = (cpf_cnpj).replace(/\D/g, '');
     const tam = (value).length;
+    let statusCheck = false;
 
-    if (!(tam === 11 || tam === 14)) {
-        return false;
-    }
-
-    // se for CPF
-    if (tam === 11) {
-        if (!validaCPF(value)) {
-            return false;
-        }
-        return true;
+    if (tam === 11 && validaCPF(value)) {
+        statusCheck = true;
     }
 
     // se for CNPJ
-    if (tam === 14) {
-        if (!validaCNPJ(value)) {
-            return false;
-        }
-        return true;
+    if (tam === 14 && validaCNPJ(value)) {
+        statusCheck = true;
     }
+
+    return statusCheck;
 
 };
 

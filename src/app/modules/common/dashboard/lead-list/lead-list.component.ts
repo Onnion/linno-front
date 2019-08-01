@@ -14,7 +14,6 @@ import { Subscription } from 'rxjs';
 })
 export class LeadListComponent extends ListComponent implements OnInit, OnDestroy {
   private filterEvents: Subscription;
-  private account_id;
   public displayedColumns = ['data', 'status', 'media', 'number'];
 
   constructor(
@@ -34,11 +33,14 @@ export class LeadListComponent extends ListComponent implements OnInit, OnDestro
     this.filterEvents = this.filterService.filter.subscribe(filter => {
       if (filter.account) {
         this.page = 1;
-        this.account_id = filter.account.id;
         this.options = { account_id: filter.account.id };
         this.loadData(null, window.innerWidth <= 991);
       }
     });
+  }
+
+  public getTitle(element): string {
+    return element.account.name;
   }
 
   ngOnInit() {

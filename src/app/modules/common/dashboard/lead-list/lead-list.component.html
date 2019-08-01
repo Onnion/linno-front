@@ -47,6 +47,7 @@
 
             <mat-row *matRowDef="let row; let element; columns: displayedColumns;" class="element-row"
                 [class.disabled]="element.status.toUpperCase() !== 'ATENDIDA'"
+                [title]="getTitle(element)"
                 style="padding-top:10px; padding-bottom:10px; height: 80px; min-height: 0px!important; margin: 10px auto; border-radius: 6px; background: #FFFFFF;">
             </mat-row>
 

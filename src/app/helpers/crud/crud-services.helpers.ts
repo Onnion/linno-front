@@ -9,11 +9,13 @@ export class CrudServices {
 
     constructor() { }
 
-    protected createOptionsUrl(options: any) {
+    protected createOptionsUrl(options: any, isAll?: boolean) {
         let url = '?';
 
         _.forEach(options, (value, key) => {
-            url += `${key === 'pageSize' ? 'limit' : key}=${value}&`;
+            if (!(isAll && key === 'account_id')) {
+                url += `${key === 'pageSize' ? 'limit' : key}=${value}&`;
+            }
         });
 
         return url;

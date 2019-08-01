@@ -65,7 +65,7 @@ export class ListComponent {
 
     constructor() { }
 
-    protected subscribeFilters() {
+    protected subscribeFilters(): void {
         this.filterService.filter.subscribe(filters => {
             this.page = 1;
             this.loadData();
@@ -78,7 +78,56 @@ export class ListComponent {
         this.dataSource = new ComponentDataSource([], false);
     }
 
-    public setIsMobile($event?): void {
+    protected listTest(list: any[]): void {
+        this.cleanData();
+
+        this.componentData = list;
+        this.filtredComponentData = list;
+        this.setIsMobile();
+        this.status_form.loading = false;
+        this.doneLoad.emit(true);
+
+        if (this.idTable) {
+            scroll(this.idTable);
+        }
+
+        if (this.changePagination) { this.showPagination(); }
+    }
+
+    protected createData(data: any[], mobile: boolean): void {
+        this.componentData = data;
+        this.filtredComponentData = data;
+        this.dataSource = new ComponentDataSource(data, mobile);
+    }
+
+    protected list(options: any[], mobile: boolean): void {
+        this.cleanData();
+
+        this.service[this.methodLoad](options).subscribe(
+            (data: any) => {
+                if (!this.safe_pagination) {
+                    const pagination = data.meta.pagination;
+                    this.setPagination(pagination['total'], pagination['current_page'], pagination['per_page']);
+                }
+
+                this.createData(data.data, mobile);
+                this.setIsMobile();
+                this.status_form.loading = false;
+                this.doneLoad.emit(true);
+
+                if (this.idTable) {
+                    scroll(this.idTable);
+                }
+
+                if (this.changePagination) { this.showPagination(); }
+            },
+            (err) => {
+                this.status_form.loading = false;
+            }
+        );
+    }
+
+    public setIsMobile($event?: any): void {
         const width = $event ? $event.target.innerWidth : window.innerWidth;
         const isMobile = width <= 991;
 
@@ -103,7 +152,8 @@ export class ListComponent {
         this.doneAnimation = true;
     }
 
-    public setSort($event): void {
+    public setSort($event: any): void {
+        console.log($event);
         // { active: "data", direction: "asc" }
         this.orderBy = $event.active === 'data' ? 'registered_at' : $event.active;
         this.sortedBy = $event.direction || 'desc';
@@ -128,46 +178,7 @@ export class ListComponent {
             };
         }
 
-        if (list) {
-            this.componentData = list;
-            this.filtredComponentData = list;
-            this.setIsMobile();
-            this.status_form.loading = false;
-            this.doneLoad.emit(true);
-
-            if (this.idTable) {
-                scroll(this.idTable);
-            }
-
-            if (this.changePagination) { this.showPagination(); }
-
-        } else {
-            this.cleanData();
-            this.service[this.methodLoad](options).subscribe(
-                (data) => {
-                    if (!this.safe_pagination) {
-                        const pagination = data.meta.pagination;
-                        this.setPagination(pagination['total'], pagination['current_page'], pagination['per_page']);
-                    }
-
-                    this.componentData = data.data;
-                    this.filtredComponentData = data.data;
-                    this.dataSource = new ComponentDataSource(data.data, mobile);
-                    this.setIsMobile();
-                    this.status_form.loading = false;
-                    this.doneLoad.emit(true);
-
-                    if (this.idTable) {
-                        scroll(this.idTable);
-                    }
-
-                    if (this.changePagination) { this.showPagination(); }
-                },
-                (err) => {
-                    this.status_form.loading = false;
-                }
-            );
-        }
+        list ? this.listTest(list) : this.list(options, mobile);
     }
 
     public setPagination(length: number, startIndex: number, pageSize: number): void {
@@ -177,6 +188,7 @@ export class ListComponent {
     }
 
     public onPaginateChange(event): void {
+
         if (this.pageSize !== event.pageSize) {
             this.doneAnimation = false;
         }
