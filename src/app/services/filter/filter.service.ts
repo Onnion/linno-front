@@ -4,7 +4,7 @@ import { LeadsFilterTimesType } from 'src/app/modules/common/models/leads-filter
 import { Filter } from 'src/app/models';
 import * as Moment from 'moment';
 import { extendMoment, MomentRange } from 'moment-range';
-import { LeadsFilterAccountType } from 'src/app/modules/common/models/leads-filter-account.model';
+import { LeadsFilterAccountType, MinFilterAccountType } from 'src/app/modules/common/models/leads-filter-account.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { LeadsFilterAccountType } from 'src/app/modules/common/models/leads-filt
 export class FilterService {
   private accountMenu: LeadsFilterAccountType[];
   private timesMenu: LeadsFilterTimesType[];
-  private account: LeadsFilterAccountType;
+  private account: (LeadsFilterAccountType | MinFilterAccountType);
   private times: LeadsFilterTimesType;
   private moment: MomentRange;
   public filter: BehaviorSubject<Filter>;
@@ -51,12 +51,16 @@ export class FilterService {
   }
 
   public initFilterAccounts(accounts: LeadsFilterAccountType[]) {
-    this.accountMenu = accounts;  
+    this.accountMenu = accounts;
     this.setAccount(accounts[0]);
   }
 
-  public setAccount(account: LeadsFilterAccountType): void {
-    this.account = this.accountMenu.filter($account => $account.id === account.id)[0];
+  public setAccount(_account: (LeadsFilterAccountType | MinFilterAccountType)): void {
+    const filtredAccount = this.accountMenu.filter($account => $account.id === _account.id)[0];
+    this.account = 'created_at' in _account ? filtredAccount : _account;
+
+    if (_account.id === 'all') { this.setFilterTime(null, this.timesMenu[6]); }
+
     this.next();
   }
 

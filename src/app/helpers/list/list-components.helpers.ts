@@ -72,11 +72,17 @@ export class ListComponent {
         });
     }
 
+    protected cleanData(): void {
+        this.componentData = [];
+        this.filtredComponentData = [];
+        this.dataSource = new ComponentDataSource([], false);
+    }
+
     public setIsMobile($event?): void {
         const width = $event ? $event.target.innerWidth : window.innerWidth;
         const isMobile = width <= 991;
 
-        if ((this.isMobile != isMobile)) {
+        if ((this.isMobile !== isMobile)) {
             this.dataSource = new ComponentDataSource(this.componentData, isMobile && this.expandedElement);
         }
 
@@ -98,7 +104,7 @@ export class ListComponent {
     }
 
     public setSort($event): void {
-        // {active: "data", direction: "asc"}
+        // { active: "data", direction: "asc" }
         this.orderBy = $event.active === 'data' ? 'registered_at' : $event.active;
         this.sortedBy = $event.direction || 'desc';
         this.loadData();
@@ -136,20 +142,21 @@ export class ListComponent {
             if (this.changePagination) { this.showPagination(); }
 
         } else {
+            this.cleanData();
             this.service[this.methodLoad](options).subscribe(
                 (data) => {
                     if (!this.safe_pagination) {
                         const pagination = data.meta.pagination;
                         this.setPagination(pagination['total'], pagination['current_page'], pagination['per_page']);
                     }
-                    
+
                     this.componentData = data.data;
                     this.filtredComponentData = data.data;
                     this.dataSource = new ComponentDataSource(data.data, mobile);
                     this.setIsMobile();
                     this.status_form.loading = false;
                     this.doneLoad.emit(true);
-                    
+
                     if (this.idTable) {
                         scroll(this.idTable);
                     }
@@ -173,7 +180,7 @@ export class ListComponent {
         if (this.pageSize !== event.pageSize) {
             this.doneAnimation = false;
         }
-       
+
         this.page = event.pageIndex + 1;
         this.pageSize = event.pageSize;
         this.loadData();

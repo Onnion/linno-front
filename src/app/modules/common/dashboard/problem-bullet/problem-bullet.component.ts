@@ -19,10 +19,10 @@ export class ProblemBulletComponent implements OnInit {
     this.message.emit(this.aclService.can('see-bullet') ? !this.status : this.status);
 
     if (this.aclService.can('set-bullet')) {
-      this.accountService.setProblemAccountCalls(this.filterService.getAccount().id, { status_call: this.status }).subscribe(
+      this.accountService.setProblemAccountCalls(this.filterService.getAccount().id as number, { status_call: this.status }).subscribe(
         (res) => {},
         (error) => console.log(error)
-      )
+      );
     }
   }
 

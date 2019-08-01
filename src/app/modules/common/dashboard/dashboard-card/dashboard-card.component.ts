@@ -11,15 +11,15 @@ import { AclService } from 'ng2-acl';
 export class DashboardCardComponent implements OnInit, OnChanges, OnDestroy {
   private filterEvents: Subscription;
 
-  @Input('title') title: string;
-  @Input('bullet') bullet: boolean;
-  @Input('name') name: string;
-  @Input('method') method: string;
-  @Input('service') service: any;
-  @Input('data') data: any;
-  @Input('observable') observable: any;
+  @Input() title: string;
+  @Input() bullet: boolean;
+  @Input() name: string;
+  @Input() method: string;
+  @Input() service: any;
+  @Input() data: any;
+  @Input() observable: any;
   @Input('changeFilter') change: EventEmitter<any> = new EventEmitter<any>();
-  
+
   public message = false;
   public loading = true;
   public _data: number | string;
@@ -27,8 +27,11 @@ export class DashboardCardComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(private filterService: FilterService, private aclService: AclService) { }
 
-  public showMessage($event): void {
+  private clean(): void {
+    this._data = '-';
+  }
 
+  public showMessage($event): void {
     if (!(this.aclService.can('set-bullet'))) {
       this.message = $event;
     }
@@ -44,6 +47,7 @@ export class DashboardCardComponent implements OnInit, OnChanges, OnDestroy {
         this.shouldShowBullet = filters.account.status_call;
         if (!(this.observable) && this.method && this.service) {
           this.loading = true;
+          this.clean();
 
           this.service[this.method]().subscribe(
             (_data) => {
@@ -64,6 +68,7 @@ export class DashboardCardComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.observable && changes.data && changes.data.currentValue) {
+      this.clean();
       this._data = changes.data.currentValue.error ? '-' : changes.data.currentValue[this.name];
       this.loading = false;
     }

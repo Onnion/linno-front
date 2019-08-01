@@ -15,14 +15,15 @@ export class GoogleService {
 
   private generateGoogleReportsObject(): object {
     return {
-      "range": this.filterService.getTime().id,
-      "account_id": this.filterService.getAccount().id
-    }
+      'range': this.filterService.getTime().id,
+      'account_id': this.filterService.getAccount().id
+    };
   }
 
   public getReports(): Observable<any> {
     return new Observable((observer) => {
-      this.http.post(`${environment.AUTH_URL}/api/${this.entity}`, this.generateGoogleReportsObject()).subscribe(
+      this.http.post(`${environment.AUTH_URL}/api/${this.entity}${this.filterService.getAccount().id === 'all' ? '/all' : ''}`,
+      this.generateGoogleReportsObject()).subscribe(
         (data: any) => observer.next(data.data),
         (error: any) => observer.error(error)
       );

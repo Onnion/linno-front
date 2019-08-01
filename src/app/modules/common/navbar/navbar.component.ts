@@ -23,6 +23,7 @@ export class NavbarComponent extends MobileAdapter implements OnInit, OnDestroy 
     public shouldShowFilters = false;
     public campaign_url = '';
     public account;
+    public isAll = false;
     mobile_menu_visible: any = 0;
 
     @ViewChild('app-navbar-cmp') button: any;
@@ -81,7 +82,10 @@ export class NavbarComponent extends MobileAdapter implements OnInit, OnDestroy 
 
     private subscribeFiltersUi() {
         this.filterEvents = this.filterService.filter.subscribe((filters) => {
-            if (filters.account && filters.account.id) {
+
+            if (filters.account && filters.account.id === 'all') { this.isAll = true; }
+
+            if (filters.account && (filters.account.id && !this.isAll)) {
                 this.campaignService.getByIdAccount().subscribe(
                     (campaign) => this.campaign_url = campaign.campaign_url,
                     (error) => { console.log(error); }

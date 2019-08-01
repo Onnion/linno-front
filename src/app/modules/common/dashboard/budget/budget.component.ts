@@ -23,7 +23,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
 
   private subscribeFiltersUi(): void {
     this.filterEvents = this.filterService.filter.subscribe((filters) => {
-      this.shouldShowBudget = filters.times.id === 'THIS_MONTH';
+      this.shouldShowBudget = filters.times.id === 'THIS_MONTH' && (filters.account && filters.account.id !== 'all');
       if (filters.account && filters.account.id && (this.account_id !== filters.account.id) && this.shouldShowBudget) {
         this.account_id = filters.account.id;
         this.getBudget();

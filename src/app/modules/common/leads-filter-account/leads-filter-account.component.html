@@ -1,43 +1,20 @@
-<!-- <div *ngIf="selectedAccountMenu && accountsMenu && accountsMenu.length > 0">
-  <button #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu"
-    style="line-height: unset!important; padding: 0px 10px; max-width: 100%;" mat-stroked-button>
-    <i class="material-icons" style="font-size: 1rem">assignment</i> {{selectedAccountMenu.name}}
-  </button>
-  <mat-menu #menu="matMenu" xPosition="before">
-   
-
-
-  </mat-menu>
-</div> -->
-
-
-<div *ngIf="selectedAccountMenu && accountsMenu && accountsMenu.length > 0" class="container-fluid leads-filter-times" (click)="$event.stopPropagation()">
-    <div class="row">
-
-      <!-- <div class="options col-12'">
-        <button class="text-center" *ngFor="let account of accountsMenu" mat-menu-item
-          (click)="selectTimesMenu(account)">
-          {{account.name}}
-        </button>
-      </div> -->
-
-      <!-- <div class="col"> -->
-
-        <form [formGroup]="form">
-          <mat-form-field [ngStyle]="{'font-size.px': 10}" class="example-full-width" appearance="outline">
-            <mat-label>Conta</mat-label>
-            <input matInput autofocus placeholder="Ex: Jogga Digital" formControlName="account" aria-label="Conta"
-            [matAutocomplete]="auto" />
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option (click)="selectTimesMenu(account)" *ngFor="let account of (filteredAccountsMenu | async)" [value]="account.name">
-                <img *ngIf="account.picture" class="example-option-img" aria-hidden [src]="account.picture" height="25"
-                style="margin-right: 5px; max-width: 35%;" />
-                <span>{{ account.name }}</span>
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </form>
-      </div>
-        
-    <!-- </div> -->
+<div *ngIf="selectedAccountMenu && accountsMenu && accountsMenu.length > 0" class="container-fluid leads-filter-times"
+  (click)="$event.stopPropagation()">
+  <div class="row">
+    <form [formGroup]="form">
+      <mat-form-field [ngStyle]="{'font-size.px': 10}" class="example-full-width" appearance="outline">
+        <mat-label>Conta</mat-label>
+        <input matInput autofocus placeholder="Ex: Jogga Digital" formControlName="account" aria-label="Conta"
+          [matAutocomplete]="auto" />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option (click)="selectAccountMenu(account)" *ngFor="let account of (filteredAccountsMenu | async)"
+            [value]="account.name">
+            <img *ngIf="account.picture" class="example-option-img" aria-hidden [src]="account.picture" height="25"
+              style="margin-right: 5px; max-width: 35%;" />
+            <span>{{ account.name }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
   </div>
+</div>

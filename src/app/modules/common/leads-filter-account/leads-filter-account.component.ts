@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { LeadsFilterAccountType } from '../models/leads-filter-account.model';
+import { LeadsFilterAccountType, MinFilterAccountType } from '../models/leads-filter-account.model';
 import { FilterService } from 'src/app/services/filter/filter.service';
 import { AccountService } from 'src/app/services/account/account.service';
 import { Observable } from 'rxjs';
@@ -13,6 +13,7 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class LeadsFilterAccountComponent implements OnInit {
   // public shouldOpenFormDate: boolean;
+  private DEFAULT_ACCOUNT: MinFilterAccountType[] = [{picture: '', id: 'all', name: 'Todas as Revendas'}];
   public selectedAccountMenu: LeadsFilterAccountType;
   public filteredAccountsMenu: Observable<LeadsFilterAccountType[]>;
   public accountsMenu: LeadsFilterAccountType[];
@@ -23,10 +24,9 @@ export class LeadsFilterAccountComponent implements OnInit {
 
   constructor(private filterService: FilterService, private accountService: AccountService, private fb: FormBuilder) { }
 
-  public selectTimesMenu(account: LeadsFilterAccountType): void {
+  public selectAccountMenu(account: LeadsFilterAccountType): void {
     this.selectedAccountMenu = account;
     this.filterService.setAccount(this.selectedAccountMenu);
-    // this.matMenuTrigger.closeMenu();
   }
 
   private subscribeFiltersUi(): void {
@@ -52,9 +52,13 @@ export class LeadsFilterAccountComponent implements OnInit {
 
   private _filterAccounts(value: string): LeadsFilterAccountType[] {
     const filterValue = (value && (typeof value !== 'object')) && value.toLowerCase();
-    return this.accountsMenu
+
+    return [
+      ...this.DEFAULT_ACCOUNT,
+      ...this.accountsMenu
       .filter(account => account.name.toLowerCase().includes(filterValue))
-      .sort((current, prevent) => this.sortNames(current, prevent));
+      .sort((current, prevent) => this.sortNames(current, prevent))
+    ];
   }
 
   private watchFilter(): void {

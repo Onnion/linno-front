@@ -48,34 +48,37 @@ export class AccountService extends CrudServices {
         const optionsUrl = this.createOptionsUrl(options);
 
         return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${optionsUrl}`, this.generateParams()).subscribe(
-                (data: any) => observer.next(data),
-                (error: any) => observer.error(error)
-            );
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${this.filterService.getAccount().id === 'all' ? '/all' : ''}${optionsUrl}`,
+                this.generateParams()).subscribe(
+                    (data: any) => observer.next(data),
+                    (error: any) => observer.error(error)
+                );
         });
     }
 
     public getBudget(): Observable<any> {
         return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/budget`, this.generateParams()).subscribe(
-                (data: any) => observer.next(data.data.attributes),
-                (error: any) => observer.error(error)
-            );
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/budget`,
+                this.generateParams()).subscribe(
+                    (data: any) => observer.next(data.data.attributes),
+                    (error: any) => observer.error(error)
+                );
         });
     }
 
     public getCallsMissed(): Observable<any> {
         return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls`, this.generateParams('NÃO ATENDIDA')).subscribe(
-                (data: any) => observer.next(data),
-                (error: any) => observer.error(error)
-            );
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${this.filterService.getAccount().id === 'all' ? '/all' : ''}`,
+                this.generateParams('NÃO ATENDIDA')).subscribe(
+                    (data: any) => observer.next(data),
+                    (error: any) => observer.error(error)
+                );
         });
     }
 
     public getCallsAnswereds(): Observable<any> {
         return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls`, this.generateParams('ATENDIDA')).subscribe(
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${this.filterService.getAccount().id === 'all' ? '/all' : ''}`, this.generateParams('ATENDIDA')).subscribe(
                 (data: any) => observer.next(data),
                 (error: any) => observer.error(error)
             );
