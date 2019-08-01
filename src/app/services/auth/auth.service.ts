@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { getObjectCookie, getCookie, getDataUser, setRedirect } from '../../app.utils';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, Observer } from 'rxjs';
 import { AclService } from 'ng2-acl';
 import { ROLES_ACL } from 'src/app/app.roles';
 import { User } from '../../models/user.model';
@@ -23,41 +23,51 @@ export class AuthService {
     private filterService: FilterService
   ) { }
 
-  public loginUser(username: string, password: string, $redirect: string): any {
+  private createLoginData(username, password): object {
     const grant_type: string = environment.GRANT_TYPE;
     const client_id: number = environment.CLIENT_ID;
     const client_secret: string = environment.CLIENT_SECRET;
 
-    return new Observable((observer) => {
-      const loginData = { username, password, grant_type, client_id, client_secret };
+    return { username, password, grant_type, client_id, client_secret };
+  }
 
-      this.http.post(`${environment.AUTH_URL}/oauth/token`, loginData).subscribe(
+  private loginSuccess($user: any, observer: Observer<any>): void {
+    const user = JSON.stringify($user.data);
+    const root = ROLES_ACL[$user.data.type].path;
+    const redirect = this.getRedirectStrategy();
+
+    this.createUserData(user);
+    this.router.navigate([redirect ? `/${redirect}` : root]);
+    this.eraseCookie('moura_redirect');
+
+    observer.next(this.getDataUser());
+  }
+
+  private loginError(observer: Observer<any>, error?: any): void {
+    this.logout();
+    observer.error(error || 'no user');
+  }
+
+  private loginStrategy(observer: Observer<any>, user?: any): void {
+    user ? this.loginSuccess(user, observer) : this.loginError(observer);
+  }
+
+  public loginUser(username: string, password: string, $redirect?: string): any {
+    return new Observable((observer: Observer<any>) => {
+      this.http.post(`${environment.AUTH_URL}/oauth/token`, this.createLoginData(username, password)).subscribe(
         (res) => {
           const token: string = JSON.stringify({ token: res, timeLogin: new Date().getTime() });
           this.createTokenData(token);
           this.getUserAuthenticated().subscribe(
-            ($user: any) => {
-              if ($user) {
-                const user = JSON.stringify($user.data);
-                const root = ROLES_ACL[$user.data.type].path;
-                const redirect = this.getRedirectStrategy();
-
-                this.createUserData(user);
-                this.router.navigate([redirect ? `/${redirect}` : root]);
-                this.eraseCookie('moura_redirect');
-
-                observer.next(this.getDataUser());
-              } else {
-                this.logout();
-                observer.error('no user');
-              }
+            (user: any) => {
+              this.loginStrategy(observer, user);
             },
             (error: any) => {
-              observer.error(error.error);
+              this.loginError(observer, error.error);
             });
         },
         (error) => {
-          observer.error(error.error);
+          this.loginError(observer, error.error);
         });
     });
   }

@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
 
     public submit() {
         if (!this.status.loading && this.form.valid) {
-            
             this.controlStateLogin('loading');
             const redirect = this.activeRoute.snapshot.params['redirect'];
             const data = this.form.value;
