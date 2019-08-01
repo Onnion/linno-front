@@ -83,7 +83,7 @@ export class NavbarComponent extends MobileAdapter implements OnInit, OnDestroy 
     private subscribeFiltersUi() {
         this.filterEvents = this.filterService.filter.subscribe((filters) => {
 
-            if (filters.account && filters.account.id === 'all') { this.isAll = true; }
+            this.isAll = filters.account && filters.account.id === 'all';
 
             if (filters.account && (filters.account.id && !this.isAll)) {
                 this.campaignService.getByIdAccount().subscribe(
