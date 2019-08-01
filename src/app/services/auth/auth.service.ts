@@ -17,10 +17,10 @@ import { FilterService } from '../filter/filter.service';
 export class AuthService {
 
   constructor(
-      private router: Router,
-      private http: HttpClient,
-      private aclService: AclService,
-      private filterService: FilterService
+    private router: Router,
+    private http: HttpClient,
+    private aclService: AclService,
+    private filterService: FilterService
   ) { }
 
   public loginUser(username: string, password: string, $redirect: string): any {
@@ -41,11 +41,11 @@ export class AuthService {
                 const user = JSON.stringify($user.data);
                 const root = ROLES_ACL[$user.data.type].path;
                 const redirect = this.getRedirectStrategy();
-               
+
                 this.createUserData(user);
                 this.router.navigate([redirect ? `/${redirect}` : root]);
                 this.eraseCookie('moura_redirect');
-                
+
                 observer.next(this.getDataUser());
               } else {
                 this.logout();
@@ -106,28 +106,29 @@ export class AuthService {
   }
 
   public isLoggedIn(): boolean {
-
     moment.locale('pt-br');
 
     const tokenString: string = getCookie('moura_auth_token') || '{}';
     const userString: string = getCookie('moura_auth_user_data') || '{}';
     const token: any = JSON.parse(tokenString);
     const user: any = JSON.parse(userString);
-    let result: boolean;
+    const checkToken = token && token.token && token.token.access_token;
+    const checkUser = user && user.id;
+    let checkLogin: boolean;
 
     try {
-      if ((token && token.token && token.token.access_token) && (user && user.id)) {
+      if (checkToken && checkUser) {
         const timeExpire = moment(parseInt(token.timeLogin, 10)).add(parseInt(token.token.expires_in, 10), 'seconds');
         const isTokenExpired = timeExpire.isBefore(moment());
 
-        result = token.token.access_token != null && !isTokenExpired;
+        checkLogin = token.token.access_token != null && !isTokenExpired;
       }
 
-    } catch (error) {
-      result = false;
+    } catch {
+      checkLogin = false;
     }
 
-    return result;
+    return checkLogin;
   }
 
   public logout(): void {
@@ -137,7 +138,6 @@ export class AuthService {
     this.router.navigate(['/login']);
     this.aclService.flushRoles();
     window.stop();
-    // location.reload();
   }
 
   public redirectStrategy(redirect: string): void {
