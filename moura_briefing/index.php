@@ -37,7 +37,7 @@
         <div data-loader="circle-side-2"></div>
     </div>
     <div class="texto-intro col-sm-5" style="background-color:#fff">
-        <img src="img/logo-revenda-negativo.png" alt="">
+        <img src="https://jogga-bucket.s3-sa-east-1.amazonaws.com/moura-static/Logo+Parceria+Digital+Moura.png" alt="">
         <br><br>
         <button id="openMenu">Cadastrar revenda</button>
     </div>
