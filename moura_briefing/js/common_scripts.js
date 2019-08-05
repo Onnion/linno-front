@@ -11702,6 +11702,5 @@ $.format = $.validator.format;
         var form = $("form#wrapped");
         form.validate();
         if (form.valid()) {
-            $("#loader_form").fadeIn();
         }
     });
