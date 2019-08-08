@@ -28,7 +28,6 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="css/custom.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -1061,17 +1060,21 @@
                                                         </div>
                                                     </div><!-- /col-sm-6 -->
 
+                                                    <div class="col-sm-6">
+                                                        <label>
+                                                            Sugestão de palavras chaves
+                                                        </label>
+                                                        <input type="text" name="google_key_words" class="required form-control" placeholder="Ex: Bairro, Nome do Concorrente, Av. Principal" id="google_key_words">
+                                                    </div>
                                                 </div>
 
                                                 <div class="row">
 
                                                     <div class="col-sm-6">
-
                                                         <label>
                                                             Valor investido <b>por mês</b> no Google
                                                         </label>
                                                         <input type="text" name="google_value" class="required form-control money" placeholder="Ex: R$ 0.000,00" id="google_value" size="20" maxlength="14">
-
                                                     </div><!-- /col-sm-6 -->
 
                                                     <div class="col-sm-6">
@@ -1420,6 +1423,10 @@
     <!-- SCRIPTS -->
     <!-- Jquery-->
     <script src="js/jquery-3.2.1.min.js"></script>
+    
+    <!-- Swwt Alert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
     <!-- Common script -->
     <script src="js/common_scripts_min.js"></script>
     <!-- Theme script -->
@@ -1427,7 +1434,6 @@
     <script src="js/functions_with_upload.js"></script>
 
     <!-- Google map -->
-    <!-- <script src="http://maps.googleapis.com/maps/api/js"></script> -->
     <script src="js/mapmarker.jquery.js"></script>
     <script src="js/mapmarker_func.jquery.js"></script>
 
@@ -1449,9 +1455,8 @@
         }
 
         const today = new Date().getDate();
-        const shouldOpenMenuShow = (((today >= 1) && (today <= 20)) || today === 31) ;
+        const shouldOpenMenuShow = (((today >= 1) && (today <= 20)));
         $('#openMenu')[shouldOpenMenuShow ? 'show' : 'hide']();
-
     </script>
 </body>
 

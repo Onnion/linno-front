@@ -298,6 +298,7 @@ function generateDataEdit() {
         battery_stationary: 'Estacionária',
         sell_oil: 'Vende Óleo Lubel',
         change_oil: 'Faz Troca de Óleo',
+        google_key_words: 'Palavras Chave',
         campaign_duration: 'Duração da Campanha',
         google_value: 'Valor investido por mês no Google',
         moura_percent: 'Percentual da mídia google a ser pago mensalmente pela Moura e Distribuidor',
