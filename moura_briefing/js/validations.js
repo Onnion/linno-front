@@ -352,7 +352,7 @@ function submit(form) {
     const formData = new FormData($("form#wrapped")[0]);
 
     $.ajax({
-            url: 'https://api.jogga.com.br/api/lead/revenda-moura',
+            url: 'https://webservice.jogga.com.br/api/lead/revenda-moura',
             type: 'POST',
             data: formData,
             cache: false,
