@@ -1,9 +1,10 @@
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { ListComponent } from 'src/app/helpers/list/list-components.helpers';
 import { listObjShowup, detailExpand } from 'src/app/helpers/animations/animations.helper';
 import { AccountService } from 'src/app/services/account/account.service';
 import { FilterService } from 'src/app/services/filter/filter.service';
 import { Subscription } from 'rxjs';
+import { MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-lead-list',
@@ -12,7 +13,10 @@ import { Subscription } from 'rxjs';
   providers: [AccountService],
   animations: [listObjShowup, detailExpand]
 })
-export class LeadListComponent extends ListComponent implements OnInit, OnDestroy {
+export class LeadListComponent extends ListComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  @ViewChild(MatPaginator) pagination: MatPaginator;
+
   private filterEvents: Subscription;
   public displayedColumns = ['data', 'status', 'media', 'number'];
 
@@ -51,5 +55,16 @@ export class LeadListComponent extends ListComponent implements OnInit, OnDestro
   ngOnDestroy() {
     this.filterService.clear();
     this.filterEvents.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+
+    this.doneLoad.subscribe(() => {
+      setTimeout(() => {
+        this.$pagination = this.pagination;
+        this.pagination.pageIndex = this.page - 1;
+      }, 100);
+    });
+
   }
 }

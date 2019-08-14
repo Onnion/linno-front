@@ -84,13 +84,7 @@ export class LeadsFilterTimesComponent implements OnInit {
 
     if (typeMenu.id === 'custom') {
       this.shouldOpenFormDate = true;
-
-      this.setWidth()
-        .then((width) => {
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      this.setWidth().then((width) => {}).catch((error) => console.log(error));
     } else {
       this.shouldOpenFormDate = false;
     }

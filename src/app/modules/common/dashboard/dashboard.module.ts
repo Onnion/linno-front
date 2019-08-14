@@ -9,6 +9,13 @@ import { LoadingModule } from '../loading/loading.module';
 import { BudgetComponent } from './budget/budget.component';
 import { PhonePipeModule } from 'src/app/helpers/pipes/phone/phone.pipe.module';
 import { CurrencyPipeModule } from 'src/app/helpers/pipes/currency/currency.pipe.module';
+import { MatPaginatorIntl } from '@angular/material';
+
+export class CustomMatPaginatorIntl extends MatPaginatorIntl {
+  itemsPerPageLabel = 'Leads por página';
+  nextPageLabel = 'Pŕoxima página';
+  previousPageLabel = 'Página Anterior';
+}
 
 @NgModule({
   declarations: [
@@ -25,6 +32,7 @@ import { CurrencyPipeModule } from 'src/app/helpers/pipes/currency/currency.pipe
     PhonePipeModule,
     CurrencyPipeModule
   ],
-  exports: [DashboardComponent]
+  exports: [DashboardComponent],
+  providers: [{ provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl }],
 })
 export class DashboardModule { }

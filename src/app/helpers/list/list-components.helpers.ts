@@ -28,9 +28,7 @@ export class ComponentDataSource extends DataSource<any> {
     disconnect() { }
 }
 export class ListComponent {
-
-    @ViewChild(MatPaginator) pagination: MatPaginator;
-
+    public $pagination: MatPaginator;
     public service;
     public notify;
     public options;
@@ -52,7 +50,7 @@ export class ListComponent {
     public status: string;
     public length: number;
     public pageSize = 5;
-    public page = 1;
+    public page = 2;
     public orderBy = 'registered_at';
     public sortedBy = 'desc';
     public pageSizeOptions: number[] = [5, 12, 25, 50, 100, 1000, 10000];
@@ -135,12 +133,7 @@ export class ListComponent {
             this.dataSource = new ComponentDataSource(this.componentData, isMobile && this.expandedElement);
         }
 
-        if (isMobile) {
-            this.displayedColumns = ['show', 'data', 'status', 'number'];
-        } else {
-            this.displayedColumns = ['data', 'status', 'media', 'number'];
-        }
-
+        this.displayedColumns = isMobile ? ['show', 'data', 'status', 'number'] : ['data', 'status', 'media', 'number'];
         this.isMobile = isMobile;
     }
 
@@ -150,11 +143,10 @@ export class ListComponent {
 
     public showPagination(): void {
         this.doneAnimation = true;
+        this.changePagination = false;
     }
 
     public setSort($event: any): void {
-        console.log($event);
-        // { active: "data", direction: "asc" }
         this.orderBy = $event.active === 'data' ? 'registered_at' : $event.active;
         this.sortedBy = $event.direction || 'desc';
         this.loadData();
@@ -195,6 +187,7 @@ export class ListComponent {
 
         this.page = event.pageIndex + 1;
         this.pageSize = event.pageSize;
+        this.changePagination = true;
         this.loadData();
     }
 }
