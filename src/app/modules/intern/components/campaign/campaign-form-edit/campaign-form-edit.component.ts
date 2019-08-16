@@ -117,6 +117,7 @@ export class CampaignFormEditComponent implements OnInit {
       { pathName: 'DISBATE', email: 'vendas.interior@disbate.com.br' },
       { pathName: 'DISBAC', email: 'joel.bremm@disbac.com.br' },
       { pathName: 'DIRPAL', email: 'alana.pimentel@dirpal.com.br' },
+      { pathName: 'DISMAL', email: 'fredson@mourama.com.br' },
       { pathName: 'AVIC', email: 'e.albino@mourapr.com.br' },
       { pathName: 'BRASILIENSE', email: 'joefran @mouradf.com.br' },
       { pathName: 'FLUMINENSE', email: 'Thiago.pereira@mourario.com' },
