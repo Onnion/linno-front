@@ -43,7 +43,7 @@ export class DashboardCardComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     this.filterEvents = this.filterService.filter.subscribe((filters) => {
-      if (filters.account && filters.account.id) {
+      if (filters.account && filters.account.id && this.filterService.shouldCustomSearch()) {
         this.shouldShowBullet = filters.account.status_call;
         if (!(this.observable) && this.method && this.service) {
           this.loading = true;

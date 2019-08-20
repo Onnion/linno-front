@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FilterService } from 'src/app/services/filter/filter.service';
 import { detailExpand } from 'src/app/helpers/animations/animations.helper';
-import * as moment  from 'moment';
+import * as moment from 'moment';
 import { AccountService } from 'src/app/services/account/account.service';
 import { Subscription } from 'rxjs';
 

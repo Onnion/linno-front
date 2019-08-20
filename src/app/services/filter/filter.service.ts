@@ -35,7 +35,7 @@ export class FilterService {
       { id: 'LAST_30_DAYS', shouldClose: true, label: 'Últimos 30 dias' },
       { id: 'LAST_MONTH', shouldClose: true, label: 'Mês passado' },
       { id: 'THIS_MONTH', shouldClose: true, label: 'Este Mês' },
-      // { id: 'custom', shouldClose: false, label: 'Personalizado' },
+      { id: 'CUSTOM', shouldClose: false, label: 'Personalizado', start_date: null, end_date: null },
     ];
     this.times = this.timesMenu[6];
     this.accountMenu = [];
@@ -45,7 +45,11 @@ export class FilterService {
     this.filter.next({ times: this.times, account: this.account });
   }
 
-  public setFilterTime(range: Moment.Moment[], times: LeadsFilterTimesType): void {
+  public shouldCustomSearch(): boolean {
+    return ((this.times.id !== 'CUSTOM') || !!(this.times.id === 'CUSTOM' && this.times.start_date));
+  }
+
+  public setFilterTime(times: LeadsFilterTimesType): void {
     this.times = times;
     this.next();
   }
@@ -59,7 +63,7 @@ export class FilterService {
     const filtredAccount = this.accountMenu.filter($account => $account.id === _account.id)[0];
     this.account = 'created_at' in _account ? filtredAccount : _account;
 
-    if (_account.id === 'all') { this.setFilterTime(null, this.timesMenu[6]); }
+    if (_account.id === 'all') { this.setFilterTime(this.timesMenu[6]); }
 
     this.next();
   }

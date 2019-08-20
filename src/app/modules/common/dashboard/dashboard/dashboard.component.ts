@@ -16,10 +16,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public idAccount;
   public googleReposts;
   public cards = [
-    { observable: true, name: "impressions", title: "Quantidade de vezes que o anúncio apareceu" },
-    { observable: true, name: "clicks", title: "Cliques no anúncio" },
-    { method: 'getCallsAnswereds', bullet: true, service: this.accountService, name: "calls", title: "Ligações Atendidas" },
-    { method: 'getCallsMissed', service: this.accountService, name: "calls", title: "Ligações Não Atendidas" }
+    { observable: true, name: 'impressions', title: 'Quantidade de vezes que o anúncio apareceu' },
+    { observable: true, name: 'clicks', title: 'Cliques no anúncio' },
+    { method: 'getCallsAnswereds', bullet: true, service: this.accountService, name: 'calls', title: 'Ligações Atendidas' },
+    { method: 'getCallsMissed', service: this.accountService, name: 'calls', title: 'Ligações Não Atendidas' }
   ];
   public shouldShowBudget = false;
 
@@ -39,8 +39,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.filterEvents = this.filterService.filter.subscribe((filters) => {
       this.shouldShowBudget = filters.times.id === 'THIS_MONTH';
 
-      if (filters.account && filters.account.id) {
-        this.idAccount = filters.account.id
+      if (filters.account && filters.account.id && this.filterService.shouldCustomSearch()) {
+        this.idAccount = filters.account.id;
         this.getReports();
       }
     });

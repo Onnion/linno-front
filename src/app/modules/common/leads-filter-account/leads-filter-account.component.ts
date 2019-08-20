@@ -34,7 +34,7 @@ export class LeadsFilterAccountComponent implements OnInit {
       this.accountsMenu = this.filterService.getAccountMenu();
       this.watchFilter();
       this.selectedAccountMenu = filters.account;
-      if (filters.account) {
+      if (filters.account && this.filterService.shouldCustomSearch()) {
         this.form.controls['account'].setValue(this.selectedAccountMenu.name);
       }
     });

@@ -34,10 +34,10 @@ export class LeadListComponent extends ListComponent implements OnInit, OnDestro
   }
 
   private subscribeFiltersUi(): void {
-    this.filterEvents = this.filterService.filter.subscribe(filter => {
-      if (filter.account) {
+    this.filterEvents = this.filterService.filter.subscribe(filters => {
+      if (filters.account && this.filterService.shouldCustomSearch()) {
         this.page = 1;
-        this.options = { account_id: filter.account.id };
+        this.options = { account_id: filters.account.id };
         this.loadData(null, window.innerWidth <= 991);
       }
     });

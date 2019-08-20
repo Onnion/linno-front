@@ -14,19 +14,30 @@ export class GoogleService {
   }
 
   private generateGoogleReportsObject(): object {
-    return {
-      'range': this.filterService.getTime().id,
-      'account_id': this.filterService.getAccount().id
+    const range = this.filterService.getTime();
+    let params: any = {
+      range: range.id,
+      account_id: this.filterService.getAccount().id
     };
+
+    if (params.range === 'CUSTOM') {
+      params = {
+        ...params,
+        start_date: range.start_date,
+        end_date: range.end_date
+      };
+    }
+
+    return params;
   }
 
   public getReports(): Observable<any> {
     return new Observable((observer) => {
       this.http.post(`${environment.AUTH_URL}/api/${this.entity}${this.filterService.getAccount().id === 'all' ? '/all' : ''}`,
-      this.generateGoogleReportsObject()).subscribe(
-        (data: any) => observer.next(data.data),
-        (error: any) => observer.error(error)
-      );
+        this.generateGoogleReportsObject()).subscribe(
+          (data: any) => observer.next(data.data),
+          (error: any) => observer.error(error)
+        );
     });
   }
 }

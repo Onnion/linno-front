@@ -19,12 +19,19 @@ export class AccountService extends CrudServices {
     }
 
     private generateParams(status = ''): any {
-        let params = {};
-
-        params = {
-            range: this.filterService.getTime().id,
+        const range = this.filterService.getTime();
+        let params: any = {
+            range: range.id,
             account_id: this.filterService.getAccount().id
         };
+
+        if (params.range === 'CUSTOM') {
+            params = {
+                ...params,
+                start_date: range.start_date,
+                end_date: range.end_date
+            };
+        }
 
         if (status) {
             params = {
@@ -82,10 +89,11 @@ export class AccountService extends CrudServices {
 
     public getCallsAnswereds(): Observable<any> {
         return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${this.isAll() ? '/all' : ''}`, this.generateParams('ATENDIDA')).subscribe(
-                (data: any) => observer.next(data),
-                (error: any) => observer.error(error)
-            );
+            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/calls${this.isAll() ? '/all' : ''}`,
+                this.generateParams('ATENDIDA')).subscribe(
+                    (data: any) => observer.next(data),
+                    (error: any) => observer.error(error)
+                );
         });
     }
 

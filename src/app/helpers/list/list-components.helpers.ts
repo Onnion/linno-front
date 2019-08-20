@@ -1,5 +1,5 @@
 import { MatPaginator, PageEvent } from '@angular/material';
-import { ViewChild, EventEmitter } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
 import { FilterService } from 'src/app/services/filter/filter.service';
