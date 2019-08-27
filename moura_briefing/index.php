@@ -1423,7 +1423,7 @@
     <!-- SCRIPTS -->
     <!-- Jquery-->
     <script src="js/jquery-3.2.1.min.js"></script>
-    
+
     <!-- Swwt Alert-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
@@ -1455,7 +1455,7 @@
         }
 
         const today = new Date().getDate();
-        const shouldOpenMenuShow = (((today >= 1) && (today <= 20)) || (today <= 23 ));
+        const shouldOpenMenuShow = (((today >= 1) && (today <= 20)) || (today <= 27));
         $('#openMenu')[shouldOpenMenuShow ? 'show' : 'hide']();
     </script>
 </body>
