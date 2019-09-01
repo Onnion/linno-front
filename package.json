@@ -2,6 +2,7 @@
   "name": "angular-crud",
   "version": "0.0.0",
   "scripts": {
+    "start": "node web.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
