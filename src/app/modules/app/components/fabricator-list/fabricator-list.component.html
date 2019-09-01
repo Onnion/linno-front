@@ -1,0 +1,7 @@
+
+<ng-container *ngIf="fabricators && fabricators.length > 0">
+    <app-fabricator *ngFor="let fabricator of fabricators; let i = index;" (select)="selectFabricator($event)" [index]="i" [fabricator]="fabricator"></app-fabricator>
+</ng-container>
+
+
+<button *ngIf="shouldEnableQuote" class="btn-block btn-quote pt-2 pb-2" (click)="createQuote()" mat-raised-button > {{'Criar Cotação' | uppercase}} </button>
