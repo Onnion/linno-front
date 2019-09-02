@@ -15,6 +15,8 @@ export class FabricatorListComponent implements OnInit {
   public fabricators: Fabricator[];
   public loading = true;
   public shouldEnableQuote = false;
+  public selectedAll = false;
+  public checked = false;
 
   constructor(private store: StoreService, private router: Router) { }
 
@@ -31,6 +33,13 @@ export class FabricatorListComponent implements OnInit {
     });
   }
 
+  public toggleAll(): void {
+    this.selectedAll = this.selectedAll && !this.checked ? true : !this.selectedAll;
+    this.selectedFabricators = this.selectedAll ? this.store.fabricators : [];
+    this.shouldEnableQuote = this.selectedFabricators.length > 0;
+    this.checked = this.selectedAll;
+  }
+
   public createQuote(): void {
     this.store.toggleInCart(this.selectedFabricators);
     this.router.navigate(['/app']);
@@ -39,6 +48,8 @@ export class FabricatorListComponent implements OnInit {
   public selectFabricator($event: Fabricator) {
     this.selectedFabricators = _.xorBy(this.selectedFabricators, [$event], 'id');
     this.shouldEnableQuote = this.selectedFabricators.length > 0;
+    this.checked = false;
+    console.log(this.selectedFabricators);
   }
 
   ngOnInit() {

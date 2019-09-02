@@ -1,7 +1,18 @@
+<div class="d-flex align-items-center justify-content-start mb-3 ml-2 mr-2 header-frabricators">
+    <div class="mr-2">
+        <label class="checkbox" (change)="toggleAll()" for="selectAll">
+            <input id="selectAll" class="check" name="selectAll" [checked]="checked && selectedAll" type="checkbox">
+            <span class="box"></span>
+        </label>
+    </div>
+    <span>{{'Todos os Fabricates' | uppercase}}</span>
+</div>
 
 <ng-container *ngIf="fabricators && fabricators.length > 0">
-    <app-fabricator *ngFor="let fabricator of fabricators; let i = index;" (select)="selectFabricator($event)" [index]="i" [fabricator]="fabricator"></app-fabricator>
+    <app-fabricator *ngFor="let fabricator of fabricators; let i = index;" [all]="selectedAll" (select)="selectFabricator($event)"
+        [index]="i" [fabricator]="fabricator"></app-fabricator>
 </ng-container>
 
 
-<button *ngIf="shouldEnableQuote" class="btn-block btn-quote pt-2 pb-2" (click)="createQuote()" mat-raised-button > {{'Criar Cotação' | uppercase}} </button>
+<button *ngIf="shouldEnableQuote" class="btn-block btn-quote pt-2 pb-2" (click)="createQuote()" mat-raised-button>
+    {{'Criar Cotação' | uppercase}} </button>
