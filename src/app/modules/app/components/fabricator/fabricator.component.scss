@@ -1,3 +1,5 @@
+@import './../../../../_colors.scss';
+
 .fabricator {
     background: #FFF;
     border-radius: 3px;
@@ -21,7 +23,7 @@
             display: inline-block;
             width: 1rem;
             height: 1rem;
-            border: 2px solid #B5B5B5;
+            border: 2px solid $gray;
             border-radius: .15rem;
             margin-bottom: -.25rem;
             transition: all .35s ease;
@@ -29,8 +31,8 @@
         .check {
             display: none;
             &:checked + .box {
-                border: 2px solid #3BB1FF;
-                background: #3BB1FF;
+                border: 2px solid $prime;
+                background: $prime;
 
                 &::after {
                     content: "";
@@ -47,7 +49,7 @@
             }
             &:focus + .box,
             &:active + .box {
-                        box-shadow: 0 0 4px #3BB1FF
+                        box-shadow: 0 0 4px $prime
             }
         }
     }
