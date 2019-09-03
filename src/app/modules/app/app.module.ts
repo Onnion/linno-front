@@ -18,6 +18,7 @@ import { FabricatorListComponent } from './components/fabricator-list/fabricator
 import { FabricatorComponent } from './components/fabricator/fabricator.component';
 import { FabricatorService } from './services/fabricator/fabricator.service';
 import { CartComponent } from './views/cart/cart.component';
+import { HeaderBannerComponent } from './components/header-banner/header-banner.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CartComponent } from './views/cart/cart.component';
     FabricatorsComponent,
     FabricatorListComponent,
     FabricatorComponent,
-    CartComponent
+    CartComponent,
+    HeaderBannerComponent
   ],
   imports: [
     CommonModule,

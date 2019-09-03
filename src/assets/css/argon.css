@@ -16,11 +16,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-.mat-badge-content {
-    color: #256889;
-    background: #d6a84c;
-}
-
 :root
 {
     --blue: #5e72e4;
@@ -70,7 +65,6 @@ html
 {
     font-family: sans-serif;
     line-height: 1.15;
-
     -webkit-text-size-adjust: 100%;
         -ms-text-size-adjust: 100%;
     -ms-overflow-style: scrollbar;
@@ -102,12 +96,9 @@ body
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-
     margin: 0;
-
     text-align: left;
-
-    color: #525f7f;
+    color: #001514;
     background-color: #f8f9fe;
 }
 
@@ -116,12 +107,10 @@ body
     outline: 0 !important;
 }
 
-html, body { height: auto }
-body { margin: 0; font-family: "Roboto", "Helvetica Neue", sans-serif; }
-
 hr
 {
     overflow: visible; 
+
     box-sizing: content-box;
     height: 0;
 }
@@ -21875,3 +21864,6 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 
     height: 3px;
 }
+
+html, body { height: auto }
+body { margin: 0; font-family: "Roboto", "Helvetica Neue", sans-serif; }

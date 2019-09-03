@@ -6,11 +6,10 @@ import { Quote } from '../../models/quote.model';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
-  providers: []
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  public title: string = '';
+  public title = '';
   public cart: Quote[] = [];
 
   constructor(private store: StoreService, private router: Router, private active: ActivatedRoute) { }
@@ -29,7 +28,7 @@ export class NavbarComponent implements OnInit {
     if (snapShop.store) {
       const entity = this.store[snapShop.get];
       const titleSplited = entity[snapShop.key].split(' ');
-      this.title = `${titleSplited[0]} ${titleSplited[1]}${ titleSplited.length > 2 ? '...' : ''}`;
+      this.title = `${titleSplited[0]} ${titleSplited[1]}${titleSplited.length > 2 ? '...' : ''}`;
     }
   }
 
@@ -39,7 +38,7 @@ export class NavbarComponent implements OnInit {
         this.setTitle();
       },
       (error) => { }
-  );
+    );
   }
 
   public inCart(): string {
