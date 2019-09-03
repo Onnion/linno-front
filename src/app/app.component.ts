@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +9,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor() { }
+  constructor(private deviceService: DeviceDetectorService, private router: Router) {
+    this.checkMobile();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onresize(): void {
+    this.checkMobile();
+  }
+
+  private checkMobile(): void {
+    const isMobile = this.deviceService.isMobile();
+    this.router.navigate([!isMobile ? '/admin' : '/app']);
+  }
 
 }

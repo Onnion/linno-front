@@ -13,7 +13,7 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent, data: {get: 'cart', key: 'name', store: true } },
     ]
   }
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
