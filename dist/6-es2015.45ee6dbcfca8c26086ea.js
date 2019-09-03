@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{"13Ib":function(n,e,t){"use strict";t.r(e),t.d(e,"AdminModule",function(){return u});var o=t("fXoL"),r=t("tk/3");let u=(()=>{class n{}return n.ngModuleDef=o.Mb({type:n}),n.ngInjectorDef=o.Lb({factory:function(e){return new(e||n)},imports:[[r.b]]}),n})()}}]);
