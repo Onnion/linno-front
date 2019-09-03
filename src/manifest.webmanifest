@@ -1,8 +1,8 @@
 {
   "name": "Linno",
   "short_name": "Linno",
-  "theme_color": "#b7a87e",
-  "background_color": "#0b2742",
+  "theme_color": "#003e5c",
+  "background_color": "#256889",
   "display": "standalone",
   "scope": "/",
   "start_url": "/app",
