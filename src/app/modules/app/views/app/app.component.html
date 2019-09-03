@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
 
-<div style="margin-top: 55px">
-    <router-outlet></router-outlet>
+<div [@routerTransition]="o.isActivated ? o.activatedRoute : ''" style="margin-top: 55px">
+    <router-outlet #o="outlet"></router-outlet>
 </div>
