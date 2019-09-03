@@ -4,6 +4,7 @@ import { StoreService } from '../../store/store.service';
 import { Store } from '../../models/store.model';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-fabricator-list',
@@ -17,6 +18,7 @@ export class FabricatorListComponent implements OnInit {
   public shouldEnableQuote = false;
   public selectedAll = false;
   public checked = false;
+  public reselect: boolean;
 
   constructor(private store: StoreService, private router: Router) { }
 
@@ -34,6 +36,7 @@ export class FabricatorListComponent implements OnInit {
   }
 
   public toggleAll(): void {
+    this.reselect = this.selectedAll && !this.checked;
     this.selectedAll = this.selectedAll && !this.checked ? true : !this.selectedAll;
     this.selectedFabricators = this.selectedAll ? this.store.fabricators : [];
     this.shouldEnableQuote = this.selectedFabricators.length > 0;
@@ -49,7 +52,6 @@ export class FabricatorListComponent implements OnInit {
     this.selectedFabricators = _.xorBy(this.selectedFabricators, [$event], 'id');
     this.shouldEnableQuote = this.selectedFabricators.length > 0;
     this.checked = false;
-    console.log(this.selectedFabricators);
   }
 
   ngOnInit() {

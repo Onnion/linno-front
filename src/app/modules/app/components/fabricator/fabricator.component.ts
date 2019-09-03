@@ -8,7 +8,8 @@ import { Fabricator } from '../../models/fabricator.model';
 })
 export class FabricatorComponent implements OnInit, OnChanges {
   @Input() fabricator: Fabricator;
-  @Input() pure: boolean = false;
+  @Input() pure = false;
+  @Input() reselect = false;
   @Input() index: number;
   @Input() all: boolean;
   @Output() select: EventEmitter<Fabricator> = new EventEmitter<Fabricator>();
@@ -18,6 +19,7 @@ export class FabricatorComponent implements OnInit, OnChanges {
   constructor() { }
 
   public selectFabricator(): void {
+    this.checked = !this.checked;
     this.select.emit(this.fabricator);
   }
 
@@ -25,9 +27,14 @@ export class FabricatorComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const all = changes.all;
-    console.log(changes, (all && (all.previousValue !== all.currentValue) && !all.firstChange));
+    const reselect = changes.reselect;
+
     if (all && (all.previousValue !== all.currentValue) && !all.firstChange) {
       this.checked = all.currentValue;
+    }
+
+    if (reselect && (reselect.previousValue !== reselect.currentValue) && reselect.currentValue) {
+      this.checked = true;
     }
   }
 }

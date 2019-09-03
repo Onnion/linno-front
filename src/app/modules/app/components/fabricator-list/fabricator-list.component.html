@@ -10,7 +10,7 @@
 
 <ng-container *ngIf="fabricators && fabricators.length > 0">
     <app-fabricator *ngFor="let fabricator of fabricators; let i = index;" [all]="selectedAll" (select)="selectFabricator($event)"
-        [index]="i" [fabricator]="fabricator"></app-fabricator>
+        [index]="i" [reselect]="reselect" [fabricator]="fabricator"></app-fabricator>
 </ng-container>
 
 
