@@ -19,6 +19,7 @@ import { FabricatorComponent } from './components/fabricator/fabricator.componen
 import { FabricatorService } from './services/fabricator/fabricator.service';
 import { CartComponent } from './views/cart/cart.component';
 import { HeaderBannerComponent } from './components/header-banner/header-banner.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { HeaderBannerComponent } from './components/header-banner/header-banner.
     CommonModule,
     MaterialModule,
     AppRoutingModule,
-    LoadingModule
+    LoadingModule,
+    ScrollingModule
   ],
   providers: [CategoryService, ProductService, StoreService, FabricatorService]
 })

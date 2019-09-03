@@ -15,7 +15,6 @@ export class ProductListComponent implements OnInit {
 
   private subscribeStore(): void {
     this.store._store.subscribe((store) => {
-
       if (store && store.products && store.products.length > 0) {
         this.products = store.products;
         this.loading = false;
