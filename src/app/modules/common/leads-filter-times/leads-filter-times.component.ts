@@ -70,7 +70,10 @@ export class LeadsFilterTimesComponent implements OnInit {
   }
 
   private formatNgbDateToMoment(date: NgbDate): string {
-    return `${date.year}-${date.month}-${date.day}`;
+    const month = date.month.toString().length <= 1 ? `0${date.month}` : date.month;
+    const day = date.day.toString().length <= 1 ?  `0${date.day}` : date.day;
+
+    return `${date.year}-${month}-${day}`;
   }
 
   public selectRange(): void {
