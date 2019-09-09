@@ -413,6 +413,7 @@
                                                                 <option value="22h30">22h30</option>
                                                                 <option value="23h00">23h00</option>
                                                                 <option value="23h30">23h30</option>
+                                                                <option value="24h00">Funciona 24h</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -473,7 +474,7 @@
                                                         <label>Sábado - Abre às:</label>
                                                         <div class="styled-select">
                                                             <select id="saturday_open" name="saturday_open">
-                                                                <option value="Não abre">Não abre</option>
+                                                                
                                                                 <option value="00h30">00h30</option>
                                                                 <option value="01h00">01h00</option>
                                                                 <option value="01h30">01h30</option>
@@ -517,6 +518,8 @@
                                                                 <option value="22h30">22h30</option>
                                                                 <option value="23h00">23h00</option>
                                                                 <option value="23h30">23h30</option>
+                                                                <option value="Não abre">Não abre</option>
+                                                                <option value="24h00">Funciona 24h</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -525,7 +528,7 @@
                                                         <label>Sábado - Fecha às:</label>
                                                         <div class="styled-select">
                                                             <select id="saturday_close" name="saturday_close">
-                                                                <option value="Não abre">Não abre</option>
+                                                                
                                                                 <option value="00h30">00h30</option>
                                                                 <option value="01h00">01h00</option>
                                                                 <option value="01h30">01h30</option>
@@ -569,6 +572,7 @@
                                                                 <option value="22h30">22h30</option>
                                                                 <option value="23h00">23h00</option>
                                                                 <option value="23h30">23h30</option>
+                                                                <option value="Não abre">Não abre</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -579,7 +583,7 @@
                                                         <label>Domingo - Abre às:</label>
                                                         <div class="styled-select">
                                                             <select id="sunday_open" name="sunday_open">
-                                                                <option value="Não abre">Não abre</option>
+                                                                
                                                                 <option value="00h00">00h00</option>
                                                                 <option value="00h30">00h30</option>
                                                                 <option value="01h00">01h00</option>
@@ -624,6 +628,8 @@
                                                                 <option value="22h30">22h30</option>
                                                                 <option value="23h00">23h00</option>
                                                                 <option value="23h30">23h30</option>
+                                                                <option value="Não abre">Não abre</option>
+                                                                <option value="24h00">Funciona 24h</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -632,7 +638,7 @@
                                                         <label>Domigo - Fecha às:</label>
                                                         <div class="styled-select">
                                                             <select id="sunday_close" name="sunday_close">
-                                                                <option value="Não abre">Não abre</option>
+                                                                
                                                                 <option value="00h30">00h30</option>
                                                                 <option value="01h00">01h00</option>
                                                                 <option value="01h30">01h30</option>
@@ -676,6 +682,7 @@
                                                                 <option value="22h30">22h30</option>
                                                                 <option value="23h00">23h00</option>
                                                                 <option value="23h30">23h30</option>
+                                                                <option value="Não abre">Não abre</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -684,7 +691,7 @@
                                                         <label>Feriado - Abre às:</label>
                                                         <div class="styled-select">
                                                             <select id="holyday_open" name="holiday_open">
-                                                                <option value="Não abre">Não abre</option>
+                                                                
                                                                 <option value="00h30">00h30</option>
                                                                 <option value="01h00">01h00</option>
                                                                 <option value="01h30">01h30</option>
@@ -728,6 +735,8 @@
                                                                 <option value="22h30">22h30</option>
                                                                 <option value="23h00">23h00</option>
                                                                 <option value="23h30">23h30</option>
+                                                                <option value="Não abre">Não abre</option>
+                                                                <option value="24h00">Funciona 24h</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -736,7 +745,7 @@
                                                         <label>Feriado - Fecha às:</label>
                                                         <div class="styled-select">
                                                             <select id="holyday_close" name="holiday_close">
-                                                                <option value="Não abre">Não abre</option>
+                                                            
                                                                 <option value="00h30">00h30</option>
                                                                 <option value="01h00">01h00</option>
                                                                 <option value="01h30">01h30</option>
@@ -1423,7 +1432,7 @@
     <!-- SCRIPTS -->
     <!-- Jquery-->
     <script src="js/jquery-3.2.1.min.js"></script>
-    
+
     <!-- Swwt Alert-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
@@ -1455,7 +1464,7 @@
         }
 
         const today = new Date().getDate();
-        const shouldOpenMenuShow = (((today >= 1) && (today <= 20)));
+        const shouldOpenMenuShow = (((today >= 1) && (today <= 20)) || (today <= 27));
         $('#openMenu')[shouldOpenMenuShow ? 'show' : 'hide']();
     </script>
 </body>

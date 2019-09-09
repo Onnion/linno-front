@@ -246,6 +246,26 @@ function generateValidations() {
     return validations;
 }
 
+$('#week_open').change(function (){
+    console.log($('#week_open').val() === '24h00');
+    $('#week_close').attr('disabled', $('#week_open').val() === '24h00');
+})
+
+$('#saturday_open').change(function (){
+    console.log($('#week_open').val() === '24h00');
+    $('#saturday_close').attr('disabled', $('#week_open').val() === '24h00');
+})
+
+$('#sunday_open').change(function (){
+    console.log($('#week_open').val() === '24h00');
+    $('#sunday_close').attr('disabled', $('#week_open').val() === '24h00');
+})
+
+$('#holyday_open').change(function (){
+    console.log($('#week_open').val() === '24h00');
+    $('#holyday_close').attr('disabled', $('#week_open').val() === '24h00');
+})
+
 function generateDataEdit() {
     const fields = {
         distributor: 'Nome do Distribuidor',
