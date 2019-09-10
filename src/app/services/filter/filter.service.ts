@@ -63,8 +63,6 @@ export class FilterService {
     const filtredAccount = this.accountMenu.filter($account => $account.id === _account.id)[0];
     this.account = 'created_at' in _account ? filtredAccount : _account;
 
-    if (_account.id === 'all') { this.setFilterTime(this.timesMenu[6]); }
-
     this.next();
   }
 

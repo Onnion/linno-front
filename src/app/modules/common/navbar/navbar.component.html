@@ -10,16 +10,12 @@
       </div>
     </div>
 
-    <!-- <a [href]="campaign_url" target="_blank">
-      <h6 style="margin: 10px">{{campaign_url}}</h6>
-    </a> -->
-
     <div class="d-flex order-lg-0 order-sm-first order-first justify-content-end align-items-baseline" id="navigation">
       <a *ngIf="shouldShowFilters && !isAll" style="background: #2f5584; color: #FFFFFF;" [href]="campaign_url" target="_blank" mat-stroked-button>
         Ver Site
       </a>
       <app-leads-filter-account *ngIf="shouldShowFilters && !isMobile"></app-leads-filter-account>
-      <app-leads-filter-times *ngIf="shouldShowFilters && !isMobile && !isAll"></app-leads-filter-times>
+      <app-leads-filter-times *ngIf="shouldShowFilters && !isMobile"></app-leads-filter-times>
     </div>
 
     <button mat-button class="navbar-toggler btn-no-ripple" type="button" (click)="sidebarToggle()">

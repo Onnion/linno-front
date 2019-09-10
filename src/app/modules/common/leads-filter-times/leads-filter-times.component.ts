@@ -105,7 +105,7 @@ export class LeadsFilterTimesComponent implements OnInit {
 
   private initCalendarConfig(): void {
     const today: Moment.Moment = this.moment();
-    this.config.maxDate = { year: today.year(), month: today.month(), day: today.date() };
+    this.config.maxDate = { year: today.year(), month: today.month() +  1, day: today.date() };
   }
 
   private subscribeFiltersUi() {
