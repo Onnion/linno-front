@@ -73,6 +73,15 @@ export class AccountService extends CrudServices {
                 (data: any) => {
                     const budget = data.data.attributes;
                     this.filterService.setBudget(budget);
+
+                    if (data.data.error) {
+                        this.filterService.setBudget({
+                            consumed: 0,
+                            percentage_consumed: 0,
+                            moura_percent: '',
+                            google_budget: 0
+                        });
+                    }
                 },
                 (error: any) => {
                     this.filterService.setBudget({

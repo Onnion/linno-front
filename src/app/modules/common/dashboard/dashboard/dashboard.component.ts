@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       if (filters.account && filters.account.id && this.filterService.shouldCustomSearch()) {
         this.idAccount = filters.account.id;
         this.getReports();
+        this.accountService.getBudget();
       }
     });
   }

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LeadsFilterTimesType } from 'src/app/modules/common/models/leads-filter-times.model';
 import { Filter } from 'src/app/models';
-import * as Moment from 'moment';
 import { extendMoment, MomentRange } from 'moment-range';
 import { LeadsFilterAccountType, MinFilterAccountType } from 'src/app/modules/common/models/leads-filter-account.model';
 import { Budgetype } from 'src/app/modules/common/models/budget.model';
+import * as Moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
