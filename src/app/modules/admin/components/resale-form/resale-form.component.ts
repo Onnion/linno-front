@@ -105,7 +105,7 @@ export class ResaleFormComponent implements OnInit {
       {
         'name': ['', [Validators.required, Validators.minLength(5)]],
         'key_adword': ['', [Validators.required]],
-        'budget': ['', [Validators.required]],
+        'google_budget': ['', [Validators.required]],
         'distributor': ['', [Validators.required]],
         'phone_track': ['', [Validators.required]]
       }

@@ -4,6 +4,7 @@ import { detailExpand } from 'src/app/helpers/animations/animations.helper';
 import * as moment from 'moment';
 import { AccountService } from 'src/app/services/account/account.service';
 import { Subscription } from 'rxjs';
+import { Budgetype } from '../../models/budget.model';
 
 @Component({
   selector: 'app-budget',
@@ -16,7 +17,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
   private subscribed = false;
   private account_id;
   public shouldShowBudget = false;
-  public data: any;
+  public data: Budgetype;
   public loading = false;
 
   constructor(private filterService: FilterService, private accountService: AccountService) { }
@@ -33,8 +34,8 @@ export class BudgetComponent implements OnInit, OnDestroy {
 
   private getBudget(): void {
     this.loading = true;
-    this.accountService.getBudget().subscribe(
-      (data: any) => {
+    this.filterService.budget.subscribe(
+      (data) => {
         this.data = data || null;
         this.loading = false;
       },

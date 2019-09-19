@@ -1083,7 +1083,7 @@
                                                         <label>
                                                             Valor investido <b>por mês</b> no Google
                                                         </label>
-                                                        <input type="text" name="google_value" class="required form-control money" placeholder="Ex: R$ 0.000,00" id="google_value" size="20" maxlength="14">
+                                                        <input type="text" name="google_budget" class="required form-control money" placeholder="Ex: R$ 0.000,00" id="google_budget" size="20" maxlength="14">
                                                     </div><!-- /col-sm-6 -->
 
                                                     <div class="col-sm-6">

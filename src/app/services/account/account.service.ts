@@ -67,14 +67,31 @@ export class AccountService extends CrudServices {
         });
     }
 
-    public getBudget(): Observable<any> {
-        return new Observable((observer) => {
-            this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/budget`,
-                this.generateParams()).subscribe(
-                    (data: any) => observer.next(data.data.attributes),
-                    (error: any) => observer.error(error)
-                );
-        });
+    public getBudget(): void {
+        this.httpService.post(`${environment.AUTH_URL}/api/${this.entity}/budget`,
+            this.generateParams()).subscribe(
+                (data: any) => {
+                    const budget = data.data.attributes;
+                    this.filterService.setBudget(budget);
+
+                    if (data.data.error) {
+                        this.filterService.setBudget({
+                            consumed: 0,
+                            percentage_consumed: 0,
+                            moura_percent: '',
+                            google_budget: 0
+                        });
+                    }
+                },
+                (error: any) => {
+                    this.filterService.setBudget({
+                        consumed: 0,
+                        percentage_consumed: 0,
+                        moura_percent: '',
+                        google_budget: 0
+                    });
+                }
+            );
     }
 
     public getCallsMissed(): Observable<any> {

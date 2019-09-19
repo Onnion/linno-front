@@ -10,6 +10,7 @@ import { BudgetComponent } from './budget/budget.component';
 import { PhonePipeModule } from 'src/app/helpers/pipes/phone/phone.pipe.module';
 import { CurrencyPipeModule } from 'src/app/helpers/pipes/currency/currency.pipe.module';
 import { MatPaginatorIntl } from '@angular/material';
+import { BudgetDetailsComponent } from './budget-details/budget-details.component';
 
 export class CustomMatPaginatorIntl extends MatPaginatorIntl {
   itemsPerPageLabel = 'Leads por página';
@@ -24,6 +25,7 @@ export class CustomMatPaginatorIntl extends MatPaginatorIntl {
     LeadListComponent,
     ProblemBulletComponent,
     BudgetComponent,
+    BudgetDetailsComponent,
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,12 @@
+<div class="row">
+    <app-budget-details class="col-12"></app-budget-details>
+</div>
+
 <div class="row" *ngIf="idAccount">
-    <app-dashboard-card (changeFilter)="getReports()" [@detailExpand]="idAccount ? 'expanded' : 'collapsed'" *ngFor="let card of cards"
-        [title]="card.title" [bullet]="card.bullet" [name]="card.name" [data]="googleReposts" class="d-flex col-md-3 col-sm-6 col-12" [method]="card.method"
-        [observable]="card.observable" [service]="card.service"></app-dashboard-card>
+    <app-dashboard-card (changeFilter)="getReports()" [@detailExpand]="idAccount ? 'expanded' : 'collapsed'"
+        *ngFor="let card of cards" [title]="card.title" [bullet]="card.bullet" [name]="card.name" [data]="googleReposts"
+        class="d-flex col-md-3 col-sm-6 col-12" [method]="card.method" [observable]="card.observable"
+        [service]="card.service"></app-dashboard-card>
 </div>
 
 <app-budget></app-budget>
