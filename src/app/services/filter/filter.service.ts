@@ -5,6 +5,7 @@ import { Filter } from 'src/app/models';
 import * as Moment from 'moment';
 import { extendMoment, MomentRange } from 'moment-range';
 import { LeadsFilterAccountType, MinFilterAccountType } from 'src/app/modules/common/models/leads-filter-account.model';
+import { Budgetype } from 'src/app/modules/common/models/budget.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +14,22 @@ export class FilterService {
   private accountMenu: LeadsFilterAccountType[];
   private timesMenu: LeadsFilterTimesType[];
   private account: (LeadsFilterAccountType | MinFilterAccountType);
+  private budgetObj: Budgetype;
   private times: LeadsFilterTimesType;
   private moment: MomentRange;
   public filter: BehaviorSubject<Filter>;
+  public budget: BehaviorSubject<Budgetype>;
 
   constructor() {
     this.moment = extendMoment(Moment);
     this.initState();
+
     this.filter = new BehaviorSubject<Filter>({
       times: this.times,
       account: this.account
     });
+
+    this.budget = new BehaviorSubject<Budgetype>(this.budgetObj);
   }
 
   private initState(): void {
@@ -39,10 +45,20 @@ export class FilterService {
     ];
     this.times = this.timesMenu[6];
     this.accountMenu = [];
+    this.budgetObj = {
+      consumed: 0,
+      google_budget: 0,
+      moura_percent: '',
+      percentage_consumed: 0
+    };
   }
 
   private next(): void {
     this.filter.next({ times: this.times, account: this.account });
+  }
+
+  private nextBudget(): void {
+    this.budget.next(this.budgetObj);
   }
 
   public shouldCustomSearch(): boolean {
@@ -52,6 +68,11 @@ export class FilterService {
   public setFilterTime(times: LeadsFilterTimesType): void {
     this.times = times;
     this.next();
+  }
+
+  public setBudget(budget: Budgetype): void {
+    this.budgetObj = budget;
+    this.nextBudget();
   }
 
   public initFilterAccounts(accounts: LeadsFilterAccountType[]) {

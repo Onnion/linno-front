@@ -176,7 +176,7 @@ function generateMessages() {
     messages['delivery_cost'] = {
         maxlength: 'Este campo deve ter no máximo 14 dígitos.'
     };
-    messages['google_value'] = {
+    messages['google_budget'] = {
         maxlength: 'Este campo deve ter no máximo 14 dígitos.',
         required: nameValidations.message.required
     };
@@ -225,7 +225,7 @@ function generateValidations() {
     validations['delivery_cost'] = {
         maxlength: 14
     };
-    validations['google_value'] = {
+    validations['google_budget'] = {
         maxlength: 14,
         required: nameValidations.validations.required
     };
@@ -320,7 +320,7 @@ function generateDataEdit() {
         change_oil: 'Faz Troca de Óleo',
         google_key_words: 'Palavras Chave',
         campaign_duration: 'Duração da Campanha',
-        google_value: 'Valor investido por mês no Google',
+        google_budget: 'Valor investido por mês no Google',
         moura_percent: 'Percentual da mídia google a ser pago mensalmente pela Moura e Distribuidor',
     };
 
