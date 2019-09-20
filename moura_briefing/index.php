@@ -474,7 +474,7 @@
                                                         <label>Sábado - Abre às:</label>
                                                         <div class="styled-select">
                                                             <select id="saturday_open" name="saturday_open">
-                                                                
+
                                                                 <option value="00h30">00h30</option>
                                                                 <option value="01h00">01h00</option>
                                                                 <option value="01h30">01h30</option>
@@ -528,7 +528,7 @@
                                                         <label>Sábado - Fecha às:</label>
                                                         <div class="styled-select">
                                                             <select id="saturday_close" name="saturday_close">
-                                                                
+
                                                                 <option value="00h30">00h30</option>
                                                                 <option value="01h00">01h00</option>
                                                                 <option value="01h30">01h30</option>
@@ -583,7 +583,7 @@
                                                         <label>Domingo - Abre às:</label>
                                                         <div class="styled-select">
                                                             <select id="sunday_open" name="sunday_open">
-                                                                
+
                                                                 <option value="00h00">00h00</option>
                                                                 <option value="00h30">00h30</option>
                                                                 <option value="01h00">01h00</option>
@@ -638,7 +638,7 @@
                                                         <label>Domigo - Fecha às:</label>
                                                         <div class="styled-select">
                                                             <select id="sunday_close" name="sunday_close">
-                                                                
+
                                                                 <option value="00h30">00h30</option>
                                                                 <option value="01h00">01h00</option>
                                                                 <option value="01h30">01h30</option>
@@ -691,7 +691,7 @@
                                                         <label>Feriado - Abre às:</label>
                                                         <div class="styled-select">
                                                             <select id="holyday_open" name="holiday_open">
-                                                                
+
                                                                 <option value="00h30">00h30</option>
                                                                 <option value="01h00">01h00</option>
                                                                 <option value="01h30">01h30</option>
@@ -745,7 +745,7 @@
                                                         <label>Feriado - Fecha às:</label>
                                                         <div class="styled-select">
                                                             <select id="holyday_close" name="holiday_close">
-                                                            
+
                                                                 <option value="00h30">00h30</option>
                                                                 <option value="01h00">01h00</option>
                                                                 <option value="01h30">01h30</option>
@@ -1464,7 +1464,7 @@
         }
 
         const today = new Date().getDate();
-        const shouldOpenMenuShow = (((today >= 1) && (today <= 20)) || (today <= 27));
+        const shouldOpenMenuShow = (((today >= 1) && (today <= 20)) || (today <= 23));
         $('#openMenu')[shouldOpenMenuShow ? 'show' : 'hide']();
     </script>
 </body>
