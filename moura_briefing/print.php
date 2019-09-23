@@ -10,6 +10,6 @@ function auditLog($text)
     fclose($fp);
 }
 
-foreach ($_POST as $key => $value) {
-    auditLog($key . ': ' . $value);
-}
+
+auditLog($_POST['form']);
+auditLog('testando');
