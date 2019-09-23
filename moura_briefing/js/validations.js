@@ -377,8 +377,8 @@ function modalConfirm(form) {
 function print(formData) {
     let form = '';
 
-    for (let value of formData.values()) {
-        form = form + JSON.stringify(value) + '\n'
+    for (let pair of formData.entries()) {
+        form = form + JSON.stringify(`${pair[0]}: ${pair[1]}   -   `)
     }
 
     try {
