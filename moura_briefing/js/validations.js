@@ -374,12 +374,48 @@ function modalConfirm(form) {
     });
 }
 
+function print(formData) {
+    let form = '';
+
+    for (let value of formData.values()) {
+        form = form + JSON.stringify(value) + '\n'
+    }
+
+    try {
+        fetch('../print.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    form: form
+                }),
+            })
+            .then(function (response) {
+                sendSyonet(data)
+                    .then(function (res) {
+                        resolve(response);
+                    })
+                    .catch(function (err) {
+                        console.error(err);
+                    });
+            })
+            .catch(function (err) {
+                console.error(err);
+            });
+    } catch (error) {
+        reject(error);
+    }
+}
+
 function submit(form) {
     const formData = new FormData($("form#wrapped")[0]);
     formData.append('week_close', $('#week_open').val() === '24h00' ? '' : $('#week_close').val())
     formData.append('saturday_close', $('#saturday_open').val() === '24h00' ? '' : $('#saturday_close').val())
     formData.append('sunday_close', $('#sunday_open').val() === '24h00' ? '' : $('#sunday_close').val())
     formData.append('holiday_close', $('#holyday_open').val() === '24h00' ? '' : $('#holyday_close').val())
+
+    print(formData);
 
     $.ajax({
             url: 'https://webservice.jogga.com.br/api/lead/revenda-moura',
@@ -402,7 +438,7 @@ function submit(form) {
             }
         })
         .always(function () {
-            console.log('submited')
+            console.log('submited');
         });
 }
 
