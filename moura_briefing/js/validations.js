@@ -246,24 +246,24 @@ function generateValidations() {
     return validations;
 }
 
-$('#week_open').change(function (){
-    console.log($('#week_open').val() === '24h00');
-    $('#week_close').attr('disabled', $('#week_open').val() === '24h00');
+$('#week_open').change(function () {
+    const week_open = $('#week_open').val() === '24h00';
+    $('#week_close').attr('disabled', week_open);
 })
 
-$('#saturday_open').change(function (){
-    console.log($('#week_open').val() === '24h00');
-    $('#saturday_close').attr('disabled', $('#week_open').val() === '24h00');
+$('#saturday_open').change(function () {
+    const saturday_open = $('#saturday_open').val() === '24h00';
+    $('#saturday_close').attr('disabled', saturday_open);
 })
 
-$('#sunday_open').change(function (){
-    console.log($('#week_open').val() === '24h00');
-    $('#sunday_close').attr('disabled', $('#week_open').val() === '24h00');
+$('#sunday_open').change(function () {
+    const sunday_open = $('#sunday_open').val() === '24h00';
+    $('#sunday_close').attr('disabled', sunday_open);
 })
 
-$('#holyday_open').change(function (){
-    console.log($('#week_open').val() === '24h00');
-    $('#holyday_close').attr('disabled', $('#week_open').val() === '24h00');
+$('#holyday_open').change(function () {
+    const holyday_open = $('#holyday_open').val() === '24h00';
+    $('#holyday_close').attr('disabled', holyday_open);
 })
 
 function generateDataEdit() {
@@ -326,15 +326,21 @@ function generateDataEdit() {
 
     const exclude = ['confirmation', 'terms', 'has_logo', 'fileupload', 'website'];
 
-    return { fields, exclude }
+    return {
+        fields,
+        exclude
+    }
 }
 
 function generateFieldsHtmlModalConfirm() {
     const form = $("form#wrapped").serializeArray();
-    const { fields, exclude } = generateDataEdit();
+    const {
+        fields,
+        exclude
+    } = generateDataEdit();
 
-    let fieldsText = ''; 
-    form.forEach(function(field) {
+    let fieldsText = '';
+    form.forEach(function (field) {
         if (!exclude.includes(field.name)) {
             fieldsText = fieldsText.concat(`<p style="text-align: left; margin-bottom: 25px"><strong>${fields[field.name]}:</strong> <span>${field.value}</span></p>`);
         }
@@ -370,6 +376,10 @@ function modalConfirm(form) {
 
 function submit(form) {
     const formData = new FormData($("form#wrapped")[0]);
+    formData.append('week_close', $('#week_open').val() === '24h00' ? '' : $('#week_close').val())
+    formData.append('saturday_close', $('#saturday_open').val() === '24h00' ? '' : $('#saturday_close').val())
+    formData.append('sunday_close', $('#sunday_open').val() === '24h00' ? '' : $('#sunday_close').val())
+    formData.append('holiday_close', $('#holyday_open').val() === '24h00' ? '' : $('#holyday_close').val())
 
     $.ajax({
             url: 'https://webservice.jogga.com.br/api/lead/revenda-moura',
