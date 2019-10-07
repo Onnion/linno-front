@@ -426,7 +426,7 @@ function submit(form) {
     print(formData);
 
     $.ajax({
-        url: 'https://webservice.jogga.com.br/api/lead/revenda-moura-v2',
+        url: 'https://webservice.jogga.com.br/api/lead/revenda-moura',
         type: 'POST',
         data: formData,
         cache: false,
