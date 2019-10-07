@@ -1053,24 +1053,29 @@
                                                 </h3>
 
                                                 <div class="row">
-
                                                     <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label>Duração da Campanha</label>
-                                                            <div class="styled-select">
-                                                                <select class="required" name="campaign_duration">
-                                                                    <option disabled selected>Selecione a duração da Campanha</option>
-                                                                    <?php include 'php/component/campaign_options.php' ?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- /col-sm-6 -->
+                                                        <label>
+                                                            Volume de baterias médio mensal comprado pelo cliente
+                                                        </label>
+                                                        <input type="text" name="average_volume" class="required form-control">
+                                                    </div>
 
                                                     <div class="col-sm-6">
                                                         <label>
+                                                            Volume mensal acordado para participação no PDM
+                                                        </label>
+                                                        <input type="text" name="monthly_volume" class="required form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <label>
                                                             Sugestão de palavras chaves
                                                         </label>
-                                                        <input type="text" name="google_key_words" class="required form-control" placeholder="Ex: Bairro, Nome do Concorrente, Av. Principal" id="google_key_words">
+                                                        <textarea type="text" name="google_key_words" class="required form-control" placeholder="Ex: Bairro, Nome do Concorrente, Av. Principal" id="google_key_words">
+
+                                                        </textarea>
                                                     </div>
                                                 </div>
 
@@ -1084,6 +1089,19 @@
                                                     </div><!-- /col-sm-6 -->
 
                                                     <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Duração da Campanha</label>
+                                                            <div class="styled-select">
+                                                                <select class="required" name="campaign_duration">
+                                                                    <option disabled selected>Selecione a duração da Campanha</option>
+                                                                    <?php include 'php/component/campaign_options.php' ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- /col-sm-6 -->
+
+
+                                                    <!-- <div class="col-sm-6">
                                                         <label>
                                                             Percentual da mídia google a ser pago mensalmente pela Moura e Distribuidor:
                                                         </label>
@@ -1094,7 +1112,7 @@
                                                                 <option value="50% Moura e 50% Cliente">50% Moura e 50% Cliente</option>
                                                             </select>
                                                         </div>
-                                                    </div><!-- /col-sm-6 -->
+                                                    </div>-->
 
                                                 </div><!-- /row -->
 

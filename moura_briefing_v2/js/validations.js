@@ -2,10 +2,10 @@ $(document).ready(function () {
 
     // Mascara telefone
     var maskBehavior = function (val) {
-            return val.replace(/\D/g, "").length === 11 ?
-                "(00) 00000-0000" :
-                "(00) 0000-00009";
-        },
+        return val.replace(/\D/g, "").length === 11 ?
+            "(00) 00000-0000" :
+            "(00) 0000-00009";
+    },
         options = {
             onKeyPress: function (val, e, field, options) {
                 field.mask(maskBehavior.apply({}, arguments), options);
@@ -43,7 +43,16 @@ const nameValidations = {
     }
 };
 
-const fields = [{
+const fields = [
+    {
+        field: 'average_volume',
+        onlyRequired: true
+    },
+    {
+        field: 'monthly_volume',
+        onlyRequired: true
+    },
+    {
         field: 'client_name',
         onlyRequired: false
     },
@@ -313,6 +322,8 @@ function generateDataEdit() {
         battery_type_weight: 'Automotiva Pesada',
         battery_motorcycle: 'Moto',
         battery_boat: 'Boat',
+        average_volume: 'Volume de baterias médio mensal comprado pelo cliente',
+        monthly_volume: 'Volume mensal acordado para participação no PDM',
         battery_no_break: 'No-break',
         battery_traction: 'Tracionária',
         battery_stationary: 'Estacionária',
@@ -334,10 +345,7 @@ function generateDataEdit() {
 
 function generateFieldsHtmlModalConfirm() {
     const form = $("form#wrapped").serializeArray();
-    const {
-        fields,
-        exclude
-    } = generateDataEdit();
+    const { fields, exclude } = generateDataEdit();
 
     let fieldsText = '';
     form.forEach(function (field) {
@@ -383,14 +391,14 @@ function print(formData) {
 
     try {
         fetch('../print.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    form: form
-                }),
-            })
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                form: form
+            }),
+        })
             .then(function (response) {
                 sendSyonet(data)
                     .then(function (res) {
@@ -418,25 +426,25 @@ function submit(form) {
     print(formData);
 
     $.ajax({
-            url: 'https://webservice.jogga.com.br/api/lead/revenda-moura',
-            type: 'POST',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            xhr: function () { // Custom XMLHttpRequest
-                var myXhr = $.ajaxSettings.xhr();
-                if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
-                    myXhr.upload.addEventListener('progress', function () {
-                        /* faz alguma coisa durante o progresso do upload */
-                    }, false);
-                }
-                return myXhr;
-            },
-            success: function (data) {
-                window.location = 'obrigado.html'
+        url: 'https://webservice.jogga.com.br/api/lead/revenda-moura-v2',
+        type: 'POST',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        xhr: function () { // Custom XMLHttpRequest
+            var myXhr = $.ajaxSettings.xhr();
+            if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+                myXhr.upload.addEventListener('progress', function () {
+                    /* faz alguma coisa durante o progresso do upload */
+                }, false);
             }
-        })
+            return myXhr;
+        },
+        success: function (data) {
+            window.location = 'obrigado.html'
+        }
+    })
         .always(function () {
             console.log('submited');
         });
