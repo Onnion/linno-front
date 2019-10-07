@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, UrlSegment } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthLayoutComponent } from './modules/layouts/auth/auth-layout.component';
 import { AdminLayoutComponent } from './modules/layouts/admin/admin-layout.component';
 import { AuthGuardService } from './services/auth/auth-guard.service';
 import { AclResolver } from './app.resolve';
-
-function isRoot(url: UrlSegment[]) {
-    console.log(url);
-    return url.length === 1 && url[0].path.endsWith('.html') ? ({ consumed: url }) : null;
-}
-
+import { RegisterLayoutComponent } from './modules/layouts/register/register-layout.component';
 
 const routes: Routes = [
+    {
+        path: 'cadastro',
+        component: RegisterLayoutComponent,
+    },
+
     {
         path: 'login',
         component: AuthLayoutComponent,
@@ -27,7 +27,6 @@ const routes: Routes = [
 
     {
         path: '',
-        // matcher: isRoot,
         component: AdminLayoutComponent,
         canActivate: [AuthGuardService],
         resolve: { route: AclResolver, state: AclResolver },
@@ -48,19 +47,6 @@ const routes: Routes = [
             {
                 path: '',
                 loadChildren: './modules/clients/clients.module#ClientsModule'
-            },
-        ]
-    },
-
-    {
-        path: 'teste',
-        component: AdminLayoutComponent,
-        canActivate: [AuthGuardService],
-        resolve: { route: AclResolver, state: AclResolver },
-        children: [
-            {
-                path: '',
-                loadChildren: './modules/admin/admin.module#AdminModule'
             },
         ]
     },

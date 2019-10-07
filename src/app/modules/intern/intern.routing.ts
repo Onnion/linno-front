@@ -14,11 +14,11 @@ export const InterRoutes: Routes = [
                 path: 'painel',
                 component: DashboardComponent,
             },
-            {
-                path: 'cadastro',
-                component: CampaignFormComponent,
-                data: { type: 'register' }
-            },
+            // {
+            //     path: 'cadastro',
+            //     component: CampaignFormComponent,
+            //     data: { type: 'register' }
+            // },
             {
                 path: 'ajuste​',
                 component: CampaignFormEditComponent,

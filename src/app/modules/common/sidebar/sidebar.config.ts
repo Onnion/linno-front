@@ -46,13 +46,20 @@ export const ROUTES: RouteInfo[] = [
         icontype: 'assessment',
         permission: ROLES.distributor[0]
     },
-    {
-        path: '/cadastro',
-        title: 'Cadastrar revenda',
-        type: 'link',
-        icontype: 'assignment',
-        permission: ROLES.distributor[0]
-    },
+    // {
+    //     path: '/cadastro',
+    //     title: 'Cadastrar revenda',
+    //     type: 'link',
+    //     icontype: 'assignment',
+    //     permission: ROLES.distributor[0]
+    // },
+     // {
+    //     path: '/cadastro',
+    //     title: 'Cadastrar revenda',
+    //     type: 'link',
+    //     icontype: 'assignment',
+    //     permission: ROLES.distributor[0]
+    // },
     {
         path: '/ajuste​',
         title: 'Alteração do cadastro',

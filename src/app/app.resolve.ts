@@ -42,15 +42,12 @@ export class AclResolver implements Resolve<any> {
     private matchUrl(state): any {
         let testRoute;
 
-        if (this.match(state, /^\/teste?[\D]+$/)) {
-            if (this.aclService.can(ROLES.distributor[0])) {
-                testRoute = of(true);
-            }
-        } else if (this.match(state, /^\/cadastro?[\D]+$/)) {
-            if (this.aclService.can(ROLES.distributor[0])) {
-                testRoute = of(true);
-            }
-        } else if (this.match(state, /^\/ajuste?[\D]+$/)) {
+        // if (this.match(state, /^\/cadastro?[\D]+$/)) {
+        //     if (this.aclService.can(ROLES.distributor[0])) {
+        //         testRoute = of(true);
+        //     }
+        // } else 
+        if (this.match(state, /^\/ajuste?[\D]+$/)) {
             if (this.aclService.can(ROLES.distributor[0])) {
                 testRoute = of(true);
             }
