@@ -240,7 +240,7 @@
 
                                                     <div class="col-sm-6">
                                                         <label>Whatsapp do responsável pela revenda:</label>
-                                                        <input type="text" name="client_whatsapp" class="form-control required phone_mobile" placeholder="Ex: (00) 3333-3333 ou (00) 99999-9999" id="whatsapp_clinet" size="20" maxlength="15">
+                                                        <input type="text" name="client_whatsapp" class="form-control required phone_mobile whatsapp" placeholder="Ex: (00) 99999-9999" id="whatsapp_clinet" size="20" maxlength="15">
                                                     </div>
 
                                                     <div class="col-sm-6">
