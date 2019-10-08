@@ -1073,7 +1073,7 @@
                                                         <label>
                                                             Sugestão de palavras chaves
                                                         </label>
-                                                        <textarea type="text" name="google_key_words" class="required form-control" placeholder="Ex: Bairro, Nome do Concorrente, Av. Principal" id="google_key_words">
+                                                        <textarea style="height: auto" rows="3" type="text" name="google_key_words" class="required form-control" placeholder="Ex: Bairro, Nome do Concorrente, Av. Principal" id="google_key_words">
 
                                                         </textarea>
                                                     </div>
