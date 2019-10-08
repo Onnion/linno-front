@@ -1126,7 +1126,7 @@
                                                 <div class="form-group checkbox_questions">
                                                     <input name="terms" type="checkbox" class="icheck required" value="yes">
                                                     <label>
-                                                        <a href="#" data-toggle="modal" data-target="#terms-txt">
+                                                        <a type="application/octet-stream" target="_blank" download href="https://s3-sa-east-1.amazonaws.com/jogga-bucket/uploads/moura-pdfs/Termo+de+Participa%C3%A7%C3%A3o+DISTRIBUIDOR.pdf">
                                                             Li e aceito os termos e condições
                                                         </a>
                                                     </label>
