@@ -2,9 +2,7 @@ $(document).ready(function () {
 
     // Mascara telefone
     var maskBehavior = function (val) {
-        return val.replace(/\D/g, "").length === 11 ?
-            "(00) 00000-0000" :
-            "(00) 0000-00009";
+        return val.replace(/\D/g, "").length === 11 ? "(00) 00000-0000" : "00000000009";
     },
         options = {
             onKeyPress: function (val, e, field, options) {
@@ -13,13 +11,11 @@ $(document).ready(function () {
         };
 
     $(".phone_mobile").mask(maskBehavior, options);
-
     $(".phone").mask("(00) 0000-0000");
     $(".cnpj").mask("00.000.000/0000-00", {
         reverse: true
     });
     $("#cep").mask("00000-000");
-    // $(".money").mask("R$000.000.000.000.000,00", {reverse: true});
     $(".money").maskMoney({
         prefix: 'R$ ',
         allowNegative: true,
@@ -220,7 +216,7 @@ function generateValidations() {
         required: nameValidations.validations.required
     };
     validations['phone_responsible'] = {
-        minlength: 14,
+        minlength: 10,
         required: nameValidations.validations.required
     };
     validations['client_whatsapp'] = {

@@ -190,7 +190,7 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <label>Telefone fixo ou celular do responsável pelo cadastro</label>
-                                                        <input type="text" name="phone_responsible" class="form-control required phone_mobile" id="tel" placeholder="Ex: (00) 3333-3333 ou (00) 99999-9999" id="phone_responsible" size="20">
+                                                        <input type="text" name="phone_responsible" class="form-control required phone_mobile" id="tel" placeholder="Ex: 33333333 ou (00) 99999-9999" id="phone_responsible" size="20">
                                                     </div>
                                                 </div>
                                             </div><!-- /step 1-->
