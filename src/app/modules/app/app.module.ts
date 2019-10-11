@@ -20,6 +20,17 @@ import { FabricatorService } from './services/fabricator/fabricator.service';
 import { CartComponent } from './views/cart/cart.component';
 import { HeaderBannerComponent } from './components/header-banner/header-banner.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { LoginComponent } from './views/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './services/auth/auth.service';
+import { AclService } from 'ng2-acl';
+import { AclResolver, AclRedirection } from './app.resolve';
+import { AuthGuardService } from './app.guard';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { ApplicationHttpClient, applicationHttpClientCreator } from '../common/services/Iinterceptor/interceptor.service';
+import { CartQuotesListComponent } from './components/cart-quotes-list/cart-quotes-list.component';
+import { CartQuoteComponent } from './components/cart-quote/cart-quote.component';
+import { QuoteService } from './services/quote/quote.service';
 
 @NgModule({
   declarations: [
@@ -34,15 +45,37 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     FabricatorListComponent,
     FabricatorComponent,
     CartComponent,
-    HeaderBannerComponent
+    HeaderBannerComponent,
+    LoginComponent,
+    CartQuotesListComponent,
+    CartQuoteComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     AppRoutingModule,
     LoadingModule,
-    ScrollingModule
+    ScrollingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [CategoryService, ProductService, StoreService, FabricatorService]
+  providers: [
+    CategoryService,
+    ProductService,
+    StoreService,
+    FabricatorService,
+    AuthService,
+    AclService,
+    AclResolver,
+    AclRedirection,
+    AuthGuardService,
+    QuoteService,
+    {
+      provide: ApplicationHttpClient,
+      useFactory: applicationHttpClientCreator,
+      deps: [HttpClient]
+    },
+  ]
 })
 export class AppModule { }

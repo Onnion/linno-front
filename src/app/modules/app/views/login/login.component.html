@@ -1,0 +1,44 @@
+<div style="margin-top: -55px; height: 100vh;" class="d-flex justify-content-between align-items-center flex-column">
+
+    <div class="pt-6 justify-content-center align-items-center d-flex">
+        <img src="https://api.adorable.io/avatars/123" alt="" style="width: 25%">
+    </div>
+
+    <div class="pl-3 pr-3">
+        <form [formGroup]="form" (submit)="submit()">
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" matInput placeholder="Digite seu Email">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Senha</mat-label>
+                    <input [type]="visibility !== 'visibility' ? 'text' : 'password'" formControlName="password"
+                        matInput placeholder="Digite sua Senha">
+                    <mat-icon (click)="toggleVisibility()" matSuffix>{{visibility}}</mat-icon>
+                </mat-form-field>
+
+                <ng-container *ngIf="register">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Senha</mat-label>
+                        <input type="password" formControlName="confirmPassword" matInput
+                            placeholder="Confirme sua Senha">
+                    </mat-form-field>
+                </ng-container>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <button (click)="toggleRegister()" class="btn btn-outline-default" style="flex: 1"
+                    type="button">{{!register ? 'Cadastrar' : 'Cancelar'}}</button>
+                <button class="btn" style="flex: 1; background: #256889; color: #FFFFFF" type="submit">
+                    {{!register ? 'Entrar' : 'Cadastrar'}}
+                </button>
+
+            </div>
+        </form>
+    </div>
+
+    <div class="pt-3 pb-3">
+        <a href="">{{!register ? 'Esqueci minha senha' : 'Voltar para o login'}}</a>
+    </div>
+
+</div>

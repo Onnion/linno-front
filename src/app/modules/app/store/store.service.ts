@@ -4,7 +4,7 @@ import { Category } from '../models/category.model';
 import { Product } from '../models/product.model';
 import { Fabricator } from '../models/fabricator.model';
 import { Store } from '../models/store.model';
-import { Quote } from '../models/quote.model';
+import { Quotation } from '../models/quote.model';
 
 @Injectable()
 export class StoreService {
@@ -13,7 +13,7 @@ export class StoreService {
   private _products: Product[];
   private _product: Product;
   private _fabricators: Fabricator[];
-  private _cart: Quote[];
+  private _cart: Quotation[];
   public _store: BehaviorSubject<Store>;
 
   constructor() {
@@ -56,7 +56,7 @@ export class StoreService {
     this.next();
   }
 
-  get cart(): Quote[] {
+  get cart(): Quotation[] {
     return this._cart;
   }
 
@@ -70,7 +70,7 @@ export class StoreService {
   }
 
   private next(): void {
-    
+
     this._store.next({
       categories: this._categories,
       products: this._products,
@@ -100,7 +100,7 @@ export class StoreService {
       fabricators
     })
 
-    
+
     this.next();
   }
 }

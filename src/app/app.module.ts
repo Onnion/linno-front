@@ -18,6 +18,7 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
     DeviceDetectorModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class RootModule { }
