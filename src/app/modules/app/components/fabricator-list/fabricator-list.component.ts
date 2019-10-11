@@ -45,7 +45,7 @@ export class FabricatorListComponent implements OnInit {
 
   public createQuote(): void {
     this.store.toggleInCart(this.selectedFabricators);
-    this.router.navigate(['/app']);
+    this.router.navigate(['/app/app']);
   }
 
   public selectFabricator($event: Fabricator) {

@@ -8,8 +8,9 @@
         <!-- <mat-icon class="mr-3" matSuffix>crop_free</mat-icon> -->
 
         <ng-container [ngSwitch]="cart.length.toString()">
-            <mat-icon matSuffix *ngSwitchCase="'0'" >shopping_cart</mat-icon>
-            <mat-icon matSuffix *ngSwitchDefault [matBadge]="inCart()" [routerLink]="['/app/cart/']" matBadgePosition="after">shopping_cart</mat-icon>
+            <mat-icon matSuffix *ngSwitchCase="'0'">shopping_cart</mat-icon>
+            <mat-icon matSuffix *ngSwitchDefault [matBadge]="inCart()" [routerLink]="['/app/app/cart/']"
+                matBadgePosition="after">shopping_cart</mat-icon>
         </ng-container>
 
     </div>

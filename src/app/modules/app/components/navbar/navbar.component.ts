@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from '../../store/store.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Quote } from '../../models/quote.model';
+import { Quotation } from '../../models/quote.model';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,7 @@ import { Quote } from '../../models/quote.model';
 })
 export class NavbarComponent implements OnInit {
   public title = '';
-  public cart: Quote[] = [];
+  public cart: Quotation[] = [];
 
   constructor(private store: StoreService, private router: Router, private active: ActivatedRoute) { }
 

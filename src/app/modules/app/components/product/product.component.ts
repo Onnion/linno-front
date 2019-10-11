@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { StoreService } from '../../store/store.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
@@ -13,13 +14,23 @@ export class ProductComponent implements OnInit {
   @Input() pure: boolean = false;
   @Input() index: number;
 
-  constructor(private store: StoreService, private router: Router) { }
+  public form: FormGroup;
+
+  constructor(private store: StoreService, private router: Router, private fb: FormBuilder) { }
+
+  private initFormControl(): void {
+    this.form = this.fb.group({
+      amount: [1, [Validators.required, Validators.min(1)]]
+    });
+  }
 
   public selectProduct(): void {
     this.store.product = this.product;
-    this.router.navigate([`/app/producer/`]);
+    this.router.navigate([`/app/app/producer/`]);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.initFormControl();
+  }
 
 }
