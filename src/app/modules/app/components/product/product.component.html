@@ -7,7 +7,7 @@
             <form [formGroup]="form" style="flex-basis: 100%; width: 100%;" class="mt-3">
                 <mat-form-field appearance="fill" style="width: 100%;">
                     <mat-label>Quantidade</mat-label>
-                    <input (click)="view" type="number" min="1" formControlName="amount" matInput
+                    <input (click)="view($event)" type="number" min="1" formControlName="amount" matInput
                         placeholder="Quantidade">
                     <!-- <mat-icon  matSuffix>{{visibility}}</mat-icon> -->
                     <img src="assets/icons/box.svg" alt="" style="width: 20px; position: absolute; right: 0px;">
