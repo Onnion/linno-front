@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Fabricator } from '../../models/fabricator.model';
 import { StoreService } from '../../store/store.service';
 import { Store } from '../../models/store.model';
@@ -12,6 +12,9 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./fabricator-list.component.scss']
 })
 export class FabricatorListComponent implements OnInit {
+
+  @Input() amount: number;
+
   private selectedFabricators: Fabricator[] = [];
   public fabricators: Fabricator[];
   public loading = true;
@@ -33,7 +36,7 @@ export class FabricatorListComponent implements OnInit {
     this.store._store.subscribe((store) => {
       this.handleFabricators(store);
     });
-  }
+  } e
 
   public toggleAll(): void {
     this.reselect = this.selectedAll && !this.checked;
@@ -44,7 +47,7 @@ export class FabricatorListComponent implements OnInit {
   }
 
   public createQuote(): void {
-    this.store.toggleInCart(this.selectedFabricators);
+    this.store.toggleInCart({ ...this.selectedFabricators });
     this.router.navigate(['/app/app']);
   }
 

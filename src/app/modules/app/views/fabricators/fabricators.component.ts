@@ -11,13 +11,19 @@ import { FabricatorService } from '../../services/fabricator/fabricator.service'
 })
 export class FabricatorsComponent implements OnInit {
   public product: Product;
+  public amount = 1;
 
   constructor(private store: StoreService, private fabricatorService: FabricatorService, private router: Router) { }
 
+  public changeAmount($event): void {
+    this.amount = $event;
+  }
+
   ngOnInit() {
     this.product = this.store.product;
+
     if (!(this.product)) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/app/app']);
     }
 
     this.fabricatorService.get();

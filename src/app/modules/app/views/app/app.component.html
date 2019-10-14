@@ -1,7 +1,9 @@
-<ng-container >
+<ng-container>
     <app-navbar *ngIf="shouldShowNav" [@slide]></app-navbar>
 </ng-container>
 
-<div [@routerTransition]="o.isActivated ? o.activatedRoute : ''" style="margin-top: 55px">
-    <router-outlet #o="outlet"></router-outlet>
-</div>
+<!-- <div [@routerTransition]="o.isActivated ? o.activatedRoute : ''" style="margin-top: 55px"> -->
+<!-- <router-outlet #o="outlet"></router-outlet> -->
+<!-- </div> -->
+
+<router-outlet></router-outlet>
