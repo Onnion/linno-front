@@ -24,6 +24,14 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  public view($event) {
+
+    console.log($event);
+    $event.preventDefault();
+    console.log(this.form);
+
+  }
+
   public selectProduct(): void {
     this.store.product = this.product;
     this.router.navigate([`/app/app/producer/`]);
