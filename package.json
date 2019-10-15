@@ -7,13 +7,7 @@
     "url": "https://github.com/creativetimofficial/ct-material-dashboard-pro-angular.git"
   },
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install"
+    "start": "node web.js"
   },
   "private": true,
   "dependencies": {
