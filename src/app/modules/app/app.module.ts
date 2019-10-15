@@ -29,6 +29,7 @@ import { CartQuotesListComponent } from './components/cart-quotes-list/cart-quot
 import { CartQuoteComponent } from './components/cart-quote/cart-quote.component';
 import { QuoteService } from './services/quote/quote.service';
 import { LoadingModule } from '../common/loading/loading.module';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { LoadingModule } from '../common/loading/loading.module';
     HeaderBannerComponent,
     LoginComponent,
     CartQuotesListComponent,
-    CartQuoteComponent
+    CartQuoteComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,

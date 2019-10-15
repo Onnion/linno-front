@@ -1,25 +1,26 @@
-@import './../../../../_colors.scss';
+@import "./../../../../_colors.scss";
 
 .product {
-    background: #FFF;
-    border-radius: 3px;
-    padding: 1rem;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
-    font-size: .9rem;
+  background: #fff;
+  border-radius: 3px;
+  padding: 1rem;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
 
-    span.break {
-        flex-basis: 100%;
-    }
-    button {
-        color: #FFFFFF;
-        background: $blue;
-    }
+  span.break {
+    flex-basis: 100%;
+  }
+  button {
+    color: #ffffff;
+    background: $blue;
+  }
 
-    span.category {
-        border-radius: 15px;
-        padding: 3px 13px;
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
-        background: $gold;
-        color: #FFFFFF;
-    }
+  span.category {
+    border-radius: 15px;
+    padding: 3px 13px;
+    /* box-shadow: 0px 3px 5px rgba(0,0,0,0.1); */
+    /* background: #d6a84c; */
+    border: 1px solid #d6a84c;
+    color: #d6a84c;
+  }
 }

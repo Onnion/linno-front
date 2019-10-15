@@ -1,23 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StoreService } from '../../store/store.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Quotation } from '../../models/quote.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
+  private storeSub: Subscription;
   public title = '';
   public cart: Quotation[] = [];
 
   constructor(private store: StoreService, private router: Router, private active: ActivatedRoute) { }
 
   private subscribeStore(): void {
-    this.store._store.subscribe((store) => {
+    this.storeSub = this.store._store.subscribe((store) => {
       if (store && store.cart && store.cart.length > 0) {
         this.cart = store.cart;
+      } else {
+        this.cart = [];
       }
     });
   }
@@ -49,5 +53,9 @@ export class NavbarComponent implements OnInit {
     this.setTitle();
     this.subscribeStore();
     this.routerSubscribe();
+  }
+
+  ngOnDestroy() {
+    this.storeSub.unsubscribe();
   }
 }

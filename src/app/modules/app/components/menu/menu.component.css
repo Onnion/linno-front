@@ -1,0 +1,18 @@
+.menu-bar {
+  height: 55px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  box-shadow: 0 -5px 50px -5px rgba(0, 0, 0, 0.4);
+  background: #fff;
+}
+
+.menu {
+  width: 25px;
+  transition: 0.3s all;
+}
+.menu.active {
+  width: 35px;
+  transition: 0.3s all;
+}

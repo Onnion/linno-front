@@ -15,7 +15,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.quotations = this.store.cart;
-    if (!(this.quotations)) {
+    if (!(this.quotations.length > 0)) {
       this.router.navigate(['/app/app']);
     }
   }

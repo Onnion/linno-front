@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { StoreService } from '../../store/store.service';
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ export class ProductComponent implements OnInit {
   @Input() product: Product;
   @Input() pure: boolean = false;
   @Input() index: number;
+  @Output() changeAmount: EventEmitter<number> = new EventEmitter<number>();
 
   public form: FormGroup;
 
@@ -24,14 +25,6 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  public view($event) {
-
-    console.log($event);
-    $event.preventDefault();
-    console.log(this.form);
-
-  }
-
   public selectProduct(): void {
     this.store.product = this.product;
     this.router.navigate([`/app/app/producer/`]);
@@ -39,6 +32,10 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.initFormControl();
+
+    this.form.valueChanges.subscribe(values => {
+      this.changeAmount.emit(values.amount);
+    })
   }
 
 }

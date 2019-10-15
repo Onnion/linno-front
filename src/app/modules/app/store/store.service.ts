@@ -14,6 +14,7 @@ export class StoreService {
   private _product: Product;
   private _fabricators: Fabricator[];
   private _cart: Quotation[];
+  private _orders: any[];
   public _store: BehaviorSubject<Store>;
 
   constructor() {
@@ -94,12 +95,18 @@ export class StoreService {
     );
   }
 
-  public toggleInCart(fabricators: Fabricator[]): void {
+
+  public removeFromCart(quotation: Quotation): void {
+    this._cart = this._cart.filter((quote) => quote.product.id !== quotation.product.id);
+    this.next();
+  }
+
+  public toggleInCart(fabricators: Fabricator[], amount: number = 1): void {
     this._cart = this._cart.concat({
       product: this._product,
-      fabricators
+      fabricators,
+      amount
     })
-
 
     this.next();
   }

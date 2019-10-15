@@ -2,8 +2,12 @@
     <app-navbar *ngIf="shouldShowNav"></app-navbar>
 </ng-container>
 
-<div [@routerTransition]="o.isActivated ? o.activatedRoute : ''" style="margin-top: 55px">
+<div [@routerTransition]="o.isActivated ? o.activatedRoute : ''" style="margin-top: 55px; margin-bottom: 55px;">
     <router-outlet #o="outlet"></router-outlet>
 </div>
+
+<ng-container>
+    <app-menu></app-menu>
+</ng-container>
 
 <!-- <router-outlet style="margin-top: 55px"></router-outlet> -->

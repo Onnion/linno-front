@@ -1,20 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Fabricator } from '../../models/fabricator.model';
 import { StoreService } from '../../store/store.service';
 import { Store } from '../../models/store.model';
-import * as _ from 'lodash';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { Subscription } from 'rxjs';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-fabricator-list',
   templateUrl: './fabricator-list.component.html',
   styleUrls: ['./fabricator-list.component.scss']
 })
-export class FabricatorListComponent implements OnInit {
+export class FabricatorListComponent implements OnInit, OnDestroy {
 
-  @Input() amount: number;
+  @Input() amount: number = 1;
 
+  private storeSub: Subscription;
   private selectedFabricators: Fabricator[] = [];
   public fabricators: Fabricator[];
   public loading = true;
@@ -33,10 +34,10 @@ export class FabricatorListComponent implements OnInit {
   }
 
   private subscribeStore(): void {
-    this.store._store.subscribe((store) => {
+    this.storeSub = this.store._store.subscribe((store) => {
       this.handleFabricators(store);
     });
-  } e
+  }
 
   public toggleAll(): void {
     this.reselect = this.selectedAll && !this.checked;
@@ -47,7 +48,7 @@ export class FabricatorListComponent implements OnInit {
   }
 
   public createQuote(): void {
-    this.store.toggleInCart({ ...this.selectedFabricators });
+    this.store.toggleInCart(this.selectedFabricators, this.amount);
     this.router.navigate(['/app/app']);
   }
 
@@ -59,6 +60,10 @@ export class FabricatorListComponent implements OnInit {
 
   ngOnInit() {
     this.subscribeStore();
+  }
+
+  ngOnDestroy() {
+    this.storeSub.unsubscribe();
   }
 
 }
