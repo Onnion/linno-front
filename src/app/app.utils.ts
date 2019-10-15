@@ -1,20 +1,18 @@
-export function eraseCookie(...name): any {
+import * as _ from 'lodash';
+import * as moment from 'moment';
+
+export function eraseCookie(...name): void {
     name.forEach(e => {
         document.cookie = e + '=123;max-age=0;';
     });
 }
 
-export function getObjectCookie(cname): any {
+export function getObjectCookie(cname: string): { timeLogin: number, token: { access_token: string, expires_in: number, token_type: string, refres_token: string } } {
     const cookie = getCookie(cname);
-
-    try {
-        return cookie ? JSON.parse(cookie) : undefined;
-    } catch (error) {
-        return cookie ? cookie : undefined;
-    }
+    return cookie ? JSON.parse(cookie) : undefined;
 }
 
-export function getCookie(cname): string {
+export function getCookie(cname: string): string {
     const name = cname + '=';
     const ca = document.cookie.split(';');
     for (let i = 0; i < ca.length; i++) {
@@ -29,25 +27,34 @@ export function getCookie(cname): string {
     return '';
 }
 
-export const isValidCpf = cpf_cnpj => {
+export const isValidCpf = (cpf_cnpj): boolean => {
+
     const value = (cpf_cnpj).replace(/\D/g, '');
     const tam = (value).length;
-    let statusCheck = false;
 
-    if (tam === 11 && validaCPF(value)) {
-        statusCheck = true;
+    if (!(tam === 11 || tam === 14)) {
+        return false;
+    }
+
+    // se for CPF
+    if (tam === 11) {
+        if (!validaCPF(value)) {
+            return false;
+        }
+        return true;
     }
 
     // se for CNPJ
-    if (tam === 14 && validaCNPJ(value)) {
-        statusCheck = true;
+    if (tam === 14) {
+        if (!validaCNPJ(value)) {
+            return false;
+        }
+        return true;
     }
-
-    return statusCheck;
 
 };
 
-function validaCPF(s) {
+function validaCPF(s): boolean {
     const c = s.substr(0, 9);
     const dv = s.substr(9, 2);
     let d1 = 0;
@@ -74,10 +81,7 @@ function validaCPF(s) {
         d1 = 0;
     }
 
-    if (dv.charAt(1) !== d1) {
-        return false;
-    }
-    return true;
+    return !(dv.charAt(1) !== d1);
 }
 
 function validaCNPJ(CNPJ) {
@@ -121,7 +125,35 @@ export const cleanUp = (value: string) => {
 };
 
 export const getDataUser = (): any => {
-    return getObjectCookie('moura_auth_user_data');
+    return getObjectCookie('linno_user_data');
+};
+
+export const getToken = (): { timeLogin: number, token: { access_token: string, expires_in: number, token_type: string, refres_token: string } } => {
+    return getObjectCookie('linno_token');
+};
+
+export const isLoggedIn = (): boolean => {
+
+    moment.locale('pt-br');
+
+    const tokenString: string = getCookie('linno_token') || '{}';
+    const userString: string = getCookie('linno_user_data') || '{}';
+    const token: any = JSON.parse(tokenString);
+    const user: any = JSON.parse(userString);
+
+    let result: boolean;
+
+    try {
+        if ((token && token.token && token.token.access_token) && (user && user.id)) {
+            const timeExpire = moment(parseInt(token.timeLogin, 10)).add(parseInt(token.token.expires_in, 10), 'seconds');
+            const isTokenExpired = timeExpire.isBefore(moment());
+            result = token.token.access_token != null && !isTokenExpired;
+        }
+    } catch (error) {
+        result = false;
+    }
+
+    return result;
 };
 
 export const setRedirect = (role: any): void => {

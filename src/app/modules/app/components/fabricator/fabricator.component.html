@@ -1,0 +1,17 @@
+<div [class.mt-2]="index === 0" class="fabricator d-flex align-items-center justify-content-start mb-3 ml-2 mr-2">
+    <div class="mr-2">
+        <label *ngIf="!pure" class="checkbox" (change)="selectFabricator()" [for]="'checkbox' + fabricator.id">
+            <input [checked]="checked" [id]="'checkbox' + fabricator.id" class="check"
+                [name]="'checkbox' + fabricator.id" type="checkbox">
+            <span class="box"></span>
+        </label>
+    </div>
+
+    <div class="avatar mr-2" [ngStyle]="{'background-image': 'url(' + fabricator.picture + ')'}">
+    </div>
+
+    <div class="d-flex align-items-center justify-content-start">
+        {{fabricator.name | titlecase}}
+    </div>
+
+</div>

@@ -1,0 +1,18 @@
+@import './../../../../_colors.scss';
+
+.navbar {
+  background: $blue;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: #ffffff;
+  width: 100%;
+  right: 0;
+  z-index: 9;
+  height: 55px;
+}
+
+.mat-badge-content {
+  background-color: $gold;
+  color: $blue;
+}

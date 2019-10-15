@@ -1,0 +1,17 @@
+<div class="navbar d-flex justify-content-between p--3">
+    <div class="d-flex justify-content-start" style="flex: 1">
+        <mat-icon class="mr-3" matSuffix>dehaze</mat-icon>
+        <span>{{title | uppercase}}</span>
+    </div>
+    <div class="d-flex justify-content-around" style="flex: .3">
+        <mat-icon class="mr-3" matSuffix>search</mat-icon>
+        <!-- <mat-icon class="mr-3" matSuffix>crop_free</mat-icon> -->
+
+        <ng-container [ngSwitch]="cart.length.toString()">
+            <mat-icon matSuffix *ngSwitchCase="'0'">shopping_cart</mat-icon>
+            <mat-icon matSuffix *ngSwitchDefault [matBadge]="inCart()" [routerLink]="['/app/app/cart/']"
+                matBadgePosition="after">shopping_cart</mat-icon>
+        </ng-container>
+
+    </div>
+</div>

@@ -1,11 +1,10 @@
 export const ROLES = {
-    admin: ['admin_content', 'distributor_content', 'set-bullet'],
-    distributor: ['distributor_content', 'see-bullet'],
-    client: ['client_content', 'see-bullet']
+    distributor: ['distributor_content'],
+    fabricator: ['fabricator_content']
 };
 
 export const ROLES_ACL = {
-    'distributor': { role: 'distributor', path: 'painel' },
-    'resale': { role: 'client', path: 'revenda' },
-    'admin': { role: 'admin', path: 'painel' }
+    '1': { role: 'distributor', path: 'app/app' },
+    '3': { role: 'distributor', path: 'app/app' },
+    '2': { role: 'fabricator', path: 'app/fabriactor' },
 };

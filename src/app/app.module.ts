@@ -10,8 +10,6 @@ import { MAT_DATE_LOCALE } from '@angular/material';
 import { NotifierModule } from 'angular-notifier';
 import { RouterModule } from '@angular/router';
 import { AclService } from 'ng2-acl';
-import { AclRedirection, AclResolver } from './app.resolve';
-import { LayoutsModule } from './modules/layouts/layouts.module';
 import { notifierDefaultOptions } from './helpers/consts/consts.helpers';
 import { HandlerErrorHelpers } from './helpers/handler-error/handler-error.helper';
 import { TokenInterceptor } from './helpers/interceptor/interceptor.helper';
@@ -21,7 +19,6 @@ import { FormBuilderValidators } from './validators';
     CommonModule,
     BrowserAnimationsModule,
     FormsModule,
-    LayoutsModule,
     HttpClientModule,
     MaterialModule,
     AppRoutingModule,
@@ -32,8 +29,6 @@ import { FormBuilderValidators } from './validators';
   providers: [
     FormBuilderValidators,
     AclService,
-    AclResolver,
-    AclRedirection,
     HandlerErrorHelpers,
     {
       provide: HTTP_INTERCEPTORS,

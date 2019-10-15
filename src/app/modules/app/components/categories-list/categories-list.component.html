@@ -1,0 +1,17 @@
+<div class="categories d-flex justify-content-around align-items-center">
+    <app-loading [loading]="loading"></app-loading>
+
+    <ng-container *ngIf="!loading">
+        <ng-container *ngFor="let category of categories">
+
+            <ng-container [ngSwitch]="category.icon">
+                <span class="category d-flex align-items-center justify-content-center" *ngSwitchCase="'more_horiz'">
+                    <mat-icon matSuffix>{{category.icon}}</mat-icon>
+                </span>
+                <span class="category" *ngSwitchDefault>{{category.name | titlecase}}</span>
+            </ng-container>
+
+        </ng-container>
+    </ng-container>
+
+</div>

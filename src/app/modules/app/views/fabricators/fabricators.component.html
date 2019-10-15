@@ -1,0 +1,4 @@
+<app-product *ngIf="product" index="0" (changeAmount)="changeAmount($event)" [product]="product" pure="true">
+</app-product>
+
+<app-fabricator-list [amount]="amount"></app-fabricator-list>

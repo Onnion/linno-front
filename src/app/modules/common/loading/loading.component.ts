@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-loading',
@@ -19,10 +19,13 @@ export class LoadingComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  ngOnInit() { }
+
+  ngOnInit() {
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     const loading: SimpleChange = changes.loading;
     this.display = !loading.currentValue ? 'none' : 'flex';
   }
+
 }
