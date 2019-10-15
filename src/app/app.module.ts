@@ -14,6 +14,7 @@ import { notifierDefaultOptions } from './helpers/consts/consts.helpers';
 import { HandlerErrorHelpers } from './helpers/handler-error/handler-error.helper';
 import { TokenInterceptor } from './helpers/interceptor/interceptor.helper';
 import { FormBuilderValidators } from './validators';
+import { MaskDirective } from './helpers/directives/mask/mask.directive';
 @NgModule({
   imports: [
     CommonModule,
@@ -25,7 +26,7 @@ import { FormBuilderValidators } from './validators';
     RouterModule,
     NotifierModule.withConfig(notifierDefaultOptions),
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, MaskDirective],
   providers: [
     FormBuilderValidators,
     AclService,
