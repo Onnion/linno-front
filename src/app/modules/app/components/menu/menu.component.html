@@ -6,10 +6,10 @@
       [routerLink]="['/app/app']" src="assets/icons/home.svg" alt="">
 
     <ng-container [ngSwitch]="orders.length.toString()">
-      <div *ngSwitchCase="'0'">
+      <!-- <div *ngSwitchCase="'0'">
         <img class="menu" width="25px" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
           [routerLink]="['/app/orders']" src="assets/icons/list.svg" alt="">
-      </div>
+      </div> -->
 
       <div *ngSwitchDefault matBadge="4">
         <img class="menu" width="25px" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"

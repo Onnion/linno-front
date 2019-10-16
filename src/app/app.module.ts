@@ -7,10 +7,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { MaterialModule } from './mat.module';
 import { MAT_DATE_LOCALE } from '@angular/material';
-import { NotifierModule } from 'angular-notifier';
+// import { NotifierModule } from 'angular-notifier';
 import { RouterModule } from '@angular/router';
 import { AclService } from 'ng2-acl';
-import { notifierDefaultOptions } from './helpers/consts/consts.helpers';
+// import { notifierDefaultOptions } from './helpers/consts/consts.helpers';
 import { HandlerErrorHelpers } from './helpers/handler-error/handler-error.helper';
 import { TokenInterceptor } from './helpers/interceptor/interceptor.helper';
 import { FormBuilderValidators } from './validators';
@@ -25,7 +25,7 @@ import { LongPress } from './helpers/directives/press/press.directive';
     MaterialModule,
     AppRoutingModule,
     RouterModule,
-    NotifierModule.withConfig(notifierDefaultOptions),
+    // NotifierModule.withConfig(notifierDefaultOptions),
   ],
   declarations: [AppComponent, MaskDirective, LongPress],
   providers: [
