@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   public form: FormGroup;
   public register = false;
   public visibility: 'visibility_off' | 'visibility' = 'visibility'
+  public loading = false;
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
   }
@@ -26,9 +27,13 @@ export class LoginComponent implements OnInit {
   }
 
   public submit(): void {
+    this.loading = true;
     if (this.form.valid) {
       this.auth.handleLogin(this.form.value).subscribe(
-        () => this.router.navigate(['/app/app']),
+        () => {
+          this.loading = false;
+          this.router.navigate(['/app/app'])
+        },
         () => alert('num foi :(')
       );
     }

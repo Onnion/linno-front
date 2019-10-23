@@ -1,12 +1,13 @@
-<ng-container>
-    <app-navbar *ngIf="shouldShowNav"></app-navbar>
+<ng-container *ngIf="shouldShowFixeds && shouldShowNav">
+    <app-navbar></app-navbar>
 </ng-container>
 
-<div [@routerTransition]="o.isActivated ? o.activatedRoute : ''" style="margin-top: 55px; margin-bottom: 55px;">
+<div [ngStyle]="{'min-height': getHeight(), 'margin-top': shouldShowNav ? '55px' : '0px'}" [@routerTransition]="o.isActivated ? o.activatedRoute : ''"
+    style="margin-bottom: 55px;">
     <router-outlet #o="outlet"></router-outlet>
 </div>
 
-<ng-container>
+<ng-container *ngIf="shouldShowFixeds">
     <app-menu></app-menu>
 </ng-container>
 

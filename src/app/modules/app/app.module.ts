@@ -30,6 +30,9 @@ import { CartQuoteComponent } from './components/cart-quote/cart-quote.component
 import { QuoteService } from './services/quote/quote.service';
 import { LoadingModule } from '../common/loading/loading.module';
 import { MenuComponent } from './components/menu/menu.component';
+import { OrdersComponent } from './views/orders/orders.component';
+import { UserComponent } from './views/user/user.component';
+// import { ActivatedRouteSnapshot } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,9 @@ import { MenuComponent } from './components/menu/menu.component';
     LoginComponent,
     CartQuotesListComponent,
     CartQuoteComponent,
-    MenuComponent
+    MenuComponent,
+    OrdersComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
@@ -69,7 +74,8 @@ import { MenuComponent } from './components/menu/menu.component';
     AclResolver,
     AclRedirection,
     AuthGuardService,
-    QuoteService
+    QuoteService,
+    // ActivatedRouteSnapshot
   ]
 })
 export class AppAppModule { }

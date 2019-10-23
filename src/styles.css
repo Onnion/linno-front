@@ -16,6 +16,12 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+
+.menu-bar .mat-badge-content {
+    color: #FFF !important;
+    background: #97161f !important;
+}
+
 .mat-badge-content {
     color: #256889;
     background: #d6a84c;

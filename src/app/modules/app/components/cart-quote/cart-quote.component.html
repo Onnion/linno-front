@@ -2,9 +2,17 @@
 
     <div class="quotation mt-2 mb-3 ml-2 mr-2">
 
-        <div class="d-flex justify-content-end align-items-center">
-            <span (click)="remove()" class="d-flex justify-content-center align-items-center remove">x</span>
-        </div>
+        <ng-container [ngSwitch]="cart.toString()">
+            <div class="d-flex justify-content-end align-items-center" *ngSwitchCase="'true'">
+                <span (click)="remove()" class="d-flex justify-content-center align-items-center remove">excluir</span>
+            </div>
+
+            <div class="d-flex justify-content-end align-items-center" *ngSwitchDefault>
+                <span (click)="remove()" [ngClass]="status"
+                    class="d-flex justify-content-center align-items-center status">excluir</span>
+            </div>
+
+        </ng-container>
 
         <div class="d-flex justify-content-between align-items-center">
             <div style="flex: 70%" class="d-flex align-items-start">

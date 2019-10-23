@@ -1,19 +1,18 @@
 <ng-container>
   <div class="menu-bar d-flex justify-content-around align-items-center">
     <img class="menu" width="25px" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-      [routerLink]="['/app/profile']" src="assets/icons/avatar.svg" alt="">
+      [routerLink]="['/app/user']" src="assets/icons/avatar.svg" alt="">
     <img class="menu" width="25px" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
       [routerLink]="['/app/app']" src="assets/icons/home.svg" alt="">
 
     <ng-container [ngSwitch]="orders.length.toString()">
-      <!-- <div *ngSwitchCase="'0'">
-        <img class="menu" width="25px" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-          [routerLink]="['/app/orders']" src="assets/icons/list.svg" alt="">
-      </div> -->
+      <div *ngSwitchCase="'0'">
+        <img class="menu" width="25px" routerLinkActive="active" src="assets/icons/list.svg" alt="">
+      </div>
 
-      <div *ngSwitchDefault matBadge="4">
+      <div *ngSwitchDefault [matBadge]="orders.length">
         <img class="menu" width="25px" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-          [routerLink]="['/app/orders']" src="assets/icons/list.svg" alt="">
+          [routerLink]="['/app/app/orders']" src="assets/icons/list.svg" alt="">
       </div>
     </ng-container>
 

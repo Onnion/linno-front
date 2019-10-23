@@ -8,4 +8,5 @@ export interface Store {
   readonly products: Product[];
   readonly fabricators: Fabricator[];
   readonly cart: Quotation[];
+  readonly orders: Quotation[];
 }

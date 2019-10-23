@@ -12,6 +12,7 @@ import { Fabricator } from '../../models/fabricator.model';
 export class CartQuoteComponent implements OnInit {
 
   @Input() quotation: Quotation;
+  @Input() cart: boolean;
 
   constructor(private storeService: StoreService, private _snackBar: MatSnackBar) { }
 

@@ -1,0 +1,26 @@
+<div class="bar"></div>
+
+<ng-container>
+
+  <div class="m-3 photo" [ngStyle]="{'background-image': 'url(https://api.adorable.io/avatars/1)'}">
+  </div>
+
+  <div class="px-3">
+    <span class="d-block">
+      {{user.name}}
+    </span>
+    <small>{{user.email}}</small>
+  </div>
+</ng-container>
+
+<div class="separator"> separador</div>
+
+<ng-container>
+  <div class="menus">
+    <div (click)="logout()" class="d-flex menu p-2 logout justify-content-between align-items-center"
+      *ngFor="let menu of menus">
+      <mat-icon class="menu_icon mr-5" matSuffix>{{menu.icon}}</mat-icon>
+      <span class="menu_name">{{menu.name | titlecase}}</span>
+    </div>
+  </div>
+</ng-container>

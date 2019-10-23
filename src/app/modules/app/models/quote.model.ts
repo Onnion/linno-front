@@ -5,4 +5,5 @@ export interface Quotation {
     readonly product: Product;
     readonly fabricators: Fabricator[];
     readonly amount?: number;
+    readonly status?: string;
 }

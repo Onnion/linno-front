@@ -1,20 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NavigationStart, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { StoreService } from '../../store/store.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy {
+  private storeSub: Subscription;
   public orders = [];
 
-  constructor(private _snackBar: MatSnackBar, private router: Router) { }
+  constructor(private _snackBar: MatSnackBar, private store: StoreService, private router: Router) { }
 
   public showName(title: string): void {
     this._snackBar.open(title, '', {
       duration: 2000,
+    });
+  }
+
+  private subscribeStore(): void {
+    this.storeSub = this.store._store.subscribe((store) => {
+      if (store && store.orders && store.orders.length > 0) {
+        this.orders = store.orders;
+      } else {
+        this.orders = [];
+      }
     });
   }
 
@@ -32,7 +45,11 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.subscribeStore();
     this.handleRouterChange();
   }
 
+  ngOnDestroy() {
+    this.storeSub.unsubscribe();
+  }
 }

@@ -14,7 +14,7 @@ export class StoreService {
   private _product: Product;
   private _fabricators: Fabricator[];
   private _cart: Quotation[];
-  private _orders: any[];
+  private _orders: Quotation[];
   public _store: BehaviorSubject<Store>;
 
   constructor() {
@@ -61,6 +61,16 @@ export class StoreService {
     return this._cart;
   }
 
+  get orders(): Quotation[] {
+    return this._orders;
+  }
+
+  set orders(orders: Quotation[]) {
+    this._orders = orders;
+    this.cleanCart();
+    this.next();
+  }
+
   get category(): Category {
     return this._category;
   }
@@ -71,17 +81,18 @@ export class StoreService {
   }
 
   private next(): void {
-
     this._store.next({
       categories: this._categories,
       products: this._products,
       fabricators: this._fabricators,
-      cart: this._cart
+      cart: this._cart,
+      orders: this._orders
     });
   }
 
   private initState(): void {
     this._cart = [];
+    this._orders = [];
     this._products = [];
     this._categories = [];
     this._fabricators = [];
@@ -90,7 +101,8 @@ export class StoreService {
         categories: [],
         products: [],
         fabricators: [],
-        cart: []
+        cart: [],
+        orders: []
       }
     );
   }
@@ -99,6 +111,10 @@ export class StoreService {
   public removeFromCart(quotation: Quotation): void {
     this._cart = this._cart.filter((quote) => quote.product.id !== quotation.product.id);
     this.next();
+  }
+
+  public cleanCart(): void {
+    this._cart = []
   }
 
   public toggleInCart(fabricators: Fabricator[], amount: number = 1): void {
