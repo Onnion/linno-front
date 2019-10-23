@@ -1,8 +1,7 @@
 export const environment = {
   production: true,
-  AUTH_URL: 'https://webservice.jogga.com.br',
+  AUTH_URL: 'http://apilinno.impactadigital.in',
   GRANT_TYPE: 'password',
-  CLIENT_SECRET: 'FFEjh1rEewi27Zy2D7drXtD03Pw0i0TVOPPxf51U',
-  CLIENT_ID: 2,
-  API_CEP: ''
+  CLIENT_SECRET: 'dHcUGA83DshjbUtwZPgNUQwVAH3Z0cKEpDyhFtBb',
+  CLIENT_ID: 2
 };
