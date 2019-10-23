@@ -65,7 +65,7 @@ export class AuthService {
   }
 
   private getUserAuthenticated(): Observable<any> {
-    return this.http.get(`${environment.AUTH_URL}/api/users/authenticated`);
+    return this.http.get(`${environment.AUTH_URL}/api/user/authenticated`);
   }
 
   private createUserData(user: string): void {

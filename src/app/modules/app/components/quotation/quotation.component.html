@@ -1,0 +1,42 @@
+<div class="quotation" [class.accept]="accept" [class.refuse]="refuse">
+  <div class="d-flex justify-content-between align-items-center p-2" style="margin-right: -50px;">
+    <span>
+      {{count_down}}
+    </span>
+    <span class="d-flex justify-content-center align-items-center status progress">
+      Em negociação
+    </span>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center">
+    <div style="flex: 70%" class="d-flex align-items-start">
+      <span class="break"> {{quotation.product.name | titlecase}} </span>
+    </div>
+
+    <div style="flex: 30%" class="d-flex justify-content-end align-items-center">
+      <span style="font-size: 2rem; font-weight: 500;">{{quotation.amount}}</span>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center pt-2">
+    <div>
+      <div class="avatar mr-2" (click)="showFabricator(quotation.fabricator)"
+        [ngStyle]="{'background-image': 'url(' + quotation.fabricator.picture + ')'}">
+      </div>
+    </div>
+
+    <div>
+      <span class="category"> {{quotation.product.category.name | titlecase}} </span>
+    </div>
+
+  </div>
+
+  <span (click)="activeMoreOptions()" class="option d-flex justify-content-center align-items-center">
+    <mat-icon matSuffix>more_vert</mat-icon>
+  </span>
+
+
+  <span (click)="acceptAction()" class="option d-flex justify-content-center align-items-center accept">
+    <mat-icon matSuffix>thumb_up</mat-icon>
+  </span>
+</div>

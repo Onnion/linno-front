@@ -6,4 +6,7 @@ export interface Quotation {
     readonly fabricators: Fabricator[];
     readonly amount?: number;
     readonly status?: string;
+    readonly created_at?: string;
+    readonly expire_in?: string;
+
 }

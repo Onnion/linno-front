@@ -9,6 +9,7 @@ import { AuthGuardService } from './app.guard';
 import { AclResolver } from './app.resolve';
 import { OrdersComponent } from './views/orders/orders.component';
 import { UserComponent } from './views/user/user.component';
+import { QuotationsComponent } from './views/quotations/quotations.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
           { path: '', component: HomeComponent, },
           { path: 'producer', component: FabricatorsComponent, data: { get: 'product', key: 'name', store: true } },
           { path: 'cart', component: CartComponent, data: { get: 'cart', key: 'name', store: true } },
-          { path: 'orders', component: OrdersComponent, data: { get: 'order', key: 'order', store: true } }
+          { path: 'orders', component: OrdersComponent, data: { get: 'orders', key: 'orders', store: true } },
+          { path: 'quotations', component: QuotationsComponent, data: { get: 'orders', key: 'order', store: true } }
         ]
       },
       {

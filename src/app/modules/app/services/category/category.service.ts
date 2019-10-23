@@ -1,53 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Category } from '../../models/category.model';
 import { StoreService } from '../../store/store.service';
-import { delay } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class CategoryService {
-  private categories: Category[] = [
-    {
-      id: 1,
-      name: 'luva',
-      created_at: '',
-      updated_at: ''
-    },
-    {
-      id: 2,
-      name: 'seringa',
-      created_at: '',
-      updated_at: ''
-    },
-    {
-      id: 3,
-      name: 'touca',
-      created_at: '',
-      updated_at: ''
-    },
-    {
-      id: 4,
-      name: 'bata',
-      created_at: '',
-      updated_at: ''
-    },
-    {
-      id: 5,
-      name: 'agulhas',
-      created_at: '',
-      updated_at: ''
-    }
-  ]
 
-  constructor(private store: StoreService) { }
+  constructor(private store: StoreService, private http: HttpClient) { }
 
   public get(): void {
-    const categories = of(this.categories).pipe(delay(2000));
-
-    categories.subscribe(
-      (categories: Category[]) => { this.store.categories = categories},
-      (error) => console.log(error)
+    this.http.get(`${environment.AUTH_URL}/api/product-categories`).subscribe(
+      (categories_data: any) => {
+        const categories = categories_data.data;
+        this.store.categories = categories
+      }
     );
-    
   }
 }

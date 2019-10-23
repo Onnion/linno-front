@@ -1,0 +1,59 @@
+@import "./../../../../_colors.scss";
+
+.quotation {
+  width: 100%;
+  position: relative;
+  padding: 0px 60px;
+  margin: 0px 0px 20px;
+  background: #fff;
+  font-size: 0.9rem;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .option {
+    color: #9fa8cc;
+    border-right: 1px solid #ccc;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    left: 0;
+  }
+
+  .status {
+    &.progress {
+      border-radius: 15px;
+      padding: 0px 15px;
+      border: 1px solid $blue;
+      background: #ffffff;
+      color: $blue;
+      height: max-content;
+      margin: 0;
+    }
+  }
+
+  &.accept {
+    & > .accept {
+      z-index: 99;
+      color: #4cd64c;
+      // transition: width 0.4s cubic-bezier(0.57, 0.21, 0.69, 1.25);
+    }
+  }
+
+  & > .accept {
+    z-index: 9;
+    width: 50px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    left: auto;
+    bottom: 0;
+  }
+}

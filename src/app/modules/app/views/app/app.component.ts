@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../../services/category/category.service';
-import { ProductService } from '../../services/product/product.service';
 import { Router, RouterEvent, ActivationStart, ActivatedRoute } from '@angular/router';
 import { ROLES } from 'src/app/app.roles';
 import { AclService } from 'ng2-acl';
@@ -16,13 +14,14 @@ export class AppComponent implements OnInit {
   public shouldShowFixeds = true;
   public shouldShowNav = true;
 
-  constructor(private aclService: AclService, private active: ActivatedRoute, private productService: ProductService, private categoryService: CategoryService, private router: Router) { }
+  constructor(private aclService: AclService, private active: ActivatedRoute, private router: Router) { }
 
   public listener(): void {
     this.router.events.subscribe((event: RouterEvent) => {
       if (event instanceof ActivationStart) {
-        this.shouldShowFixeds = event.snapshot.routeConfig.path !== 'login';
-        this.shouldShowNav = event.snapshot.routeConfig.path !== 'user';
+        const path = event.snapshot.routeConfig.path;
+        this.shouldShowFixeds = path !== 'login';
+        this.shouldShowNav = ((path !== 'user') && (path !== 'login'));
       }
     });
   }
@@ -34,8 +33,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.aclService.setAbilities(ROLES)
     this.listener();
-    this.categoryService.get();
-    this.productService.get();
     this.shouldShowFixeds = !(this.active.snapshot.firstChild.url[0].path === 'login');
   }
 

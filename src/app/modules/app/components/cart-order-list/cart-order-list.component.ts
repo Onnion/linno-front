@@ -7,11 +7,11 @@ import { QuoteService } from '../../services/quote/quote.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-cart-quotes-list',
-  templateUrl: './cart-quotes-list.component.html',
-  styleUrls: ['./cart-quotes-list.component.scss']
+  selector: 'app-cart-order-list',
+  templateUrl: './cart-order-list.component.html',
+  styleUrls: ['./cart-order-list.component.scss']
 })
-export class CartQuotesListComponent implements OnInit, OnDestroy {
+export class CartOrderListComponent implements OnInit, OnDestroy {
 
   @Input() cart: boolean = true;
 
@@ -22,7 +22,7 @@ export class CartQuotesListComponent implements OnInit, OnDestroy {
 
   constructor(private store: StoreService, private router: Router, private quotationService: QuoteService) { }
 
-  private handleQuotes(store: Store): void {
+  private handleOrders(store: Store): void {
     if (store && store[this.cart ? 'cart' : 'orders'].length > 0) {
       this.quotations = store[this.cart ? 'cart' : 'orders'];
       this.loading = false;
@@ -33,7 +33,7 @@ export class CartQuotesListComponent implements OnInit, OnDestroy {
 
   private subscribeStore(): void {
     this.storeSub = this.store._store.subscribe((store) => {
-      this.handleQuotes(store);
+      this.handleOrders(store);
     });
   }
 

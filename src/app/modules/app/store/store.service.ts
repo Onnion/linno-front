@@ -15,6 +15,7 @@ export class StoreService {
   private _fabricators: Fabricator[];
   private _cart: Quotation[];
   private _orders: Quotation[];
+  private _orderSelected: Quotation;
   public _store: BehaviorSubject<Store>;
 
   constructor() {
@@ -63,6 +64,14 @@ export class StoreService {
 
   get orders(): Quotation[] {
     return this._orders;
+  }
+
+  get orderSelected(): Quotation {
+    return this._orderSelected;
+  }
+
+  set orderSelected(order: Quotation) {
+    this._orderSelected = order;
   }
 
   set orders(orders: Quotation[]) {

@@ -1,8 +1,0 @@
-<ng-container *ngIf="quotations && quotations.length > 0">
-    <app-cart-quote *ngFor="let quotation of quotations; let i = index;" [cart]="cart" [quotation]="quotation">
-    </app-cart-quote>
-</ng-container>
-
-<button *ngIf="showBtn" class="btn-block btn-quote pt-2 pb-2" (click)="submitQuotes()" mat-raised-button>
-    {{'Enviar Cotações' | uppercase}}
-</button>
