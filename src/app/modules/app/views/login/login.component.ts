@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   public register = false;
   public visibility: 'visibility_off' | 'visibility' = 'visibility'
   public loading = false;
+
+  @HostBinding('style.display') display = 'flex'; 
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
   }

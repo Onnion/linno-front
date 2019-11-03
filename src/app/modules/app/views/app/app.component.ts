@@ -27,13 +27,15 @@ export class AppComponent implements OnInit {
   }
 
   public getHeight(): string {
-    return `calc(100vh - ${this.shouldShowNav ? '110' : '55'}px)`
+    return `calc(100vh - ${this.shouldShowNav ? '110' : '0'}px)`
   }
 
   ngOnInit() {
     this.aclService.setAbilities(ROLES)
     this.listener();
     this.shouldShowFixeds = !(this.active.snapshot.firstChild.url[0].path === 'login');
+    this.shouldShowNav = !(this.active.snapshot.firstChild.url[0].path === 'login');
+
   }
 
 }

@@ -2,9 +2,10 @@
     <app-navbar></app-navbar>
 </ng-container>
 
-<div [ngStyle]="{'min-height': getHeight(), 'margin-top': shouldShowNav ? '55px' : '0px'}" [@routerTransition]="o.isActivated ? o.activatedRoute : ''"
-    style="margin-bottom: 55px;">
-    <router-outlet #o="outlet"></router-outlet>
+<div class="d-flex align-items-stretch" style="flex-direction: column;"
+    [ngStyle]="{'min-height': getHeight(), 'margin-bottom': shouldShowNav ? '55px' : '0px', 'margin-top': shouldShowNav ? '55px' : '0px'}"
+    [@routerTransition]="o.isActivated ? o.activatedRoute : ''">
+    <router-outlet style="width: 100%" #o="outlet"></router-outlet>
 </div>
 
 <ng-container *ngIf="shouldShowFixeds">

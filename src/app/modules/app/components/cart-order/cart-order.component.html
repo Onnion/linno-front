@@ -1,6 +1,6 @@
 <ng-container *ngIf="quotation && quotation.product && quotation.fabricators.length > 0">
 
-    <div class="quotation mt-2 mb-3 ml-2 mr-2" (click)="toQuotationList()">
+    <div class="quotation mt-2 mb-3 ml-2 mr-2" matRipple (click)="toQuotationList()" [matRippleCentered]="false" [matRippleDisabled]="false" [matRippleUnbounded]="false">
 
         <ng-container [ngSwitch]="cart.toString()">
             <div class="d-flex justify-content-end align-items-center" *ngSwitchCase="'true'">
