@@ -1,4 +1,6 @@
-<div class="d-flex align-items-center justify-content-start mb-3 ml-2 mr-2 header-frabricators">
+<div matRipple (click)="toggleAll()" [matRippleCentered]="false" [matRippleDisabled]="false"
+    [matRippleUnbounded]="false"
+    class="d-flex align-items-center justify-content-start mb-3 ml-2 mr-2 header-frabricators">
     <div class="mr-2">
         <label class="checkbox" (change)="toggleAll()" for="selectAll">
             <input id="selectAll" class="check" name="selectAll" [checked]="checked && selectedAll" type="checkbox">
@@ -17,4 +19,5 @@
 
 <button *ngIf="shouldEnableQuote && amount" class="btn-block btn-quote pt-2 pb-2" (click)="createQuote()"
     mat-raised-button>
-    {{'Criar Cotação' | uppercase}} </button>
+    {{'Criar Cotação' | uppercase}}
+</button>

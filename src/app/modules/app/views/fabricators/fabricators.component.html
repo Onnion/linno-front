@@ -1,4 +1,4 @@
-<app-product *ngIf="product" index="0" (changeAmount)="changeAmount($event)" [product]="product" pure="true">
+<app-product *ngIf="product" index="0" (changePrice)="changePrice($event)" (changeAmount)="changeAmount($event)" [product]="product" pure="true">
 </app-product>
 
-<app-fabricator-list [amount]="amount"></app-fabricator-list>
+<app-fabricator-list [price]="price" [amount]="amount"></app-fabricator-list>

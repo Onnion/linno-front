@@ -14,6 +14,7 @@ import * as _ from 'lodash';
 export class FabricatorListComponent implements OnInit, OnDestroy {
 
   @Input() amount: number = 1;
+  @Input() price: number = 0;
 
   private storeSub: Subscription;
   private selectedFabricators: Fabricator[] = [];

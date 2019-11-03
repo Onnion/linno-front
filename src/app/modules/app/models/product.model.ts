@@ -8,7 +8,7 @@ export interface Saler extends BaseRequestData {
 export interface Product extends BaseRequestData {
     readonly name: string;
     readonly picture?: string;
-    readonly price: string;
+    readonly price: number;
     readonly original_price: string;
     readonly category: Category;
     amount_in_cart?: number;

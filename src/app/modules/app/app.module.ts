@@ -35,7 +35,9 @@ import { UserComponent } from './views/user/user.component';
 import { QuotationsComponent } from './views/quotations/quotations.component';
 import { QuotationComponent } from './components/quotation/quotation.component';
 import { QuotationListComponent } from './components/quotation-list/quotation-list.component';
+import { CurrencyPipeModule } from 'src/app/helpers/pipes/currency/currency.pipe.module';
 // import { ActivatedRouteSnapshot } from '@angular/router';
+import { NgxCurrencyModule } from "ngx-currency";
 
 @NgModule({
   declarations: [
@@ -59,7 +61,7 @@ import { QuotationListComponent } from './components/quotation-list/quotation-li
     UserComponent,
     QuotationsComponent,
     QuotationComponent,
-    QuotationListComponent
+    QuotationListComponent,
   ],
   imports: [
     CommonModule,
@@ -68,7 +70,8 @@ import { QuotationListComponent } from './components/quotation-list/quotation-li
     ScrollingModule,
     FormsModule,
     ReactiveFormsModule,
-    LoadingModule
+    LoadingModule,
+    NgxCurrencyModule
   ],
   providers: [
     CategoryService,
