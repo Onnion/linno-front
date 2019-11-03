@@ -1,0 +1,95 @@
+
+/* ---------- itemBox ---------- */
+.itemBox {
+    width: 100%;
+    /* height: 260px; */
+    border-radius: 10px;
+    padding-bottom: 20px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.15), 0 8px 16px -8px rgba(0, 0, 0, 0.3);
+    transition: all 0.15s ease;
+    cursor: pointer;
+  }
+  .itemBox:hover {
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.3), 0 8px 16px -8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px);
+  }
+  .itemBox .itemBoxImage {
+    width: 100%;
+    height: 186px;
+    position: relative;
+  }
+  .itemBox .itemBoxImage .back-status {
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    background-image: linear-gradient(transparent, #FFFFFF);
+  }
+  .itemBox .itemBoxImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .itemBox .itemBoxContent {
+    position: relative;
+  }
+  .itemBox .itemBoxContent .itemCTA {
+    position: absolute;
+    right: 21px;
+    top: -38px;
+    display: block;
+    width: 42px;
+    height: 42px;
+    border-radius: 300px;
+    background: #fff;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    text-align: center;
+    text-decoration: none;
+    color: #1abc9c;
+    transition: all 0.3s ease;
+  }
+  .itemBox .itemBoxContent .itemCTA::after {
+    margin-left: 2px;
+    content: "";
+    font-family: FontAwesome;
+    line-height: 42px;
+  }
+  .itemBox:hover .itemBoxContent .itemCTA, 
+  .itemBox:focus .itemBoxContent .itemCTA {
+    background: #1abc9c;
+    color: #fff;
+    box-shadow: 0 2px 8px 0 rgba(26, 188, 156, 0.4);
+  }
+  .itemBox .itemBoxContent .itemCTA:hover::after, .itemBox .itemBoxContent .itemCTA:focus::after {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  .itemBox .itemBoxContent .itemTitle {
+    margin: 18px 0px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .itemBox .itemBoxFooter {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: center;
+  }
+
+  .itemBox .itemBoxFooter span{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.15s ease;
+  }
+  

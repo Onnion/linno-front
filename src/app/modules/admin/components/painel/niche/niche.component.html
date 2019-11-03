@@ -1,0 +1,43 @@
+<div *ngIf="!skeleton" class="itemBox" [routerLink]="['/painel/espacos/estoque/', contract.brand.id]">
+  <div class="itemBoxImage" lazy-load-images>
+    <img [attr.data-src]="getImage(contract.brand)" alt="">
+    <!-- <div class="back-status"></div> -->
+  </div>
+  <div class="itemBoxContent">
+    <a [routerLink]="['/painel/espacos/estoque/', contract.id]" class="itemCTA"></a>
+    <h3 class="itemTitle">{{contract.brand.name}}</h3>
+  </div>
+  <div class="itemBoxFooter mt-3 px-3">
+    <span>
+      <mat-icon>monetization_on</mat-icon> Aluguel: {{contract.value | price}}
+    </span>
+  </div>
+
+  <div class="itemBoxFooter mt-3 px-3">
+    <span>
+      <mat-icon>dashboard</mat-icon> Nicho: {{contract.niche.description}}
+    </span>
+  </div>
+  <div class="itemBoxFooter mt-3 px-3">
+    <span>
+      <mat-icon>event_available</mat-icon> Início do Contrato: {{contract.begin_contract | date:'dd/MM/yyyy'}}
+    </span>
+
+  </div>
+  <div class="itemBoxFooter mt-3 px-3">
+    <span>
+      <mat-icon>event_busy</mat-icon> Final do Contrato: {{contract.end_contract | date:'dd/MM/yyyy'}}
+    </span>
+
+  </div>
+
+  <hr class="mt-3 mb-3">
+
+  <div class="itemBoxFooter px-3">
+    <span>
+      <mat-icon>monetization_on</mat-icon> Vendas: {{contract.sales | price}}
+    </span>
+
+  </div>
+
+</div>

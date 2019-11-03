@@ -1,0 +1,16 @@
+<div class="card bg-gradient-default shadow">
+    <div class="card-header bg-transparent">
+      <div class="row align-items-center">
+        <div class="col">
+          <h2 class="text-white mb-0">Vendas Diárias</h2>
+          <h6 class="text-uppercase text-light ls-1 mb-1">
+            <mat-icon>refresh</mat-icon> Atualizado {{lastUpdate}}
+          </h6>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <canvas *ngIf="showChart" id="canvas">{{ chart }}</canvas>
+      <h6 *ngIf="!showChart" class="text-uppercase text-center text-light ls-1 mb-1">NENHUMA VENDA CADASTRADA</h6>
+    </div>
+  </div>

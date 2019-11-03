@@ -1,0 +1,25 @@
+<div modal>
+  <div class="container">
+    <div class="row" style="justify-content: center; display: flex; min-height: 250px;">
+      <div class="col-md-6">
+        <mat-card [@fade]>
+          <app-loading [loading]=loading></app-loading>
+          <div class="row">
+            <div class="col-md-12">
+              <h3 style="margin: 20px auto;">{{title}}</h3>
+              <h4 style="margin: 20px auto;">{{subtitle}}</h4>
+            </div>
+          </div>
+          <div class="row" style="margin: 20px auto;">
+            <div class="col-6 text-center">
+              <button [disabled]="loading" class="btn btn-outline-default" (click)="click('cancel')">{{cancelTitle}}</button>
+            </div>
+            <div class="col-6 text-center">
+              <button [disabled]="loading" class="btn btn-warning" color="warn" (click)="click('confirm')">{{confirmTitle}}</button>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

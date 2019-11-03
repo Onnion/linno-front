@@ -1,0 +1,109 @@
+<!-- Header -->
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url('../../../../assets/img/bg.png'); background-size: 100%; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-default opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Olá {{user.name}}</h1>
+        <p class="text-white mt-0 mb-5">Este é seu perfil. Aqui você pode visualizar e alterar suas informações
+          pessoais.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page content -->
+<div class="container-fluid mt--7 mb-5">
+  <div class="row">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Meus dados</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="form" (submit)="submit()">
+            <h6 class="heading-small text-muted mb-4">Informações pessoais</h6>
+            <div class="pl-lg-4">
+
+              <div class="row">
+
+                <div class="col-md-12 col-sm-12">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input autocomplete="off" matInput type="text" formControlName="name" name="name" placeholder="Nome">
+                    <mat-icon matSuffix>person</mat-icon>
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-md-6 col-sm-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input autocomplete="off" matInput type="text" formControlName="email" name="email" placeholder="Email">
+                    <mat-icon matSuffix>email</mat-icon>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Data de Nascimento</mat-label>
+                    <input autocomplete="off" matInput type="text" formControlName="birthdate" name="birthdate"
+                      placeholder="Data de nascimento">
+                    <mat-icon matSuffix>event</mat-icon>
+                  </mat-form-field>
+                </div>
+
+
+              </div>
+            </div>
+
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Informações de acesso</h6>
+
+            <div class="pl-lg-4">
+
+              <div class="row">
+
+                <div class="col-md-6 col-sm-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Senha</mat-label>
+                    <input autocomplete="off" matInput type="text" formControlName="password" name="password"
+                      placeholder="Senha">
+                    <mat-icon matSuffix>lock_outline</mat-icon>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Confirmar Senha</mat-label>
+                    <input autocomplete="off" matInput type="password" formControlName="confirm_password" name="confirm_password"
+                      placeholder="Confirmar Senha">
+                    <mat-icon matSuffix>lock_outline</mat-icon>
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

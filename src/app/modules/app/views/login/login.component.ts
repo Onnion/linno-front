@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '../../../common/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { isLoggedIn } from 'src/app/app.utils';
 
@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   public visibility: 'visibility_off' | 'visibility' = 'visibility'
   public loading = false;
 
-  @HostBinding('style.display') display = 'flex'; 
+  @HostBinding('style.display') display = 'flex';
+  @HostBinding('style.flex') flex = '1';
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
   }

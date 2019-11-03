@@ -132,6 +132,10 @@ export const getToken = (): { timeLogin: number, token: { access_token: string, 
     return getObjectCookie('linno_token');
 };
 
+export const transformCurrency = (value: string) => {
+    return parseFloat(parseFloat(value.toString().replace(/[\$\R]/g, '').replace(',', '.')).toFixed(2));
+};
+
 export const isLoggedIn = (): boolean => {
 
     moment.locale('pt-br');

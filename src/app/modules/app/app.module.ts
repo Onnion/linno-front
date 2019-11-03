@@ -21,7 +21,7 @@ import { HeaderBannerComponent } from './components/header-banner/header-banner.
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { LoginComponent } from './views/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from './services/auth/auth.service';
+import { AuthService } from '../common/services/auth/auth.service';
 import { AclService } from 'ng2-acl';
 import { AclResolver, AclRedirection } from './app.resolve';
 import { AuthGuardService } from './app.guard';
@@ -35,8 +35,6 @@ import { UserComponent } from './views/user/user.component';
 import { QuotationsComponent } from './views/quotations/quotations.component';
 import { QuotationComponent } from './components/quotation/quotation.component';
 import { QuotationListComponent } from './components/quotation-list/quotation-list.component';
-import { CurrencyPipeModule } from 'src/app/helpers/pipes/currency/currency.pipe.module';
-// import { ActivatedRouteSnapshot } from '@angular/router';
 import { NgxCurrencyModule } from "ngx-currency";
 
 @NgModule({

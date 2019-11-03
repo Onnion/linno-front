@@ -1,0 +1,14 @@
+<div class="container-fluid mt-9 mt-md-5">
+  <div class="row mb-5" *ngIf="contracts && contracts.length > 0" [@listNiches]="contracts.length">
+      <div *ngFor="let contract of contracts" class="col-lg-3 col-md-4 col-sm-6 col-6 mb-5">
+        <app-niche [contract]="contract"></app-niche>
+      </div>
+  </div>
+<!-- 
+  <div class="row pt-5 pb-5" *ngIf="!contracts || contracts.length <= 0">
+      <div *ngFor="let contract of [1,2,3,4]" class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-5">
+        <app-niche skeleton="true"></app-niche>
+      </div>
+  </div> -->
+
+</div>
