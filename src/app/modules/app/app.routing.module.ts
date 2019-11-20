@@ -6,7 +6,7 @@ import { FabricatorsComponent } from './views/fabricators/fabricators.component'
 import { CartComponent } from './views/cart/cart.component';
 import { LoginComponent } from './views/login/login.component';
 import { AuthGuardService } from './app.guard';
-import { AclResolver } from './app.resolve';
+import { AclResolver } from '../../app.resolve';
 import { OrdersComponent } from './views/orders/orders.component';
 import { UserComponent } from './views/user/user.component';
 import { QuotationsComponent } from './views/quotations/quotations.component';

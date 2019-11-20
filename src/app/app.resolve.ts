@@ -12,7 +12,7 @@ export class AclRedirection {
     }
 
     public redirectTo(type: string) {
-        if (type === 'Unauthorized') {
+        if (type.toUpperCase() === 'UNAUTHORIZED') {
             this.router.navigate([getRedirect() || 'login']);
         }
     }
@@ -29,17 +29,31 @@ export class AclResolver implements Resolve<any> {
         return (typeof path === 'object') ? path.test(state.url) : state.url === path;
     }
 
-    private matchUrl(state): any {
-        let testRoute;
+    private checkPermission(role: string): boolean {
+        return this.aclService.can(ROLES[role][0]);
+    }
 
-        if (this.match(state, /^\/app\/app?[\D]+$/)) {
-            if (this.aclService.can(ROLES.distributor[0])) {
-                testRoute = of(true);
-            }
-        } else if (this.match(state, /^\/app\/fabricator?[\D]+$/)) {
-            if (this.aclService.can(ROLES.fabricator[0])) {
-                testRoute = of(true);
-            }
+    private routesToCheck() {
+        return {
+            'app': () => /^\/app\/app?[\D]+$/,
+            'fabricator': () => /^\/app\/fabricator?[\D]+$/,
+            'admin': () => /^\/admin?[\D]+$/
+        }
+    }
+
+    private matchUrl(state: RouterStateSnapshot): Observable<boolean> {
+        let testRoute: Observable<boolean>;
+
+        console.log(state);
+
+        if (this.match(state, this.routesToCheck().app) && this.checkPermission('distributor')) {
+            testRoute = of(true);
+        } else if (this.match(state, this.routesToCheck().fabricator) && this.checkPermission('fabricator')) {
+            testRoute = of(true);
+
+            // ADMIN RESOLVES
+        } else if (this.match(state, this.routesToCheck().admin) && this.checkPermission('distributor')) {
+            testRoute = of(true);
         }
 
         return testRoute;

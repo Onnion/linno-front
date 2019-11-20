@@ -75,7 +75,6 @@ import { CurrencyPipeModule } from 'src/app/helpers/pipes/currency/currency.pipe
   ],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,

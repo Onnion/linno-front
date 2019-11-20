@@ -14,20 +14,17 @@ import { routerTransition } from 'src/app/helpers/animations/animations.helper';
 })
 export class AppComponent implements OnInit {
 
-
-  constructor ( private aclService: AclService, public auth: AuthService, private router: Router ) {}
-
+  constructor(private aclService: AclService, public auth: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.aclService.setAbilities(ROLES);
-
+    console.log('a');
+    // this.aclService.setAbilities(ROLES);
 
     this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd ) {
+      if (event instanceof NavigationEnd) {
         window.stop();
       }
     });
 
   }
-
 }

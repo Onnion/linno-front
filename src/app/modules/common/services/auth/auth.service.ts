@@ -26,7 +26,7 @@ export class AuthService {
     });
   }
 
-  private login({ email, password }): Observable<any> {
+  private login({ email, password, context }): Observable<any> {
     const grant_type: string = environment.GRANT_TYPE;
     const client_id: number = environment.CLIENT_ID;
     const client_secret: string = environment.CLIENT_SECRET;
@@ -37,12 +37,12 @@ export class AuthService {
       this.http.post(`${environment.AUTH_URL}/oauth/token`, loginData).subscribe(
         (res) => {
           const token: string = JSON.stringify({ token: res, timeLogin: new Date().getTime() });
-          this.createTokenData(token);
+          this.createTokenData(token, context);
           this.getUserAuthenticated().subscribe(
             ($user) => {
 
               const user = JSON.stringify($user);
-              this.createUserData(user);
+              this.createUserData(user, context);
 
               this.redirectRole();
               observer.next(this.getDataUser());
@@ -68,27 +68,24 @@ export class AuthService {
     return this.http.get(`${environment.AUTH_URL}/api/user/authenticated`);
   }
 
-  private createUserData(user: string): void {
-
-    eraseCookie('linno_user_data');
-
-    document.cookie = `linno_user_data=${user};Max-Age=21600`;
+  private createUserData(user: string, context: string): void {
+    eraseCookie(`linno_user_data${context ? `_${context}` : ''}`);
+    document.cookie = `linno_user_data${context ? `_${context}` : ''}=${user};Max-Age=21600`;
 
     const user_request = JSON.parse(user);
     const userRole = ROLES_ACL[user_request.role_id].role;
     this.aclService.attachRole(userRole);
+
     setRedirect(ROLES_ACL[user_request.role_id]);
 
   }
 
-  private createTokenData(token: string): void {
-
-    eraseCookie('linno_token');
+  private createTokenData(token: string, context: string): void {
+    eraseCookie(`linno_token${context ? `_${context}` : ''}`);
 
     const objToken: any = JSON.parse(token);
     const expires: number = (_.isObject(objToken)) ? objToken.token.expires_in : 21600;
-
-    document.cookie = `linno_token=${token};Max-Age=${expires}`;
+    document.cookie = `linno_token${context ? `_${context}` : ''}=${token};Max-Age=${expires}`;
 
   }
 

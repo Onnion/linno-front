@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   public submit() {
     if (!this.status.loading && this.form.valid) {
       this.controlStateLogin('loading');
-      const data = this.form.value;
+      const data = {...this.form.value, context: 'admin'};
       this.authService.handleLogin(data).subscribe(
         (loginUser) => {
           this.user = loginUser;

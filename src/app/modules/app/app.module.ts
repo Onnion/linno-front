@@ -23,7 +23,7 @@ import { LoginComponent } from './views/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../common/services/auth/auth.service';
 import { AclService } from 'ng2-acl';
-import { AclResolver, AclRedirection } from './app.resolve';
+import { AclResolver, AclRedirection } from '../../app.resolve';
 import { AuthGuardService } from './app.guard';
 import { CartOrderListComponent } from './components/cart-order-list/cart-order-list.component';
 import { CartOrderComponent } from './components/cart-order/cart-order.component';
