@@ -26,7 +26,7 @@ export class AclResolver implements Resolve<any> {
     }
 
     private match(state, path: any): boolean {
-        return (typeof path === 'object') ? path.test(state.url) : state.url === path;
+        return path.test(state.url);
     }
 
     private checkPermission(role: string): boolean {
@@ -35,17 +35,15 @@ export class AclResolver implements Resolve<any> {
 
     private routesToCheck() {
         return {
-            'app': () => /^\/app\/app?[\D]+$/,
-            'fabricator': () => /^\/app\/fabricator?[\D]+$/,
-            'admin': () => /^\/admin?[\D]+$/
+            'app': /^\/app\/app?[\D]+$/,
+            'fabricator': /^\/app\/fabricator?[\D]+$/,
+            'admin': /^\/admin?[\D]+$/
         }
     }
 
     private matchUrl(state: RouterStateSnapshot): Observable<boolean> {
         let testRoute: Observable<boolean>;
-
-        console.log(state);
-
+        
         if (this.match(state, this.routesToCheck().app) && this.checkPermission('distributor')) {
             testRoute = of(true);
         } else if (this.match(state, this.routesToCheck().fabricator) && this.checkPermission('fabricator')) {

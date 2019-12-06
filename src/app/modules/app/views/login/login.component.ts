@@ -32,7 +32,9 @@ export class LoginComponent implements OnInit {
   public submit(): void {
     this.loading = true;
     if (this.form.valid) {
-      this.auth.handleLogin(this.form.value).subscribe(
+      const data = {...this.form.value, context: 'app'};
+
+      this.auth.handleLogin(data).subscribe(
         () => {
           this.loading = false;
           this.router.navigate(['/app/app'])
@@ -52,9 +54,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (isLoggedIn()) {
-      this.auth.redirectRole();
-
+    if (isLoggedIn('app')) {
+      this.auth.redirectRole('app');
     }
     this.initFormControls();
   }

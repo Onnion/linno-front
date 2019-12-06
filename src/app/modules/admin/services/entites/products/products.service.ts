@@ -22,17 +22,17 @@ export class ProductsService extends CrudServices {
 
 
   public return(data: any): Observable<any> {
-    return this.http.post(`${environment.AUTH_URL}/api/product-return`, data);
+    return this.http.post(`${environment.AUTH_URL}/v1/product-return`, data);
   }
 
 
   public suply(data: any): Observable<any> {
-    return this.http.post(`${environment.AUTH_URL}/api/product-supply`, data);
+    return this.http.post(`${environment.AUTH_URL}/v1/product-supply`, data);
   }
 
 
   public getFilter(filter: any): Observable<any> {
-    return this.http.get(`${environment.AUTH_URL}/api/${this.entity}/in-stock?code=${filter}`);
+    return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/in-stock?code=${filter}`);
   }
 
 }

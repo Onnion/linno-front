@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { ComponentsModule } from './components/components.module';
 import { AdminRoutingModule } from './admin.routing.module';
 import { AclService } from 'ng2-acl';
 import { SettingsService } from './services/settings.service';
@@ -13,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { LoadingModule } from '../common/loading/loading.module';
 import { AclResolver } from 'src/app/app.resolve';
 import { AuthGuardService } from '../app/app.guard';
+import { AuthService } from '../common/services/auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,6 @@ import { AuthGuardService } from '../app/app.guard';
   imports: [
     CommonModule,
     LoadingModule,
-    ComponentsModule,
     AdminRoutingModule,
     CurrencyPipeModule
   ],
@@ -33,6 +32,7 @@ import { AuthGuardService } from '../app/app.guard';
     SettingsService,
     SellersService,
     FormBuilderValidators,
+    AuthService,
     { provide: MAT_DATE_LOCALE, useValue: 'pt-br' },
   ],
   bootstrap: [AppComponent]

@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
-    // { path: 'app', loadChildren: './modules/app/app.module#AppAppModule' },
+    { path: 'app', loadChildren: './modules/app/app.module#AppAppModule' },
     { path: 'admin', loadChildren: './modules/admin/app.module#AppAdminModule' },
-    { path: '**', redirectTo: 'admin' },
+    { path: '**', redirectTo: 'app' },
 ];
 
 @NgModule({

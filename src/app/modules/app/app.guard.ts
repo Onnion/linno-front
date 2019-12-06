@@ -9,7 +9,7 @@ export class AuthGuardService implements CanActivate {
     constructor(private authService: AuthService) { }
 
     canActivate() {
-        const loged = isLoggedIn();
+        const loged = isLoggedIn('app');
         if (!loged) { this.authService.logout() }
         return loged;
     }

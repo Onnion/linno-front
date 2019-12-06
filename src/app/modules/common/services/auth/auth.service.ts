@@ -17,7 +17,7 @@ export class AuthService {
     private aclService: AclService,
   ) { }
 
-  public handleLogin(data: { email: string, password: string, confirm_password?: string }): any {
+  public handleLogin(data: { email: string, password: string, context: ('admin' | 'app'), confirm_password?: string }): any {
     return new Observable(observer => {
       this[data.hasOwnProperty('confirm_password') ? 'register' : 'login'](data).subscribe(
         () => observer.next(true),
@@ -39,18 +39,14 @@ export class AuthService {
           const token: string = JSON.stringify({ token: res, timeLogin: new Date().getTime() });
           this.createTokenData(token, context);
           this.getUserAuthenticated().subscribe(
-            ($user) => {
-
-              const user = JSON.stringify($user);
+            ($user: any) => {
+              const user = JSON.stringify($user.data);
               this.createUserData(user, context);
-
-              this.redirectRole();
-              observer.next(this.getDataUser());
-
+              this.redirectRole(context);
+              observer.next(this.getDataUser(context));
             },
             (error: any) => {
               observer.error(error.error);
-
             });
         },
         (error) => {
@@ -60,12 +56,12 @@ export class AuthService {
 
   }
 
-  public redirectRole(): void {
-    this.router.navigate([`/${ROLES_ACL[this.getDataUser().role_id].path}`]);
+  public redirectRole(context): void {
+    this.router.navigate([`/${ROLES_ACL[this.getDataUser(context).role_id].path}`]);
   }
 
   private getUserAuthenticated(): Observable<any> {
-    return this.http.get(`${environment.AUTH_URL}/api/user/authenticated`);
+    return this.http.post(`${environment.AUTH_URL}/oauth/authenticated`, '');
   }
 
   private createUserData(user: string, context: string): void {
@@ -77,7 +73,6 @@ export class AuthService {
     this.aclService.attachRole(userRole);
 
     setRedirect(ROLES_ACL[user_request.role_id]);
-
   }
 
   private createTokenData(token: string, context: string): void {
@@ -86,11 +81,11 @@ export class AuthService {
     const objToken: any = JSON.parse(token);
     const expires: number = (_.isObject(objToken)) ? objToken.token.expires_in : 21600;
     document.cookie = `linno_token${context ? `_${context}` : ''}=${token};Max-Age=${expires}`;
-
+    localStorage.setItem('context', context);
   }
 
-  getDataUser() {
-    const user = getDataUser();
+  getDataUser(context) {
+    const user = getDataUser(context);
 
     return (_.isEmpty(user) && !_.isObject(user)) ? this.logout() : user;
   }

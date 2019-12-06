@@ -21,8 +21,8 @@ export class UsersService extends CrudServices {
    * @param cep (string)
    */
   public cepSearch (cep: string): Observable<any> {
-    // return this.http.get(`${environment.AUTH_URL}/api/${this.entity}/cep/${cep}`)
-    return this.http.get(`${environment.AUTH_URL}/api/cep/${cep}`);
+    // return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/cep/${cep}`)
+    return this.http.get(`${environment.AUTH_URL}/v1/cep/${cep}`);
   }
 
 
@@ -31,7 +31,7 @@ export class UsersService extends CrudServices {
    * @param cpf_cnpj (string)
    */
   public verifyCpfCnpj (cpf_cnpj: string): Observable<any> {
-    return this.http.get(`${environment.AUTH_URL}/api/${this.entity}/verify-register/${cpf_cnpj}`);
+    return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/verify-register/${cpf_cnpj}`);
   }
 
 
@@ -40,7 +40,7 @@ export class UsersService extends CrudServices {
    * @param email (string)
    */
   public verifyEmail (email: string): Observable<any> {
-    return this.http.get(`${environment.AUTH_URL}/api/${this.entity}/verify-email/${email}`);
+    return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/verify-email/${email}`);
   }
 
 
@@ -50,13 +50,13 @@ export class UsersService extends CrudServices {
    * @param status (number)
    */
   public updateStatus(id: number, status: number): Observable<any> {
-    return this.http.put(`${environment.AUTH_URL}/api/${this.entity}/${id}/change-status`, {status});
+    return this.http.put(`${environment.AUTH_URL}/v1/${this.entity}/${id}/change-status`, {status});
   }
 
 
   public profile() {
     return new Observable((observer) => {
-      this.http.get(`${environment.AUTH_URL}/api/${this.entity}/profile`).subscribe(
+      this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/profile`).subscribe(
         // CREATE MODEL
         (profile: any) => {
           observer.next(profile.data);

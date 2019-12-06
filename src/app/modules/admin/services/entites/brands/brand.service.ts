@@ -15,7 +15,7 @@ export class BrandService extends CrudServices {
   }
 
   getFranchises(): Observable<any> {
-    return this.http.get(`${environment.AUTH_URL}/api/franchise`);
+    return this.http.get(`${environment.AUTH_URL}/v1/franchise`);
   }
 
 }

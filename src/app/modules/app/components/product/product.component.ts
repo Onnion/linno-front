@@ -21,12 +21,13 @@ export class ProductComponent implements OnInit {
 
   private initFormControl(): void {
     this.form = this.fb.group({
-      amount: [1, [Validators.required, Validators.min(1)]],
-      price: [0, [Validators.required]]
+      amount: [1, [Validators.required, Validators.min(1)]]
+      // price: [0, [Validators.required]]
     });
   }
 
   public selectProduct(): void {
+    window.navigator.vibrate(200);
     this.store.product = this.product;
     this.router.navigate([`/app/app/producer/`]);
   }

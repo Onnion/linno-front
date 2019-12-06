@@ -28,9 +28,9 @@ export class FabricatorListComponent implements OnInit, OnDestroy {
   constructor(private store: StoreService, private router: Router) { }
 
   private handleFabricators(store: Store): void {
-    if (store && store.fabricators.length > 0) {
+    if (store && store.fabricators) {
       this.fabricators = store.fabricators;
-      this.loading = false;
+      setTimeout(() => this.loading = false, 1000);
     }
   }
 
@@ -49,6 +49,7 @@ export class FabricatorListComponent implements OnInit, OnDestroy {
   }
 
   public createQuote(): void {
+    window.navigator.vibrate(300);
     this.store.toggleInCart(this.selectedFabricators, this.amount);
     this.router.navigate(['/app/app']);
   }

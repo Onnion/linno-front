@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AclService } from 'ng2-acl';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../common/services/auth/auth.service';
-import { ROLES } from 'src/app/app.roles';
 import { routerTransition } from 'src/app/helpers/animations/animations.helper';
+import { RootComponent } from 'src/app/helpers/root-app/root-app';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +11,13 @@ import { routerTransition } from 'src/app/helpers/animations/animations.helper';
   animations: [routerTransition]
 
 })
-export class AppComponent implements OnInit {
+export class AppComponent extends RootComponent implements OnInit {
 
-  constructor(private aclService: AclService, public auth: AuthService, private router: Router) { }
+  constructor(public auth: AuthService, private router: Router) {
+    super('admin');
+  }
 
   ngOnInit() {
-    console.log('a');
-    // this.aclService.setAbilities(ROLES);
-
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         window.stop();

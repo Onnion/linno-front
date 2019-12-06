@@ -22,12 +22,12 @@ export class CrudServices {
     }
 
     public store(data): Observable<any> {
-        return this.http.post(`${environment.AUTH_URL}/api/${this.entity}`, data);
+        return this.http.post(`${environment.AUTH_URL}/v1/${this.entity}`, data);
     }
 
     public get(id: any = false): Observable<any> {
         return new Observable((observer => {
-            this.http.get(`${environment.AUTH_URL}/api/${this.entity}${id ? `/${id}` : ''}`).subscribe(
+            this.http.get(`${environment.AUTH_URL}/v1/${this.entity}${id ? `/${id}` : ''}`).subscribe(
                 (data: any) => {
                     observer.next(data.data);
                 },
@@ -39,15 +39,15 @@ export class CrudServices {
     }
 
     public delete(id: number): Observable<any> {
-        return this.http.delete(`${environment.AUTH_URL}/api/${this.entity}/${id}`);
+        return this.http.delete(`${environment.AUTH_URL}/v1/${this.entity}/${id}`);
     }
 
     public getData(options: any): Observable<any> {
         const optionsUrl = this.createOptionsUrl(options);
-        return this.http.get(`${environment.AUTH_URL}/api/${this.entity}${optionsUrl}`);
+        return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}${optionsUrl}`);
     }
 
     public update(_data: any): Observable<any> {
-        return this.http.put(`${environment.AUTH_URL}/api/${this.entity}/${_data.id}`, _data);
+        return this.http.put(`${environment.AUTH_URL}/v1/${this.entity}/${_data.id}`, _data);
     }
 }

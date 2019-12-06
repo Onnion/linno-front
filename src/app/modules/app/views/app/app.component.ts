@@ -3,6 +3,7 @@ import { Router, RouterEvent, ActivationStart, ActivatedRoute } from '@angular/r
 import { ROLES } from 'src/app/app.roles';
 import { AclService } from 'ng2-acl';
 import { routerTransition } from 'src/app/helpers/animations/animations.helper';
+import { RootComponent } from 'src/app/helpers/root-app/root-app';
 
 @Component({
   selector: 'app-app',
@@ -10,11 +11,13 @@ import { routerTransition } from 'src/app/helpers/animations/animations.helper';
   styleUrls: ['./app.component.scss'],
   animations: [routerTransition]
 })
-export class AppComponent implements OnInit {
+export class AppComponent extends RootComponent implements OnInit {
   public shouldShowFixeds = true;
   public shouldShowNav = true;
 
-  constructor(private aclService: AclService, private active: ActivatedRoute, private router: Router) { }
+  constructor(private aclService: AclService, private active: ActivatedRoute, private router: Router) {
+    super('app');
+  }
 
   public listener(): void {
     this.router.events.subscribe((event: RouterEvent) => {

@@ -8,12 +8,19 @@
         </label>
     </div>
     <span>{{'Todos os Fabricantes' | uppercase}}</span>
+    <app-loading [loading]="loading"></app-loading>
 </div>
 
 <ng-container *ngIf="fabricators && fabricators.length > 0">
     <app-fabricator *ngFor="let fabricator of fabricators; let i = index;" [all]="selectedAll"
         (select)="selectFabricator($event)" [index]="i" [reselect]="reselect" [fabricator]="fabricator">
     </app-fabricator>
+</ng-container>
+
+<ng-container *ngIf="!(fabricators && fabricators.length > 0) && !loading">
+    <div class="d-flex align-items-center justify-content-start mb-3 ml-2 mr-2 header-frabricators">
+        <h5 style="margin: 0;">Nenhum Fabricante disponível para esse produto</h5>
+    </div>
 </ng-container>
 
 

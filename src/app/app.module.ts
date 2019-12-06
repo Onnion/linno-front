@@ -15,7 +15,7 @@ import { HandlerErrorHelpers } from './helpers/handler-error/handler-error.helpe
 import { TokenInterceptor } from './helpers/interceptor/interceptor.helper';
 import { FormBuilderValidators } from './validators';
 import { MaskDirective } from './helpers/directives/mask/mask.directive';
-import { LongPress } from './helpers/directives/press/press.directive';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -27,7 +27,7 @@ import { LongPress } from './helpers/directives/press/press.directive';
     RouterModule,
     // NotifierModule.withConfig(notifierDefaultOptions),
   ],
-  declarations: [AppComponent, MaskDirective, LongPress],
+  declarations: [AppComponent, MaskDirective],
   providers: [
     FormBuilderValidators,
     AclService,

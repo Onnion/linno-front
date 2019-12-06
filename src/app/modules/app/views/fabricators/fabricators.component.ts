@@ -29,9 +29,11 @@ export class FabricatorsComponent implements OnInit {
 
     if (!(this.product)) {
       this.router.navigate(['/app/app']);
+    } else {
+      this.fabricatorService.get(this.product);
     }
 
-    this.fabricatorService.get();
+    
   }
 
 }

@@ -13,27 +13,27 @@ export class DashboardService {
 
 
   public getDashboardNiches(): Observable<any> {
-    return this.http.get(`${environment.AUTH_URL}/api/${this.entity}/niches`);
+    return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/niches`);
   }
 
 
   public getDashboardSales(): Observable<any> {
-    return this.http.get(`${environment.AUTH_URL}/api/${this.entity}/sale`);
+    return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/sale`);
   }
 
 
   public getExpireds(): Observable<any> {
-    return this.http.get(`${environment.AUTH_URL}/api/${this.entity}/contracts-expired`);
+    return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/contracts-expired`);
   }
 
 
   public getMonthRent(): Observable<any> {
-    return this.http.get(`${environment.AUTH_URL}/api/${this.entity}/month-rent`);
+    return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/month-rent`);
   }
 
 
   public getCashBalance(): Observable<any> {
-    return this.http.get(`${environment.AUTH_URL}/api/${this.entity}/cash-balance`);
+    return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/cash-balance`);
   }
 
 }

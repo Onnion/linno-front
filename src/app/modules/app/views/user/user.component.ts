@@ -18,7 +18,7 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = getDataUser();
+    this.user = getDataUser('app');
     this.menus = [
       { icon: 'reply', name: 'sair' }
     ];

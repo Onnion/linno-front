@@ -17,16 +17,14 @@ import { getToken } from 'src/app/app.utils';
 export class TokenInterceptor implements HttpInterceptor {
     protected handlerErrorHelper;
 
-
     constructor(
         // public auth: AuthService, 
         private handler: HandlerErrorHelpers) {
         this.handlerErrorHelper = handler;
     }
 
-
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token = getToken();
+        const token = getToken(localStorage.getItem('context'));
         request = request.clone({
             setHeaders: {
                 Authorization: `Bearer ${token && token.token.access_token}`

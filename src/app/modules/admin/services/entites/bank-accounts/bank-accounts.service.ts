@@ -15,7 +15,7 @@ export class BankAccountsService extends CrudServices {
 
 
   public getBanks() {
-    return this.http.get(`${environment.AUTH_URL}/api/bank`);
+    return this.http.get(`${environment.AUTH_URL}/v1/bank`);
   }
 
 }

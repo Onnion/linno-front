@@ -17,33 +17,33 @@ export class SingularService extends CrudServices {
   }
 
   public updatePassword(password: string): Observable<any> {
-    return this.http.post(`${environment.AUTH_URL}/api/${this.entity}/update`, { password });
+    return this.http.post(`${environment.AUTH_URL}/v1/${this.entity}/update`, { password });
   }
 
   public getContracts(): Observable<any> {
-    return this.http.get(`${environment.AUTH_URL}/api/${this.entity}/contracts`);
+    return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/contracts`);
   }
 
   public getDashboardSales(brand_id: number): Observable<any> {
-    return this.http.post(`${environment.AUTH_URL}/api/${this.entity}/dashboard/sale`, { brand_id });
+    return this.http.post(`${environment.AUTH_URL}/v1/${this.entity}/dashboard/sale`, { brand_id });
   }
 
   public getDashboardRent(brand_id: number): Observable<any> {
-    return this.http.post(`${environment.AUTH_URL}/api/${this.entity}/dashboard/rent`, { brand_id });
+    return this.http.post(`${environment.AUTH_URL}/v1/${this.entity}/dashboard/rent`, { brand_id });
   }
 
   public getSales(options: any): Observable<any> {
     const optionsUrl = this.createOptionsUrl(options);
-    return this.http.get(`${environment.AUTH_URL}/api/${this.entity}/sales${optionsUrl}`);
+    return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/sales${optionsUrl}`);
   }
 
   public getSalesBalance(brand_id: number): Observable<any> {
-    return this.http.post(`${environment.AUTH_URL}/api/${this.entity}/dashboard/balance`, { brand_id });
+    return this.http.post(`${environment.AUTH_URL}/v1/${this.entity}/dashboard/balance`, { brand_id });
   }
 
   public producDetail(produc_id: number): Observable<any> {
     return new Observable((observer) => {
-      this.http.get(`${environment.AUTH_URL}/api/${this.entity}/stock/product/${produc_id}`).subscribe(
+      this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/stock/product/${produc_id}`).subscribe(
         (res: any) => {
           observer.next(res.data);
         },

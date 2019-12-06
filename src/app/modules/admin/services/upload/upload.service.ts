@@ -11,8 +11,8 @@ export class UploadService {
   }
 
   public upload(file: File): Observable<any> {
-    // const url = `https://mylead2-api.herokuapp.com/api/upload?id=${1}`;
-    // const url = `https://gateway.buscaaereo.com.br/api/ops/bank-transfer/upload`;
+    // const url = `https://mylead2-api.herokuapp.com/v1/upload?id=${1}`;
+    // const url = `https://gateway.buscaaereo.com.br/v1/ops/bank-transfer/upload`;
 
     const formData = new FormData();
 

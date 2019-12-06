@@ -18,7 +18,7 @@ export class ReportsService extends CrudServices {
 
   public getReportList(options: any): Observable<any> {
     const optionsUrl = this.createOptionsUrl(options);
-    return this.http.get(`${environment.AUTH_URL}/api/${this.entity}/${options.type}${optionsUrl}`);
+    return this.http.get(`${environment.AUTH_URL}/v1/${this.entity}/${options.type}${optionsUrl}`);
   }
 
 
