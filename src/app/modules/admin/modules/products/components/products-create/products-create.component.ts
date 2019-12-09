@@ -14,9 +14,9 @@ import { FactoriesrService } from 'src/app/modules/common/services/factories/fac
 })
 export class ProductsCreateComponent implements OnInit {
   public form: FormGroup;
-  public factories: any[];
-  public brands: any[];
-  public categories: any[];
+  public factories: any;
+  public brands: any;
+  public categories: any;
   public loading = false;
 
   constructor(
@@ -35,9 +35,9 @@ export class ProductsCreateComponent implements OnInit {
       this.factoriesService.getData({ limit: 999999 })
     ).subscribe(
       (results: any[]) => {
-        this.categories = results[0];
-        this.brands = results[1];
-        this.factories = results[2];
+        this.categories = results[0].data;
+        this.brands = results[1].data;
+        this.factories = results[2].data;
         this.loading = false;
       },
       () => {
