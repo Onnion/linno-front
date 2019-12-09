@@ -14,6 +14,7 @@ import { ProductService } from 'src/app/modules/common/services/product/product.
 import { ProductsWrapperComponent } from './components/products-wrapper/products-wrapper.component';
 import { StoreService } from 'src/app/modules/app/store/store.service';
 import { FactoriesrService } from 'src/app/modules/common/services/factories/factories.service';
+import { BrandService } from 'src/app/modules/common/services/brands/brands.service';
 
 @NgModule({
   declarations: [ProductsListComponent, ProductsCreateComponent, ProductsWrapperComponent],
@@ -38,6 +39,8 @@ import { FactoriesrService } from 'src/app/modules/common/services/factories/fac
     ProductService,
     StoreService,
     FactoriesrService,
+    ProductService,
+    BrandService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
