@@ -2,17 +2,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AdminRoutingModule } from './admin.routing.module';
 import { AclService } from 'ng2-acl';
-import { SettingsService } from './services/settings.service';
-import { SellersService } from './services/sellers/sellers.service';
 import { MAT_DATE_LOCALE } from '@angular/material';
-import { HandlerErrorHelpers } from 'src/app/helpers/handler-error/handler-error.helper';
-import { FormBuilderValidators } from 'src/app/helpers/validators';
-import { CurrencyPipeModule } from 'src/app/helpers/pipes/currency/currency.pipe.module';
 import { CommonModule } from '@angular/common';
-import { LoadingModule } from '../common/loading/loading.module';
-import { AclResolver } from 'src/app/app.resolve';
-import { AuthGuardService } from '../app/app.guard';
+import { AclResolver, AclRedirection } from 'src/app/app.resolve';
 import { AuthService } from '../common/services/auth/auth.service';
+import { LoadingModule } from '../common/components/loading/loading.module';
+import { CurrencyPipeModule } from '../common/pipes/currency/currency.pipe.module';
+import { FormBuilderValidators } from '../common/validators/form-builder/form-builder.validators';
+import { AuthGuardService } from './app.guard';
 
 @NgModule({
   declarations: [
@@ -28,11 +25,10 @@ import { AuthService } from '../common/services/auth/auth.service';
     AclService,
     AclResolver,
     AuthGuardService,
-    HandlerErrorHelpers,
-    SettingsService,
-    SellersService,
     FormBuilderValidators,
     AuthService,
+    AclResolver,
+    AclRedirection,
     { provide: MAT_DATE_LOCALE, useValue: 'pt-br' },
   ],
   bootstrap: [AppComponent]

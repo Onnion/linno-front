@@ -1,12 +1,12 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { getDataUser, setRedirect, eraseCookie } from '../../../../app.utils';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { AclService } from 'ng2-acl';
 import { ROLES_ACL } from 'src/app/app.roles';
 import * as _ from 'lodash';
+import { eraseCookie, setRedirect, getDataUser } from '../cookie/cookie.service';
 
 @Injectable()
 export class AuthService {
@@ -21,7 +21,7 @@ export class AuthService {
     return new Observable(observer => {
       this[data.hasOwnProperty('confirm_password') ? 'register' : 'login'](data).subscribe(
         () => observer.next(true),
-        () => observer.error(false)
+        (error) => observer.error(error)
       );
     });
   }
@@ -30,6 +30,9 @@ export class AuthService {
     const grant_type: string = environment.GRANT_TYPE;
     const client_id: number = environment.CLIENT_ID;
     const client_secret: string = environment.CLIENT_SECRET;
+
+    localStorage.setItem('context', context);
+    eraseCookie('redirect');
 
     return new Observable((observer) => {
       const loginData = { username: email, password, grant_type, client_id, client_secret };
@@ -50,14 +53,14 @@ export class AuthService {
             });
         },
         (error) => {
-          observer.error(error.error);
+          observer.error(error);
         });
     });
 
   }
 
   public redirectRole(context): void {
-    this.router.navigate([`/${ROLES_ACL[this.getDataUser(context).role_id].path}`]);
+    this.router.navigate([`/${ROLES_ACL[this.getDataUser(context).role_id][localStorage.getItem('context')]}`]);
   }
 
   private getUserAuthenticated(): Observable<any> {
@@ -91,8 +94,9 @@ export class AuthService {
   }
 
   logout(): void {
-    eraseCookie('linno_token');
-    eraseCookie('linno_user_data');
+    const context = localStorage.getItem('context');
+    eraseCookie(`linno_token${context ? `_${context}` : ''}`);
+    eraseCookie(`linno_user_data${context ? `_${context}` : ''}`);
     this.router.navigate(['/']);
     this.aclService.flushRoles();
   }

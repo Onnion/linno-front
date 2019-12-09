@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent, ActivationStart, ActivatedRoute } from '@angular/router';
 import { ROLES } from 'src/app/app.roles';
 import { AclService } from 'ng2-acl';
-import { routerTransition } from 'src/app/helpers/animations/animations.helper';
-import { RootComponent } from 'src/app/helpers/root-app/root-app';
+import { routerTransition } from 'src/app/modules/common/animations/animations.helper';
+import { RootComponent } from 'src/app/modules/common/components/root-app/root-app';
 
 @Component({
   selector: 'app-app',

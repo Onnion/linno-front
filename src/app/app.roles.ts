@@ -4,7 +4,7 @@ export const ROLES = {
 };
 
 export const ROLES_ACL = {
-    '1': { role: 'distributor', path: 'app/app' },
-    '3': { role: 'fabricator', path: 'app/factory' },
-    '2': { role: 'distributor', path: 'app/app' }
+    '1': { role: 'distributor', app: 'app/app', admin: 'admin'},
+    '3': { role: 'fabricator', app: 'app/factory', admin: 'admin'},
+    '2': { role: 'distributor', app: 'app/app', admin: 'admin'}
 };

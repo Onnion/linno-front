@@ -49,7 +49,7 @@ export class FabricatorListComponent implements OnInit, OnDestroy {
   }
 
   public createQuote(): void {
-    window.navigator.vibrate(300);
+    window.navigator.vibrate(200);
     this.store.toggleInCart(this.selectedFabricators, this.amount);
     this.router.navigate(['/app/app']);
   }

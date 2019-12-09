@@ -1,15 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { AclResolver } from 'src/app/app.resolve';
+import { AuthGuardService } from './app.guard';
 
 const routes: Routes = [
-  {
-    path: '', children: [
-      { path: '', redirectTo: 'login' },
-      // { path: 'login', loadChildren: './modules/auth/auth.module#AuthModule' },
-      { path: 'usuarios', loadChildren: './modules/user/user.module#AdminUserModule' },
-      { path: '**', redirectTo: 'login' },
-    ]
-  }
+  { path: '', loadChildren: './modules/auth/auth.module#AuthModule' },
+  { path: 'painel', canActivate: [AuthGuardService], resolve: { route: AclResolver, state: AclResolver }, loadChildren: './modules/admin/admin.module#AdminModule' }
 ];
 
 @NgModule({

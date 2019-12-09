@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../common/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { isLoggedIn } from 'src/app/app.utils';
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
           this.loading = false;
           this.router.navigate(['/app/app'])
         },
-        () => alert('num foi :(')
+        (error) => console.log(error)
       );
     }
   }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../common/services/auth/auth.service';
-import { routerTransition } from 'src/app/helpers/animations/animations.helper';
-import { RootComponent } from 'src/app/helpers/root-app/root-app';
+import { routerTransition } from '../common/animations/animations.helper';
+import { RootComponent } from '../common/components/root-app/root-app';
 
 @Component({
   selector: 'app-root',

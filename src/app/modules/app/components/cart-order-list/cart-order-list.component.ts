@@ -3,7 +3,7 @@ import { Quotation } from '../../models/quote.model';
 import { StoreService } from '../../store/store.service';
 import { Router } from '@angular/router';
 import { Store } from '../../models/store.model';
-import { QuoteService } from '../../services/quote/quote.service';
+import { QuoteService } from '../../../common/services/quote/quote.service';
 import { Subscription } from 'rxjs';
 
 @Component({

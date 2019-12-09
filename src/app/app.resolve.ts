@@ -50,7 +50,7 @@ export class AclResolver implements Resolve<any> {
             testRoute = of(true);
 
             // ADMIN RESOLVES
-        } else if (this.match(state, this.routesToCheck().admin) && this.checkPermission('distributor')) {
+        } else if (this.match(state, this.routesToCheck().admin)) {
             testRoute = of(true);
         }
 

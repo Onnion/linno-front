@@ -22,7 +22,7 @@ export class CartOrderComponent implements OnInit {
   }
 
   public showFabricator(fabricator: Fabricator): void {
-    this._snackBar.open(fabricator.company_name, '', {
+    this._snackBar.open(fabricator.trade_name, '', {
       duration: 2000,
     });
   }

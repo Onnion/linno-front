@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
   }
 
   public selectProduct(): void {
-    window.navigator.vibrate(200);
+    window.navigator.vibrate(100);
     this.store.product = this.product;
     this.router.navigate([`/app/app/producer/`]);
   }
