@@ -30,7 +30,7 @@ export class FabricatorsComponent implements OnInit {
     if (!(this.product)) {
       this.router.navigate(['/app/app']);
     } else {
-      this.fabricatorService.get(this.product.id);
+      this.fabricatorService.getProductFactories(this.product.id);
     } 
   }
 

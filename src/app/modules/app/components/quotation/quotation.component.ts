@@ -1,8 +1,9 @@
 import { Component, OnInit, Output, Input, EventEmitter, OnDestroy } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import * as moment from 'moment';
-import { Fabricator } from '../../models/fabricator.model';
+import { Factory } from '../../models/factory.model';
 import { MatSnackBar } from '@angular/material';
+import { Quotation } from '../../models/quote.model';
 
 @Component({
   selector: 'app-quotation',
@@ -12,7 +13,7 @@ import { MatSnackBar } from '@angular/material';
 export class QuotationComponent implements OnInit, OnDestroy {
 
   @Output() acceptOrder: EventEmitter<any> = new EventEmitter<any>();
-  @Input() quotation: any;
+  @Input() quotation: Quotation;
 
   public accept = false;
   public refuse = false;
@@ -36,8 +37,8 @@ export class QuotationComponent implements OnInit, OnDestroy {
     });
   }
 
-  public showFabricator(fabricator: Fabricator): void {
-    this._snackBar.open(fabricator.trade_name, '', {
+  public showFactory(factor: Factory): void {
+    this._snackBar.open(factor.trade_name, '', {
       duration: 2000,
     });
   } u

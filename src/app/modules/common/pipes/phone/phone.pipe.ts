@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PhonePipe implements PipeTransform {
 
-  transform(phone: string, args?: any): string {
+  transform(phone: string): string {
     let formated = '';
 
     if (phone) {

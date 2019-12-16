@@ -3,6 +3,7 @@ import { StoreService } from '../../store/store.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Quotation } from '../../models/quote.model';
 import { Subscription } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public title = '';
   public cart: Quotation[] = [];
 
-  constructor(private store: StoreService, private router: Router, private active: ActivatedRoute) { }
+  constructor(private store: StoreService, private router: Router, private active: ActivatedRoute, private location: Location) { }
 
   private subscribeStore(): void {
     this.storeSub = this.store._store.subscribe((store) => {
@@ -47,6 +48,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   public inCart(): string {
     return this.cart.reduce((prev, product) => prev + 1, 0).toString();
+  }
+
+  public backRoute(): void {
+    this.location.back();
+  }
+
+  public inHome(): boolean {
+    return this.router.url !== '/app/app';
   }
 
   ngOnInit() {

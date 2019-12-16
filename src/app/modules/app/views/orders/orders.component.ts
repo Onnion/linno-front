@@ -15,6 +15,7 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
     this.orders = this.store.orders;
+    console.log(this.orders);
 
     if (this.orders.length <= 0) {
       this.router.navigate(['/app/app']);

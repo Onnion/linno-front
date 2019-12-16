@@ -3,7 +3,7 @@ import { Quotation } from '../../models/quote.model';
 import { StoreService } from '../../store/store.service';
 import { Router } from '@angular/router';
 import { Store } from '../../models/store.model';
-import { QuoteService } from '../../../common/services/quote/quote.service';
+import { QuotationService } from '../../../common/services/quotation/quotation.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -20,7 +20,7 @@ export class CartOrderListComponent implements OnInit, OnDestroy {
   public loading = true;
   public showBtn = false;
 
-  constructor(private store: StoreService, private router: Router, private quotationService: QuoteService) { }
+  constructor(private store: StoreService, private router: Router, private quotationService: QuotationService) { }
 
   private handleOrders(store: Store): void {
     if (store && store[this.cart ? 'cart' : 'orders'].length > 0) {
@@ -42,7 +42,15 @@ export class CartOrderListComponent implements OnInit, OnDestroy {
   }
 
   public submitQuotes(): void {
-    this.quotationService.create().subscribe();
+    this.loading = true
+    this.quotationService.create().subscribe(
+      quotations => {
+        this.loading = false;
+        this.router.navigate(['/app/app']);
+      },
+      error => {
+        this.loading = false
+      });
   }
 
   ngOnInit() {

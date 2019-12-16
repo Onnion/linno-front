@@ -10,7 +10,7 @@ export class CrudServices<T> {
 
     constructor() { }
 
-    protected createOptionsUrl(options: any) {
+    protected createOptionsUrl(options: {[key: string]: (number | string)}) {
         let url = '?';
 
         _.forEach(options, (value, key) => {
@@ -49,7 +49,7 @@ export class CrudServices<T> {
         });
     }
 
-    public getData(options: object): Observable<(T[] & any)> {
+    public getData(options: any): Observable<(T[] & any)> {
         const optionsUrl = this.createOptionsUrl(options);
 
         return new Observable((observer) => {

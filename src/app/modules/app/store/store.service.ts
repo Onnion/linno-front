@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Category } from '../models/category.model';
 import { Product } from '../models/product.model';
-import { Fabricator } from '../models/fabricator.model';
 import { Store } from '../models/store.model';
 import { Quotation } from '../models/quote.model';
+import { Factory } from '../models/factory.model';
 
 @Injectable()
 export class StoreService {
@@ -12,7 +12,7 @@ export class StoreService {
   private _categories: Category[];
   private _products: Product[];
   private _product: Product;
-  private _fabricators: Fabricator[];
+  private _factories: Factory[];
   private _cart: Quotation[];
   private _orders: Quotation[];
   private _orderSelected: Quotation;
@@ -22,12 +22,12 @@ export class StoreService {
     this.initState();
   }
 
-  get fabricators(): Fabricator[] {
-    return this._fabricators
+  get factories(): Factory[] {
+    return this._factories
   }
 
-  set fabricators(fabricators: Fabricator[]) {
-    this._fabricators = fabricators;
+  set factories(factories: Factory[]) {
+    this._factories = factories;
     this.next();
   }
 
@@ -76,7 +76,6 @@ export class StoreService {
 
   set orders(orders: Quotation[]) {
     this._orders = orders;
-    this.cleanCart();
     this.next();
   }
 
@@ -93,7 +92,7 @@ export class StoreService {
     this._store.next({
       categories: this._categories,
       products: this._products,
-      fabricators: this._fabricators,
+      factories: this._factories,
       cart: this._cart,
       orders: this._orders
     });
@@ -104,21 +103,20 @@ export class StoreService {
     this._orders = [];
     this._products = [];
     this._categories = [];
-    this._fabricators = [];
+    this._factories = [];
     this._store = new BehaviorSubject<Store>(
       {
         categories: [],
         products: [],
-        fabricators: [],
+        factories: [],
         cart: [],
         orders: []
       }
     );
   }
 
-
   public removeFromCart(quotation: Quotation): void {
-    this._cart = this._cart.filter((quote) => quote.product.id !== quotation.product.id);
+    this._cart = this._cart.filter((quote) => quote.product_category.id !== quotation.product_category.id);
     this.next();
   }
 
@@ -126,10 +124,10 @@ export class StoreService {
     this._cart = []
   }
 
-  public toggleInCart(fabricators: Fabricator[], amount: number = 1): void {
+  public toggleInCart(factories: Factory[], amount: number = 1): void {
     this._cart = this._cart.concat({
-      product: this._product,
-      fabricators,
+      product_category: this._product,
+      factories,
       amount
     })
 

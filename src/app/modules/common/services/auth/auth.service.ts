@@ -7,6 +7,7 @@ import { AclService } from 'ng2-acl';
 import { ROLES_ACL } from 'src/app/app.roles';
 import * as _ from 'lodash';
 import { eraseCookie, setRedirect, getDataUser } from '../cookie/cookie.service';
+import { QuotationService } from '../quotation/quotation.service';
 
 @Injectable()
 export class AuthService {
@@ -15,9 +16,10 @@ export class AuthService {
     private router: Router,
     private http: HttpClient,
     private aclService: AclService,
+    private quotationService: QuotationService
   ) { }
 
-  public handleLogin(data: { email: string, password: string, context: ('admin' | 'app'), confirm_password?: string }): any {
+  public handleLogin(data: { email: string, password: string, context: ('admin' | 'app'), confirm_password?: string }): Observable<boolean> {
     return new Observable(observer => {
       this[data.hasOwnProperty('confirm_password') ? 'register' : 'login'](data).subscribe(
         () => observer.next(true),
@@ -99,5 +101,6 @@ export class AuthService {
     eraseCookie(`linno_user_data${context ? `_${context}` : ''}`);
     this.router.navigate(['/']);
     this.aclService.flushRoles();
+    this.quotationService.cleanListenner();
   }
 }

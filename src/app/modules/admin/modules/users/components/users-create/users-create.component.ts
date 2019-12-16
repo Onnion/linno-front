@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class UsersCreateComponent implements OnInit {
   public form: FormGroup;
-  public roles: any[];
   public loading = false;
 
   constructor(

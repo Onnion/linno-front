@@ -35,6 +35,7 @@ export class ProductsCreateComponent implements OnInit {
       this.factoriesService.getData({ limit: 999999 })
     ).subscribe(
       (results: any[]) => {
+        console.log(results);
         this.categories = results[0].data;
         this.brands = results[1].data;
         this.factories = results[2].data;

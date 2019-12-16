@@ -16,8 +16,13 @@
     padding: 0px 15px;
     border: 1px solid #4cd64c;
     background: #4cd64c;
-    color: #ffffff;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    // box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+
+    &.aguardando {
+      background-color: $blue !important;
+      border-color: $blue !important;
+    }
   }
 
   .avatar {

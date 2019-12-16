@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Fabricator } from '../../models/fabricator.model';
+import { Factory } from '../../models/factory.model';
 
 @Component({
   selector: 'app-fabricator',
@@ -7,18 +7,18 @@ import { Fabricator } from '../../models/fabricator.model';
   styleUrls: ['./fabricator.component.scss']
 })
 export class FabricatorComponent implements OnInit, OnChanges {
-  @Input() fabricator: Fabricator;
+  @Input() fabricator: Factory;
   @Input() pure = false;
   @Input() reselect = false;
   @Input() index: number;
   @Input() all: boolean;
-  @Output() select: EventEmitter<Fabricator> = new EventEmitter<Fabricator>();
+  @Output() select: EventEmitter<Factory> = new EventEmitter<Factory>();
 
   public checked = false;
 
   constructor() { }
 
-  public selectFabricator(): void {
+  public selectFactor(): void {
     this.checked = !this.checked;
     this.select.emit(this.fabricator);
   }

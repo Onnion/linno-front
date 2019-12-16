@@ -8,7 +8,6 @@ import { AppComponent } from './views/app/app.component';
 import { CategoriesComponent } from './views/categories/categories.component';
 import { CategoriesListComponent } from './components/categories-list/categories-list.component';
 import { StoreService } from './store/store.service';
-import { CategoryService } from '../common/services/category/category.service';
 import { ProductService } from '../common/services/product/product.service';
 import { ProductComponent } from './components/product/product.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
@@ -26,7 +25,7 @@ import { AclResolver, AclRedirection } from '../../app.resolve';
 import { AuthGuardService } from './app.guard';
 import { CartOrderListComponent } from './components/cart-order-list/cart-order-list.component';
 import { CartOrderComponent } from './components/cart-order/cart-order.component';
-import { QuoteService } from '../common/services/quote/quote.service';
+import { QuotationService } from '../common/services/quotation/quotation.service';
 import { MenuComponent } from './components/menu/menu.component';
 import { OrdersComponent } from './views/orders/orders.component';
 import { UserComponent } from './views/user/user.component';
@@ -35,6 +34,7 @@ import { QuotationComponent } from './components/quotation/quotation.component';
 import { QuotationListComponent } from './components/quotation-list/quotation-list.component';
 import { NgxCurrencyModule } from "ngx-currency";
 import { LoadingModule } from '../common/components/loading/loading.module';
+import { FactoriesrService } from '../common/services/factories/factories.service';
 
 @NgModule({
   declarations: [
@@ -71,15 +71,15 @@ import { LoadingModule } from '../common/components/loading/loading.module';
     NgxCurrencyModule
   ],
   providers: [
-    CategoryService,
     ProductService,
     StoreService,
+    FactoriesrService,
     AuthService,
     AclService,
     AclResolver,
     AclRedirection,
     AuthGuardService,
-    QuoteService,
+    QuotationService,
     // ActivatedRouteSnapshot
   ]
 })

@@ -7,7 +7,7 @@ import { masks } from '../../consts/consts.helpers';
 })
 export class CpfPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
+  transform(value: string): string {
     return value ? maskFormat(value, masks.CPF) : value;
   }
 

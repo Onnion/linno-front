@@ -1,6 +1,7 @@
 import { BaseRequestData } from './base-request-data.model';
+import { User } from '../../common/models/user/user.model';
 
-export interface Fabricator extends BaseRequestData {
+export interface Factory extends BaseRequestData {
     code: string,
     is_active: number,
     name: string,
@@ -9,5 +10,5 @@ export interface Fabricator extends BaseRequestData {
     picture: string,
     registration_code: string,
     trade_name: string,
-    user: any
+    user: User
 }

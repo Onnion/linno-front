@@ -14,8 +14,8 @@ export class QuotationListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.quotations = this.order.fabricators.map((fabricator) => {
-      return { product: this.order.product, fabricator, amount: this.order.amount, created_at: this.order.created_at, expire_in: this.order.expire_in };
+    this.quotations = this.order.factories.map((factor) => {
+      return { product: this.order.product_category, factor, amount: this.order.amount, created_at: this.order.created_at, expire_in: this.order.expire_in };
     });
   }
 

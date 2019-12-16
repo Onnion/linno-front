@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import { User } from './modules/common/models/user/user.model';
 
 export function eraseCookie(...name): void {
     name.forEach(e => {
@@ -143,7 +144,7 @@ export const isLoggedIn = (context: string): boolean => {
     const tokenString: string = getCookie(`linno_token${context ? `_${context}` : ''}`) || '{}';
     const userString: string = getCookie(`linno_user_data${context ? `_${context}` : ''}`) || '{}';
     const token: any = JSON.parse(tokenString);
-    const user: any = JSON.parse(userString);
+    const user: User = JSON.parse(userString);
     let result: boolean;
 
     try {
