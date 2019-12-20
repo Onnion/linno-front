@@ -8,7 +8,8 @@ export interface Paginator {
 }
 
 export interface Response<T> {
-    readonly data: ((T | T[]) & { error: boolean });
+    readonly data: T | T[];
+    readonly error?: boolean;
     readonly meta?: {
         pagination: Paginator;
     };

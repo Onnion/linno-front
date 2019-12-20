@@ -1,7 +1,7 @@
 <div matRipple (click)="!pure && selectProduct()" [matRippleCentered]="false" [matRippleDisabled]="pure" [matRippleUnbounded]="false" [class.mt-2]="index === 0" class="d-flex align-items-center justify-content-between mb-3 ml-2 mr-2 product">
     <div class="d-flex align-items-center justify-content-start flex-row flex-wrap" style="width: 100%;">
         <span class="break"> 
-            <img style="width: 30px;" class="mr-2" src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Ecommerce-Product-icon.png" alt="">
+            <img style="width: 30px;" class="mr-2" [src]="product.picture" alt="">
             {{product.name | titlecase}}
         </span>
         <!-- <span class="category"> {{product.category.name | titlecase}} </span> -->

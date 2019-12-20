@@ -1,7 +1,7 @@
 <!-- <ng-container *ngIf="quotation && quotation.product_category && quotation.factories.length > 0"> -->
 <ng-container *ngIf="quotation && quotation.product_category">
 
-    <div class="quotation mt-2 mb-3 ml-2 mr-2" matRipple (click)="toQuotationList()" [matRippleCentered]="false"
+    <div class="quotation mt-2 mb-3 ml-2 mr-2" matRipple (click)="toQuotationList(quotation)" [matRippleCentered]="false"
         [matRippleDisabled]="false" [matRippleUnbounded]="false">
 
         <ng-container [ngSwitch]="cart.toString()">
@@ -12,7 +12,8 @@
             </div>
 
             <div class="d-flex justify-content-end align-items-center" *ngSwitchDefault>
-                <span [ngClass]="quotation.quotation_group_status.name" class="d-flex status justify-content-center align-items-center status">
+                <span [ngClass]="quotation.quotation_group_status.name"
+                    class="d-flex status justify-content-center align-items-center status">
                     {{quotation.quotation_group_status.name}}
                 </span>
             </div>
@@ -21,6 +22,7 @@
 
         <div class="d-flex justify-content-between align-items-center">
             <div style="flex: 70%" class="d-flex align-items-start">
+                <img class="mr-2" style="width: 30px;" [src]="quotation.product_category.picture" alt="">
                 <span class="break"> {{quotation.product_category.name | titlecase}} </span>
             </div>
 

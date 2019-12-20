@@ -27,7 +27,7 @@ import { CartOrderListComponent } from './components/cart-order-list/cart-order-
 import { CartOrderComponent } from './components/cart-order/cart-order.component';
 import { QuotationService } from '../common/services/quotation/quotation.service';
 import { MenuComponent } from './components/menu/menu.component';
-import { OrdersComponent } from './views/orders/orders.component';
+import { QuotationGroupsComponent } from './views/quotation-groups/quotation-groups.component';
 import { UserComponent } from './views/user/user.component';
 import { QuotationsComponent } from './views/quotations/quotations.component';
 import { QuotationComponent } from './components/quotation/quotation.component';
@@ -35,6 +35,7 @@ import { QuotationListComponent } from './components/quotation-list/quotation-li
 import { NgxCurrencyModule } from "ngx-currency";
 import { LoadingModule } from '../common/components/loading/loading.module';
 import { FactoriesrService } from '../common/services/factories/factories.service';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { FactoriesrService } from '../common/services/factories/factories.servic
     CartOrderListComponent,
     CartOrderComponent,
     MenuComponent,
-    OrdersComponent,
+    QuotationGroupsComponent,
     UserComponent,
     QuotationsComponent,
     QuotationComponent,
@@ -74,6 +75,7 @@ import { FactoriesrService } from '../common/services/factories/factories.servic
     ProductService,
     StoreService,
     FactoriesrService,
+    QuotationService,
     AuthService,
     AclService,
     AclResolver,

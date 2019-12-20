@@ -1,5 +1,5 @@
 <ng-container *ngIf="quotations && quotations.length > 0">
-    <app-cart-order *ngFor="let quotation of quotations; let i = index;" [cart]="cart" [quotation]="quotation">
+    <app-cart-order *ngFor="let quotation of quotations; trackBy: trackByHandle; let i = index;" [cart]="cart" [quotation]="quotation">
     </app-cart-order>
 </ng-container>
 

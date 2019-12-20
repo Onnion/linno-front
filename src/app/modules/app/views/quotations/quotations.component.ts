@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from '../../store/store.service';
-import { Router } from '@angular/router';
-import { Quotation } from '../../models/quote.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-quotations',
@@ -9,15 +7,12 @@ import { Quotation } from '../../models/quote.model';
   styleUrls: ['./quotations.component.css']
 })
 export class QuotationsComponent implements OnInit {
-  public orderSelected: Quotation;
+  public id: string;
 
-  constructor(private store: StoreService, private router: Router) { }
+  constructor(private router: ActivatedRoute) { }
 
   ngOnInit() {
-    this.orderSelected = this.store.orderSelected;
-
-    if (!this.orderSelected) {
-      this.router.navigate(['/app/app']);
-    }
+    const id = this.router.snapshot.paramMap.get("quotation_groups_id");
+    this.id = id;
   }
 }

@@ -4,18 +4,17 @@ import { StoreService } from '../../store/store.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  selector: 'app-quotation-groups',
+  templateUrl: './quotation-groups.component.html',
+  styleUrls: ['./quotation-groups.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class QuotationGroupsComponent implements OnInit {
   public orders: Quotation[];
 
   constructor(private store: StoreService, private router: Router) { }
 
   ngOnInit() {
     this.orders = this.store.orders;
-    console.log(this.orders);
 
     if (this.orders.length <= 0) {
       this.router.navigate(['/app/app']);

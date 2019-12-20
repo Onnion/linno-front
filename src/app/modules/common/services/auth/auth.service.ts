@@ -101,6 +101,8 @@ export class AuthService {
     eraseCookie(`linno_user_data${context ? `_${context}` : ''}`);
     this.router.navigate(['/']);
     this.aclService.flushRoles();
+
+    // @TODO Remove method call -> add listenner
     this.quotationService.cleanListenner();
   }
 }

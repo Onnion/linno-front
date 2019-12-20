@@ -40,6 +40,7 @@ export class AppComponent extends RootComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.aclService.setAbilities(ROLES);
+    this.quotationService.getGroups();
     this.quotationService.listenner();
     this.listener();
     this.shouldShowFixeds = !(this.active.snapshot.firstChild.url[0].path === 'login');

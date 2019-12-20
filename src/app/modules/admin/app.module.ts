@@ -10,6 +10,8 @@ import { LoadingModule } from '../common/components/loading/loading.module';
 import { CurrencyPipeModule } from '../common/pipes/currency/currency.pipe.module';
 import { FormBuilderValidators } from '../common/validators/form-builder/form-builder.validators';
 import { AuthGuardService } from './app.guard';
+import { QuotationService } from '../common/services/quotation/quotation.service';
+import { StoreService } from '../app/store/store.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { AuthGuardService } from './app.guard';
     AuthGuardService,
     FormBuilderValidators,
     AuthService,
+    StoreService,
+    QuotationService,
     AclResolver,
     AclRedirection,
     { provide: MAT_DATE_LOCALE, useValue: 'pt-br' },

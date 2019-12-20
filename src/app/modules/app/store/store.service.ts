@@ -14,8 +14,8 @@ export class StoreService {
   private _product: Product;
   private _factories: Factory[];
   private _cart: Quotation[];
-  private _orders: Quotation[];
-  private _orderSelected: Quotation;
+  private _quotationGroups: Quotation[];
+  private _quotationGroupsSelected: Quotation;
   public _store: BehaviorSubject<Store>;
 
   constructor() {
@@ -63,19 +63,19 @@ export class StoreService {
   }
 
   get orders(): Quotation[] {
-    return this._orders;
+    return this._quotationGroups;
   }
 
   get orderSelected(): Quotation {
-    return this._orderSelected;
+    return this._quotationGroupsSelected;
   }
 
   set orderSelected(order: Quotation) {
-    this._orderSelected = order;
+    this._quotationGroupsSelected = order;
   }
 
   set orders(orders: Quotation[]) {
-    this._orders = orders;
+    this._quotationGroups = orders;
     this.next();
   }
 
@@ -94,13 +94,13 @@ export class StoreService {
       products: this._products,
       factories: this._factories,
       cart: this._cart,
-      orders: this._orders
+      quotationGroups: this._quotationGroups
     });
   }
 
   private initState(): void {
     this._cart = [];
-    this._orders = [];
+    this._quotationGroups = [];
     this._products = [];
     this._categories = [];
     this._factories = [];
@@ -110,7 +110,7 @@ export class StoreService {
         products: [],
         factories: [],
         cart: [],
-        orders: []
+        quotationGroups: []
       }
     );
   }

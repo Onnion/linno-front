@@ -23,8 +23,8 @@ export class CartOrderListComponent implements OnInit, OnDestroy {
   constructor(private store: StoreService, private router: Router, private quotationService: QuotationService) { }
 
   private handleOrders(store: Store): void {
-    if (store && store[this.cart ? 'cart' : 'orders'].length > 0) {
-      this.quotations = store[this.cart ? 'cart' : 'orders'];
+    if (store && store[this.cart ? 'cart' : 'quotationGroups'].length > 0) {
+      this.quotations = store[this.cart ? 'cart' : 'quotationGroups'];
       this.loading = false;
     } else {
       this.router.navigate(['/app/app']);
@@ -42,7 +42,7 @@ export class CartOrderListComponent implements OnInit, OnDestroy {
   }
 
   public submitQuotes(): void {
-    this.loading = true
+    this.loading = true;
     this.quotationService.create().subscribe(
       quotations => {
         this.loading = false;
@@ -51,6 +51,14 @@ export class CartOrderListComponent implements OnInit, OnDestroy {
       error => {
         this.loading = false
       });
+  }
+
+  public trackByHandle(index: number, item: Quotation): string | number {
+    let handler = null;
+
+    if (item) { handler = item.id; }
+
+    return handler;
   }
 
   ngOnInit() {

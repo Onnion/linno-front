@@ -50,12 +50,24 @@ export class QuotationService extends CrudServices<any> {
         );
     }
 
-    public create(): Observable<any> {
+    public getQuotations(id: string | number): Observable<Quotation[]> {
+        return new Observable(observer => {
+            this.http.get(`${environment.AUTH_URL}/v1/quotation-groups/quotations/${id}`).subscribe(
+                (quotation_goups: Response<Quotation>) => {
+                    observer.next(quotation_goups.data as Quotation[]);
+                },
+                error => observer.error(error)
+            );
+        });
+
+    }
+
+    public create(): Observable<Quotation[]> {
         return new Observable((observer) => {
             const quotations = this.store.cart;
             const requests = this.createQuotationRequests(quotations);
             forkJoin(requests).subscribe((res: Response<Quotation>[]) => {
-                const quotation_goups = res.map(quotation => quotation.data);
+                const quotation_goups = res.map(quotation => quotation.data as Quotation);
                 this.store.cleanCart();
                 observer.next(quotation_goups);
             });

@@ -27,14 +27,13 @@ export class CartOrderComponent implements OnInit {
     });
   }
 
-  public toQuotationList(): void {
+  public toQuotationList(quotation: Quotation): void {
     if (!this.cart) {
       this.storeService.orderSelected = this.quotation;
-      this.router.navigate(['app/app/quotations']);
+      this.router.navigate([`app/app/quotation-groups/quotations/${quotation.id}`]);
     }
   }
 
   ngOnInit() {
   }
-
 }
