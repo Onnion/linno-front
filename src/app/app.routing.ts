@@ -9,7 +9,6 @@ const routes: Routes = [
     { path: '**', redirectTo: 'app' },
 ];
 
-
 @NgModule({
     imports: [
         CommonModule,

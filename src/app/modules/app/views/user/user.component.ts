@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { getDataUser } from 'src/app/app.utils';
 import { AuthService } from '../../../common/services/auth/auth.service';
+import { User } from 'src/app/modules/common/models/user/user.model';
 
 @Component({
   selector: 'app-user',
@@ -8,8 +9,8 @@ import { AuthService } from '../../../common/services/auth/auth.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  public user: any;
-  public menus: any[];
+  public user: User;
+  public menus: { icon: string, name: string }[];
 
   constructor(private auth: AuthService) { }
 
@@ -18,7 +19,7 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = getDataUser();
+    this.user = getDataUser('app');
     this.menus = [
       { icon: 'reply', name: 'sair' }
     ];

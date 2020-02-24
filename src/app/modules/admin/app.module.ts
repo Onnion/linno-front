@@ -1,38 +1,38 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
-import { ComponentsModule } from './components/components.module';
-import { AppRoutingModule } from './app.routing';
-import { HttpClientModule } from '@angular/common/http';
+import { AdminRoutingModule } from './admin.routing.module';
 import { AclService } from 'ng2-acl';
-import { SettingsService } from './services/settings.service';
-import { SellersService } from './services/sellers/sellers.service';
 import { MAT_DATE_LOCALE } from '@angular/material';
-import { HandlerErrorHelpers } from 'src/app/helpers/handler-error/handler-error.helper';
-import { FormBuilderValidators } from 'src/app/helpers/validators';
-import { CurrencyPipeModule } from 'src/app/helpers/pipes/currency/currency.pipe.module';
+import { CommonModule } from '@angular/common';
+import { AclResolver, AclRedirection } from 'src/app/app.resolve';
+import { AuthService } from '../common/services/auth/auth.service';
+import { LoadingModule } from '../common/components/loading/loading.module';
+import { CurrencyPipeModule } from '../common/pipes/currency/currency.pipe.module';
+import { FormBuilderValidators } from '../common/validators/form-builder/form-builder.validators';
+import { AuthGuardService } from './app.guard';
+import { QuotationService } from '../common/services/quotation/quotation.service';
+import { StoreService } from '../app/store/store.service';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule,
-    ComponentsModule,
-    AppRoutingModule,
-    HttpClientModule,
+    CommonModule,
+    LoadingModule,
+    AdminRoutingModule,
     CurrencyPipeModule
   ],
   providers: [
     AclService,
-    HandlerErrorHelpers,
-    SettingsService,
-    SellersService,
+    AclResolver,
+    AuthGuardService,
     FormBuilderValidators,
+    AuthService,
+    StoreService,
+    QuotationService,
+    AclResolver,
+    AclRedirection,
     { provide: MAT_DATE_LOCALE, useValue: 'pt-br' },
   ],
   bootstrap: [AppComponent]

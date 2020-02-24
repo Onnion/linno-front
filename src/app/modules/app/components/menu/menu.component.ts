@@ -11,7 +11,7 @@ import { StoreService } from '../../store/store.service';
 })
 export class MenuComponent implements OnInit, OnDestroy {
   private storeSub: Subscription;
-  public orders = [];
+  public quotationGroups = [];
 
   constructor(private _snackBar: MatSnackBar, private store: StoreService, private router: Router) { }
 
@@ -23,10 +23,10 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   private subscribeStore(): void {
     this.storeSub = this.store._store.subscribe((store) => {
-      if (store && store.orders && store.orders.length > 0) {
-        this.orders = store.orders;
+      if (store && store.quotationGroups && store.quotationGroups.length > 0) {
+        this.quotationGroups = store.quotationGroups;
       } else {
-        this.orders = [];
+        this.quotationGroups = [];
       }
     });
   }

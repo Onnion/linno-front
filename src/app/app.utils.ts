@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import { User } from './modules/common/models/user/user.model';
 
 export function eraseCookie(...name): void {
     name.forEach(e => {
@@ -124,27 +125,26 @@ export const cleanUp = (value: string) => {
     return value.replace(/\D/g, '');
 };
 
-export const getDataUser = (): any => {
-    return getObjectCookie('linno_user_data');
+export const getDataUser = (context): any => {
+    return getObjectCookie(`linno_user_data${context ? `_${context}` : ''}`);
 };
 
-export const getToken = (): { timeLogin: number, token: { access_token: string, expires_in: number, token_type: string, refres_token: string } } => {
-    return getObjectCookie('linno_token');
+export const getToken = (context): { timeLogin: number, token: { access_token: string, expires_in: number, token_type: string, refres_token: string } } => {
+    return getObjectCookie(`linno_token${context ? `_${context}` : ''}`);
 };
 
 export const transformCurrency = (value: string) => {
     return parseFloat(parseFloat(value.toString().replace(/[\$\R]/g, '').replace(',', '.')).toFixed(2));
 };
 
-export const isLoggedIn = (): boolean => {
+export const isLoggedIn = (context: string): boolean => {
 
     moment.locale('pt-br');
 
-    const tokenString: string = getCookie('linno_token') || '{}';
-    const userString: string = getCookie('linno_user_data') || '{}';
+    const tokenString: string = getCookie(`linno_token${context ? `_${context}` : ''}`) || '{}';
+    const userString: string = getCookie(`linno_user_data${context ? `_${context}` : ''}`) || '{}';
     const token: any = JSON.parse(tokenString);
-    const user: any = JSON.parse(userString);
-
+    const user: User = JSON.parse(userString);
     let result: boolean;
 
     try {

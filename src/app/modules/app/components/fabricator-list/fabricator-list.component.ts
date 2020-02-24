@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Fabricator } from '../../models/fabricator.model';
+import { Factory } from '../../models/factory.model';
 import { StoreService } from '../../store/store.service';
 import { Store } from '../../models/store.model';
 import { Router } from '@angular/router';
@@ -17,8 +17,8 @@ export class FabricatorListComponent implements OnInit, OnDestroy {
   @Input() price: number = 0;
 
   private storeSub: Subscription;
-  private selectedFabricators: Fabricator[] = [];
-  public fabricators: Fabricator[];
+  private selectedFactories: Factory[] = [];
+  public factories: Factory[];
   public loading = true;
   public shouldEnableQuote = false;
   public selectedAll = false;
@@ -28,9 +28,9 @@ export class FabricatorListComponent implements OnInit, OnDestroy {
   constructor(private store: StoreService, private router: Router) { }
 
   private handleFabricators(store: Store): void {
-    if (store && store.fabricators.length > 0) {
-      this.fabricators = store.fabricators;
-      this.loading = false;
+    if (store && store.factories) {
+      this.factories = store.factories;
+      setTimeout(() => this.loading = false, 1000);
     }
   }
 
@@ -43,19 +43,20 @@ export class FabricatorListComponent implements OnInit, OnDestroy {
   public toggleAll(): void {
     this.reselect = this.selectedAll && !this.checked;
     this.selectedAll = this.selectedAll && !this.checked ? true : !this.selectedAll;
-    this.selectedFabricators = this.selectedAll ? this.store.fabricators : [];
-    this.shouldEnableQuote = this.selectedFabricators.length > 0;
+    this.selectedFactories = this.selectedAll ? this.store.factories : [];
+    this.shouldEnableQuote = this.selectedFactories.length > 0;
     this.checked = this.selectedAll;
   }
 
   public createQuote(): void {
-    this.store.toggleInCart(this.selectedFabricators, this.amount);
+    window.navigator.vibrate(200);
+    this.store.toggleInCart(this.selectedFactories, this.amount);
     this.router.navigate(['/app/app']);
   }
 
-  public selectFabricator($event: Fabricator) {
-    this.selectedFabricators = _.xorBy(this.selectedFabricators, [$event], 'id');
-    this.shouldEnableQuote = this.selectedFabricators.length > 0;
+  public selectFabricator($event: Factory) {
+    this.selectedFactories = _.xorBy(this.selectedFactories, [$event], 'id');
+    this.shouldEnableQuote = this.selectedFactories.length > 0;
     this.checked = false;
   }
 

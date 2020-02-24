@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StoreService } from '../../store/store.service';
 import { Router } from '@angular/router';
 import { Product } from '../../models/product.model';
-import { FabricatorService } from '../../services/fabricator/fabricator.service';
+import { FactoriesrService } from 'src/app/modules/common/services/factories/factories.service';
 
 @Component({
   selector: 'app-fabricators',
@@ -14,7 +14,7 @@ export class FabricatorsComponent implements OnInit {
   public amount = 1;
   public price = 0;
 
-  constructor(private store: StoreService, private fabricatorService: FabricatorService, private router: Router) { }
+  constructor(private store: StoreService, private fabricatorService: FactoriesrService, private router: Router) { }
 
   public changeAmount($event): void {
     this.amount = $event;
@@ -29,9 +29,9 @@ export class FabricatorsComponent implements OnInit {
 
     if (!(this.product)) {
       this.router.navigate(['/app/app']);
-    }
-
-    this.fabricatorService.get();
+    } else {
+      this.fabricatorService.getProductFactories(this.product.id);
+    } 
   }
 
 }

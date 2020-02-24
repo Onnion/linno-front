@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product/product.service';
-import { CategoryService } from '../../services/category/category.service';
+import { ProductService } from '../../../common/services/product/product.service';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +8,10 @@ import { CategoryService } from '../../services/category/category.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private productService: ProductService, private categoryService: CategoryService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.categoryService.get();
-    this.productService.get();
+    this.productService.setInStoreProductCategories();
   }
 
 }

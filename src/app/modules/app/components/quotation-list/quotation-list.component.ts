@@ -1,22 +1,38 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Quotation } from '../../models/quote.model';
+import { QuotationService } from 'src/app/modules/common/services/quotation/quotation.service';
 
 @Component({
   selector: 'app-quotation-list',
   templateUrl: './quotation-list.component.html',
   styleUrls: ['./quotation-list.component.css']
 })
-export class QuotationListComponent implements OnInit {
-  @Input() order: Quotation;
+export class QuotationListComponent implements OnInit, OnChanges {
+  @Input() id: string;
 
-  public quotations: any[];
+  public quotations: Quotation[];
+  public loading = false;
 
-  constructor() { }
+  constructor(private quotationService: QuotationService) { }
 
-  ngOnInit() {
-    this.quotations = this.order.fabricators.map((fabricator) => {
-      return { product: this.order.product, fabricator, amount: this.order.amount, created_at: this.order.created_at, expire_in: this.order.expire_in };
-    });
+  private initQuotations(): void {
+    this.loading = true;
+    this.quotationService.getQuotations(this.id).subscribe(
+      (quotations: Quotation[]) => {
+        this.loading = false;
+        this.quotations = quotations;
+      }
+    );
   }
 
+  ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const id = changes.id;
+
+    if (id.currentValue) {
+      this.initQuotations();
+    }
+  }
 }

@@ -7,15 +7,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { MaterialModule } from './mat.module';
 import { MAT_DATE_LOCALE } from '@angular/material';
-// import { NotifierModule } from 'angular-notifier';
 import { RouterModule } from '@angular/router';
 import { AclService } from 'ng2-acl';
-// import { notifierDefaultOptions } from './helpers/consts/consts.helpers';
-import { HandlerErrorHelpers } from './helpers/handler-error/handler-error.helper';
-import { TokenInterceptor } from './helpers/interceptor/interceptor.helper';
-import { FormBuilderValidators } from './validators';
-import { MaskDirective } from './helpers/directives/mask/mask.directive';
-import { LongPress } from './helpers/directives/press/press.directive';
+import { DeviceDetectorModule } from 'ngx-device-detector';
+import { HandlerErrorHelpers } from './modules/common/interfaces/handle-error/handle-error';
+import { TokenInterceptor } from './modules/common/interceptor/interceptor';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -25,11 +22,10 @@ import { LongPress } from './helpers/directives/press/press.directive';
     MaterialModule,
     AppRoutingModule,
     RouterModule,
-    // NotifierModule.withConfig(notifierDefaultOptions),
+    DeviceDetectorModule.forRoot()
   ],
-  declarations: [AppComponent, MaskDirective, LongPress],
+  declarations: [AppComponent],
   providers: [
-    FormBuilderValidators,
     AclService,
     HandlerErrorHelpers,
     {

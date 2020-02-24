@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Quotation } from '../../models/quote.model';
 import { StoreService } from '../../store/store.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Fabricator } from '../../models/fabricator.model';
+import { Factory } from '../../models/factory.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,20 +21,19 @@ export class CartOrderComponent implements OnInit {
     this.storeService.removeFromCart(this.quotation);
   }
 
-  public showFabricator(fabricator: Fabricator): void {
-    this._snackBar.open(fabricator.company_name, '', {
+  public showFactor(factor: Factory): void {
+    this._snackBar.open(factor.trade_name, '', {
       duration: 2000,
     });
   }
 
-  public toQuotationList(): void {
+  public toQuotationList(quotation: Quotation): void {
     if (!this.cart) {
       this.storeService.orderSelected = this.quotation;
-      this.router.navigate(['app/app/quotations']);
+      this.router.navigate([`app/app/quotation-groups/quotations/${quotation.id}`]);
     }
   }
 
   ngOnInit() {
   }
-
 }

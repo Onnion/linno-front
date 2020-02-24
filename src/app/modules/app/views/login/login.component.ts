@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../common/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { isLoggedIn } from 'src/app/app.utils';
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   private initFormControls(): void {
     this.form = this.fb.group({
-      email: ['marcio.hsdl@gmail.com', [Validators.required, Validators.email]],
+      email: ['jane.doe@mail.com', [Validators.required, Validators.email]],
       password: ['secret', [Validators.required]]
     });
   }
@@ -32,12 +32,14 @@ export class LoginComponent implements OnInit {
   public submit(): void {
     this.loading = true;
     if (this.form.valid) {
-      this.auth.handleLogin(this.form.value).subscribe(
+      const data = {...this.form.value, context: 'app'};
+
+      this.auth.handleLogin(data).subscribe(
         () => {
           this.loading = false;
           this.router.navigate(['/app/app'])
         },
-        () => alert('num foi :(')
+        (error) => console.log(error)
       );
     }
   }
@@ -52,9 +54,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (isLoggedIn()) {
-      this.auth.redirectRole();
-
+    if (isLoggedIn('app')) {
+      this.auth.redirectRole('app');
     }
     this.initFormControls();
   }
